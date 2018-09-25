@@ -1,0 +1,13 @@
+<i-card title="学生会" extra="组织履历">
+    <view slot="content">担任“会长”一职</view>
+    <view slot="footer">2018年12月12日</view>
+</i-card>
+
+<i-cell-group wx:for="{{listData}}" wx:key="{{index}}">
+    <i-cell>
+      <i-card title="{{item.acName}}" extra="组织履历">
+        <view slot="content">{{item.mess}}</view>
+        <view slot="footer">{{item.time}}</view>
+      </i-card>
+    </i-cell>
+</i-cell-group>

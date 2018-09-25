@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "i-card": "../../../dist/card/index",
+    "i-alert": "../../../dist/alert/index"
+  }
+}

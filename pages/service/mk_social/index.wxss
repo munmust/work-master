@@ -1,0 +1,7 @@
+/* pages/service/mk_school/index.wxss */
+.semester{
+  margin:0 40rpx;
+  border: 1rpx solid #2ecc71;
+  border-radius: 5rpx;
+  text-align: center;
+}

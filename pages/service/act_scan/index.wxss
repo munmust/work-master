@@ -1,0 +1,20 @@
+.notice{
+  width: 100%;
+  height: 600rpx;
+  text-align: center;
+}
+.notice-item{
+  margin: 0 auto;
+  height: 50rpx;
+  margin-bottom: 20rpx;
+}
+.notice-item-part{
+  width: 350rpx;
+  display: inline-block;
+  text-align: center;
+  background-color: rgb(240, 243, 248)
+}
+
+.col-class{
+  background-color: gainsboro;
+}

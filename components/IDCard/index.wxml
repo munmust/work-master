@@ -1,0 +1,8 @@
+<!--components/IDCard/idCard.wxml-->
+<view class='frame'>
+  <image class='image' src="{{src}}"></image>
+  <view class='mes'>
+    <slot></slot>
+  </view>
+</view>
+ 

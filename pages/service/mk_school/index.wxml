@@ -1,0 +1,23 @@
+<i-panel title="创建“校园活动”">
+
+    <i-input  title="活动名称" type='text' value="{{name}}" data-type='name'   bindinput='onValueChange'
+     autofocus/>
+
+    <i-input title="举办单位" type='text'  value="{{host}}" data-type='host' bindinput='onValueChange'/>
+
+    <picker class='semester' range='{{array}}' value='{{index}}' bindchange="bindTermChange">
+      <view class='picker'>{{array[index]}}</view>
+    </picker>
+    
+
+    <i-input title="附加信息" type="textarea" value="{{extra}}" data-type='extra'
+    bindinput='onValueChange'/>
+
+    <i-button type='success' bindtap='submit'>提交</i-button>
+
+</i-panel>
+
+    <!-- 提示信息 -->
+    <modal confirm-text="确定"no-confirm  no-cancel hidden="{{modalHidden}}" mask bindconfirm="modalChange">
+        请完善活动信息
+    </modal>

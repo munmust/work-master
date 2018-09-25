@@ -1,0 +1,22 @@
+<i-alert type="success">
+    {{acName}}
+</i-alert>
+<view class='notice'>
+    <view class='notice-item'>
+      <view class='notice-item-part'>学号</view>
+      <view class='notice-item-part'>姓名</view>
+    </view>
+    <block wx:for="{{list}}" wx:key="{{index}}">
+      <view class='notice-item'>
+        <view class='notice-item-part'>{{item.stuId}}</view>
+        <view class='notice-item-part'>{{item.stuName}}</view>
+      </view>
+    </block>
+</view>
+<i-panel>
+  <view style="padding-left: 16px;">●扫满5个自动提交</view>
+  <view style="padding-left: 16px;">●如果未满5个，请手动提交</view>
+</i-panel>
+<i-button bindtap='scanCode' type="success">扫码</i-button>
+<i-button bindtap='submit' type="success">提交</i-button>
+

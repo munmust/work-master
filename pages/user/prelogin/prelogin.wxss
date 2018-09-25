@@ -1,0 +1,13 @@
+/* pages/login/welcome.wxss */
+.outBox{
+  height: 1180rpx;
+  background-color: #2980b9;
+}
+.contain{
+  height: 500rpx;
+  line-height: 500rpx;
+  font-size: 80rpx;
+  font-weight: bold;
+  color: whitesmoke;
+  text-align: center;
+}

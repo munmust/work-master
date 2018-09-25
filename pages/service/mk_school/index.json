@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "i-panel":"../../../dist/panel/index",
+    "i-input": "../../../dist/input/index",
+    "i-button": "../../../dist/button/index"
+  }
+}

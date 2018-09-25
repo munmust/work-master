@@ -1,0 +1,5 @@
+<!--components/KeyValue/keyValue.wxml-->
+<view class='frame'>
+  <view class='key'>{{key}}</view>
+  <view class='value'>{{value}}</view>
+</view>

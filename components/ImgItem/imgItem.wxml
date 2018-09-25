@@ -1,0 +1,9 @@
+<!--components/ImgItem/imgItem.wxml-->
+<view class='frame'>
+  <image class='img' src="{{ img }}"></image>
+  <view class='contain'>
+    <view class='title'>{{title}}</view>
+    <view class='subtitle'>{{subtitle}}</view>
+  </view>
+  <image class='arrows' src='../../images/箭头.png'></image>
+</view>

@@ -1,0 +1,9 @@
+/* pages/user/personal/index.wxss */
+.qrcode{
+  width: 400rpx;
+  height: 400rpx;
+  margin-top: 50rpx;
+  margin-left: 140rpx;
+  border: 10rpx double black;
+  border-radius: 10rpx;
+}

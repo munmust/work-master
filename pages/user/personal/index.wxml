@@ -1,0 +1,18 @@
+<i-row>
+  <!--身份信息-->
+  <i-col span='24' i-class='col-class'>
+    <m-idcard src='../../images/idphoto.jpg'>
+      <m-keyvalue key='姓名' value="{{stuName}}"></m-keyvalue>
+      <m-keyvalue key='学号' value="{{stuId}}"></m-keyvalue>
+      <m-keyvalue key='专业' value="{{stuMagor}}"></m-keyvalue>
+    </m-idcard>
+  </i-col>
+  <!--二维码-->
+  <i-col span='24' i-class='col-class'>
+    <i-panel title=" ">
+      <view style="padding: 15px;">
+        <image class='qrcode' src='{{qrcode}}'></image>
+      </view>
+    </i-panel>
+  </i-col>
+</i-row>

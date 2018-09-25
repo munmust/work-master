@@ -1,0 +1,30 @@
+/* components/KeyValue/keyValue.wxss */
+.frame{
+  width: 98%;
+  margin: 5rpx auto;
+  background-color: rgb(253, 251, 251);
+  border-bottom: 1rpx solid gray;
+  display: block;
+  overflow: hidden;
+}
+.key{
+  float: left;
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+  padding-top: 5rpx;
+  padding-bottom: 5rpx;
+  color: black;
+  font-weight: bold;
+  font-size: 35rpx;
+  font-family: 'Microsoft JhengHei'
+}
+.value{
+  float: left;
+  padding-left: 20rpx;
+  padding-top: 10rpx;
+  padding-bottom: 8rpx;
+  margin-right: 2rpx;
+  text-align: center;
+  font-family: 'SimHei';
+  font-size: 30rpx;
+}

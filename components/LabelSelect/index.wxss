@@ -1,0 +1,32 @@
+
+.mod-a{
+  padding: 0 20rpx;
+  border: 1px solid #f0f0f0;
+  background-color: #fff;
+}
+
+.mod{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 90rpx;
+  padding: 0 20rpx;
+}
+
+.arrow-r{
+  width: 9rpx;
+  height: 17rpx;
+  margin-left: 10rpx;
+}
+
+.name{
+  min-width: 150rpx;
+}
+
+.input{
+  width: 400rpx;
+  border-radius: 20rpx;
+  background-color: whitesmoke;
+  text-align: right;
+}

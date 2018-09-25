@@ -1,0 +1,47 @@
+{
+  "pages": [
+    "pages/user/prelogin/prelogin",
+    "pages/user/login/login",
+    "pages/user/personal/index",
+    "pages/service/navigation1/index",
+    "pages/service/act_make/index",
+    "pages/service/act_organization/index",
+    "pages/service/act_recorder/index",
+    "pages/service/act_school/index",
+    "pages/service/act_social/index",
+    "pages/service/act_volunteer/index",
+    "pages/service/act_scan/index",
+    "pages/service/mk_school/index",
+    "pages/service/mk_organization/index",
+    "pages/service/mk_social/index",
+    "pages/service/mk_volunteer/index",
+    "pages/service/navigation2/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#2980b9",
+    "navigationBarTitleText": "第二课堂",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#dadada",
+    "selectedColor": "#09bb07",
+    "backgroundColor": "#fff",
+    "borderStyle": "#f6f6f6",
+    "font-size": "50px",
+    "list": [
+      {
+        "pagePath": "pages/user/personal/index",
+        "text": "个人",
+        "iconPath": "images/person.png",
+        "selectedIconPath": "images/person1.png"
+      },
+      {
+        "pagePath": "pages/service/navigation1/index",
+        "text": "功能",
+        "iconPath": "images/fuc.png",
+        "selectedIconPath": "images/fuc1.png"
+      }
+    ]
+  }
+}
