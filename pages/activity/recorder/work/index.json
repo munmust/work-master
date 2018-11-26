@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "记录员任务",
+  "usingComponents": {
+    "wux-card": "../../../../dist/card/index",
+    "wux-wing-blank": "../../../../dist/wing-blank/index",
+    "wux-alert": "../../../../dist/alert/index",
+    "wux-card": "../../../../dist/card/index",
+    "wux-white-space": "../../../../dist/white-space/index",
+    "wux-prompt": "../../../../dist/prompt/index"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "活动相关",
+  "usingComponents": {
+    "function-bar": "../../../../dist/function-bar/index"
+  }
+}

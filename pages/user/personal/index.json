@@ -1,9 +1,0 @@
-{
-  "usingComponents": {
-    "i-row": "../../../dist/row/index",
-    "i-col": "../../../dist/col/index",
-    "i-panel": "../../../dist/panel/index",
-    "m-idcard":"../../../components/IDCard/index",
-    "m-keyvalue":"../../../components/KeyValue/index"
-  }
-}

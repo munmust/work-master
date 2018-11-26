@@ -1,25 +1,29 @@
 Component({
-    externalClasses: ['i-class'],
-
+    externalClasses: ['wux-class', 'wux-hover-class'],
     properties: {
-        // default, primary, ghost, info, success, warning, error
         type: {
             type: String,
-            value: '',
+            value: 'stable',
         },
-        inline: {
+        clear: {
             type: Boolean,
-            value: false
+            value: false,
         },
-        // default, large, small
+        block: {
+            type: Boolean,
+            value: false,
+        },
+        full: {
+            type: Boolean,
+            value: false,
+        },
+        outline: {
+            type: Boolean,
+            value: false,
+        },
         size: {
             type: String,
-            value: '',
-        },
-        // circle, square
-        shape: {
-            type: String,
-            value: 'square'
+            value: 'default',
         },
         disabled: {
             type: Boolean,
@@ -29,52 +33,76 @@ Component({
             type: Boolean,
             value: false,
         },
-        long: {
-            type: Boolean,
-            value: false
+        formType: {
+            type: String,
+            value: '',
         },
-        openType: String,
-        appParameter: String,
-        hoverStopPropagation: Boolean,
+        openType: {
+            type: String,
+            value: '',
+        },
+        hoverStopPropagation: {
+            type: Boolean,
+            value: false,
+        },
         hoverStartTime: {
             type: Number,
-            value: 20
+            value: 20,
         },
         hoverStayTime: {
             type: Number,
-            value: 70
+            value: 70,
         },
         lang: {
             type: String,
-            value: 'en'
+            value: 'en',
         },
         sessionFrom: {
             type: String,
-            value: ''
+            value: '',
         },
-        sendMessageTitle: String,
-        sendMessagePath: String,
-        sendMessageImg: String,
-        showMessageCard: Boolean
+        sendMessageTitle: {
+            type: String,
+            value: '',
+        },
+        sendMessagePath: {
+            type: String,
+            value: '',
+        },
+        sendMessageImg: {
+            type: String,
+            value: '',
+        },
+        showMessageCard: {
+            type: Boolean,
+            value: false,
+        },
+        appParameter: {
+            type: String,
+            value: '',
+        },
     },
 
     methods: {
-        handleTap () {
-            if (this.data.disabled) return false;
-
-            this.triggerEvent('click');
+        onTap() {
+            if (!this.data.disabled && !this.data.loading) {
+                this.triggerEvent('click')
+            }
         },
-        bindgetuserinfo({ detail = {} } = {}) {
-            this.triggerEvent('getuserinfo', detail);
+        bindgetuserinfo(e) {
+            this.triggerEvent('getuserinfo', e.detail)
         },
-        bindcontact({ detail = {} } = {}) {
-            this.triggerEvent('contact', detail);
+        bindcontact(e) {
+            this.triggerEvent('contact', e.detail)
         },
-        bindgetphonenumber({ detail = {} } = {}) {
-            this.triggerEvent('getphonenumber', detail);
+        bindgetphonenumber(e) {
+            this.triggerEvent('getphonenumber', e.detail)
         },
-        binderror({ detail = {} } = {}) {
-            this.triggerEvent('error', detail);
-        }
-    }
-});
+        bindopensetting(e) {
+            this.triggerEvent('opensetting', e.detail)
+        },
+        onError(e) {
+            this.triggerEvent('error', e.detail)
+        },
+    },
+})

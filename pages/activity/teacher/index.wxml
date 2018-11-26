@@ -1,0 +1,67 @@
+<!--个人信息-->
+<view class='idcard'>
+  <image class='idcard-pic' src='../../../images/pic-user.png'></image>
+  <view class='idcard-mes'>
+    <view>{{stuName}}xxx</view>
+    <view>{{stuId}}工号</view>
+    <view>{{role}}义工记录教师</view>
+  </view>
+</view>
+
+<!--扫码信息-->
+<wux-wing-blank size='large'>
+
+  <wux-cell-group title='义工信息'>
+
+    <wux-cell>
+      <wux-input 
+        label='工作名称'
+        placeholder='请手动填写'
+        data-name='work_name' 
+        value='{{work_name}}' 
+        bind:change='input'
+        controlled/>
+    </wux-cell>
+
+    <wux-cell title='时长（以小时计）'>
+      <wux-input-number 
+        data-name='work_duration'
+        min='{{0}}' max='{{8}}' step='{{0.5}}'
+        disabled='{{false}}'
+        bind:change='input'
+        slot='footer'
+        />
+    </wux-cell>
+
+  </wux-cell-group>
+
+  <wux-cell-group title='学生信息'>
+  
+    <wux-cell>
+      <wux-input 
+        controlled 
+        label='学生姓名' 
+        data-name='stu_name' 
+        value='{{stu_name}}'
+        placeholder='扫码后自动填写' 
+        disabled/>
+    </wux-cell>
+
+    <wux-cell>
+      <wux-input 
+        controlled 
+        label='学生学号' 
+        data-name='stu_id' 
+        value='{{stu_id}}' 
+        placeholder='扫码后自动填写' 
+        disabled />
+    </wux-cell>
+    
+  </wux-cell-group>
+
+  <wux-wing-blank size='large'>
+    <wux-button type='positive' block bind:click='toScan'>扫码</wux-button>
+    <wux-button type='positive' block bind:click='toSubmit'>提交</wux-button>
+  </wux-wing-blank>
+
+</wux-wing-blank>

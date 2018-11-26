@@ -1,0 +1,23 @@
+<wux-white-space size='large'/>
+<wux-white-space size='large'/>
+<wux-white-space size='large'/>
+<wux-cell>
+  <wux-input label='原密码' value='{{pwd1}}' type='password' bindchange='pwd1Change' placeholder='请输入原密码'/>
+</wux-cell>
+
+<wux-white-space size='large'/>
+<wux-cell>
+  <wux-input label='新密码' value='{{pwd2}}' type='password' bindchange='pwd2Change' placeholder='请输入新密码'/>
+</wux-cell>
+
+
+<wux-white-space size='large'/>
+<wux-cell>
+  <wux-input label='新密码' value='{{pwd3}}' type='password' bindchange='pwd3Change' placeholder='再次确认新密码'/>
+</wux-cell>
+
+<wux-white-space size='large'/>
+<wux-white-space size='large'/>
+<view class="button">
+  <wux-button block type="positive" bindtap='submit'>提交</wux-button>
+</view>

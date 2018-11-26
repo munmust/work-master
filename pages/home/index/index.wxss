@@ -1,0 +1,216 @@
+page {
+  height: 100%;
+  font-size: 26rpx;
+  background-color: #ffffff;
+}
+
+.user_info {
+  width: 750rpx;
+  height: 150rpx;
+  padding-top: 50rpx;
+  background-color: #2980b9;
+}
+
+.user_avatar {
+  width: 130rpx;
+  height: 130rpx;
+  margin-left: 50rpx;
+  border-radius: 50%;
+  float: left;
+  margin-right: 50rpx;
+  background-color: white;
+}
+
+.user_info_detail {
+  width: 500rpx;
+  height: 130rpx;
+  margin-left: 50rpx;
+  color: white;
+  margin: 30rpx auto;
+}
+
+.qrcode_switch {
+  width: 750rpx;
+  height: 80rpx;
+  background-color: #2980b9;
+}
+
+.qrcode_switch image {
+  width: 50rpx;
+  height: 50rpx;
+  float: right;
+  margin-right: 40rpx;
+  margin-bottom: 10rpx;
+}
+
+.features {
+  width: 750rpx;
+  margin-top: 10rpx;
+  z-index: 1;
+}
+
+.teacher {
+  width: 750rpx;
+  margin-top: 10rpx;
+  z-index: 1;
+}
+
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
+}
+
+.m-home {
+  flex: 1;
+  position: relative;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  height: 80rpx;
+  padding: 20rpx;
+  margin: 20rpx 20rpx 0;
+  border-radius: 5rpx;
+  box-shadow: 5rpx 5rpx 5rpx black;
+}
+
+.color-school {
+  background-color: #3498db;
+  box-shadow: 5rpx 5rpx 5rpx #3498db;
+  opacity: 0.8;
+}
+
+.color-social {
+  background-color: #27ae60;
+  box-shadow: 5rpx 5rpx 5rpx #27ae60;
+  opacity: 0.8;
+}
+
+.color-volunteer {
+  background-color: #f39c12;
+  box-shadow: 5rpx 5rpx 5rpx #f39c12;
+  opacity: 0.8;
+}
+
+.color-organization {
+  background-color: #fc5c65;
+  box-shadow: 5rpx 5rpx 5rpx #fc5c65;
+  opacity: 0.8;
+}
+
+.color-recorder {
+  background-color: #8e44ad;
+  box-shadow: 5rpx 5rpx 5rpx #8e44ad;
+  opacity: 0.8;
+}
+
+.color-make {
+  background-color: #3c6382;
+  box-shadow: 5rpx 5rpx 5rpx #3c6382;
+  opacity: 0.8;
+}
+
+.m-home .m-home_img {
+  height: 50rpx;
+  width: 50rpx;
+  margin-left: 15rpx;
+}
+
+.m-home .m-home_text {
+  margin-left: 30rpx;
+}
+
+.m-home .m-home_h2 {
+  color: #fff;
+  font-size: 35rpx;
+}
+
+.m-home .m-home_h3 {
+  opacity: 0.7;
+  color: #f5f5f5;
+  font-size: 25rpx;
+}
+
+@keyframes hover {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(0.97);
+  }
+}
+
+.box4 {
+  position: absolute;
+  top: 300rpx;
+  height: 700rpx;
+  width: 600rpx;
+  background-color: white;
+  border-radius: 5rpx;
+  right: 750rpx;
+}
+
+.qrcode_show {
+  animation: move_in 0.4s linear 1;
+  opacity: 1;
+  right: 75rpx;
+}
+
+.qrcode_hide {
+  animation: move_out 0.4s linear 1;
+  opacity: 0;
+  right: 750rpx;
+}
+
+@keyframes move_in {
+  from {
+    opacity: 0;
+    right: 750rpx;
+  }
+
+  to {
+    opacity: 1;
+    right: 75rpx;
+  }
+}
+
+@keyframes move_out {
+  from {
+    opacity: 1;
+    right: 75rpx;
+  }
+
+  to {
+    opacity: 0;
+    right: 750rpx;
+  }
+}
+
+@keyframes wind {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(-2880deg);
+  }
+}
+
+.fengche {
+  width: 100rpx;
+  height: 100rpx;
+  position: absolute;
+  left: 50rpx;
+  animation: wind 8s infinite ease;
+}
+
+.qrcode {
+  width: 400rpx;
+  height: 400rpx;
+  position: relative;
+  margin: 100rpx 100rpx;
+}

@@ -1,0 +1,44 @@
+<!--类型和学期的下拉框-->
+<wux-select id="select-type" />
+<wux-select id="select-term" />
+
+<wux-wing-blank size='large'>
+
+  <wux-cell-group title="必填">
+
+    <!--活动/职务名称-->
+    <wux-cell>
+    <wux-input label="名称" placeholder='活动或职务的名称' data-name='act_name' bind:change='input'/>
+    </wux-cell>
+
+    <!--活动类型-->
+    <wux-cell title='活动类型' extra='{{act_type}}' bind:click="chooseType"/>
+
+    <!--学期-->
+    <wux-cell title='学期' extra='{{act_term}}' bind:click="chooseTerm"/>
+
+    <!--举办单位-->
+    <wux-cell>
+    <wux-input label="举办单位" data-name='act_unit' bind:change='input'/>
+    </wux-cell>
+
+  </wux-cell-group>
+
+
+  <wux-cell-group title='可选'>
+    <!--时长-->
+    <wux-cell title='志愿时长(时)'>
+      <wux-input-number data-name='act_hour' bind:change='input' disabled='{{false}}' slot="footer" />
+    </wux-cell>
+    <wux-cell title='志愿时长(分)'>
+      <wux-input-number data-name='act_minute' bind:change='input' disabled='{{false}}' slot="footer" />
+    </wux-cell>
+    <!--备注-->
+    <wux-cell><wux-input data-name='act_message' label="备注" bind:change='input'/>
+    </wux-cell>
+  </wux-cell-group>
+
+  <wux-white-space size='large'/>
+  <wux-button block type='positive' bind:click='toSubmit'>提交</wux-button>
+
+</wux-wing-blank>

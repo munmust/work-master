@@ -1,9 +1,0 @@
-<view class="mod-a">
-  <view class="mod t-name">
-    <view class="name">{{name}}</view>
-      <picker range='{{array}}' value='{{index}}'>
-        <view calss='picker input'>{{array[index]}}</view>
-      </picker>
-    <image class="arrow-r" src="../../images/right.png"></image>
-  </view>
-</view>

@@ -1,8 +1,0 @@
-<i-cell-group wx:for="{{listData}}" wx:key="{{index}}">
-    <i-cell>
-      <i-card title="{{item.acName}}" extra="扫码任务" bindtap='toScan' data-name="{{item.acName}}" data-id="item.acId">
-        <view slot="content">点击前往</view>
-        <view slot="footer">2018年12月12日</view>
-      </i-card>
-    </i-cell>
-</i-cell-group>

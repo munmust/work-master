@@ -1,25 +1,21 @@
 Component({
-    externalClasses: ['i-class'],
-    properties: {
-        content: {
+	externalClasses: ['wux-class'],
+	properties: {
+        position: {
             type: String,
-            value: ''
+            value: 'center',
         },
-        height : {
-            type: Number,
-            value: 48
+        dashed: {
+            type: Boolean,
+            value: false,
         },
-        color : {
-            type : String,
-            value : '#80848f'
-        },
-        lineColor : {
-            type : String,
-            value : '#e9eaec'
-        },
-        size : {
+        text: {
             type: String,
-            value: 12
-        }
-    }
-});
+            value: '',
+        },
+        showText: {
+            type: Boolean,
+            value: true,
+        },
+    },
+})

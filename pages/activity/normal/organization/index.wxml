@@ -1,0 +1,12 @@
+<block wx:for="{{listData}}" wx:key="{{index}}">
+  <wux-white-space size='large'/>
+  <wux-wing-blank size="default">
+    <wux-card thumb='../../images/icon-seal-organization.svg' title="{{item.activityName}}">
+      <view slot="body">{{item.mess}}</view>
+      <view slot="footer">{{item.created}}</view>
+    </wux-card>
+  </wux-wing-blank>
+</block>
+<view class='empty_page' hidden='{{!empty}}'>
+  <wux-prompt visible="{{empty}}" title="空空如也" text="没有组织履历" />
+</view>

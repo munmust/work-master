@@ -1,0 +1,2 @@
+/* pages/setting/index/index.wxss */
+@import '../../../utils/weui.wxss'

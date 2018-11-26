@@ -1,38 +1,46 @@
 Component({
-    externalClasses: ['i-class'],
+    externalClasses: ['wux-class'],
+    behaviors: ['wx://form-field'],
     relations: {
         '../radio/index': {
             type: 'child',
             linked() {
-                this.changeCurrent();
+                this.changeValue()
             },
             linkChanged() {
-                this.changeCurrent();
+                this.changeValue()
             },
             unlinked() {
-                this.changeCurrent();
-            }
-        }
+                this.changeValue()
+            },
+        },
     },
     properties: {
-        current: {
+        value: {
             type: String,
             value: '',
-            observer: 'changeCurrent'
+            observer: 'changeValue',
+        },
+        title: {
+            type: String,
+            value: '',
+        },
+        label: {
+            type: String,
+            value: '',
         },
     },
     methods: {
-        changeCurrent(val = this.data.current) {
-            let items = this.getRelationNodes('../radio/index');
-            const len = items.length;
-            if (len > 0) {
-                items.forEach(item => {
-                    item.changeCurrent(val === item.data.value);
-                });
+        changeValue(value = this.data.value) {
+            const elements = this.getRelationNodes('../radio/index')
+            if (elements.length > 0) {
+                elements.forEach((element, index) => {
+                    element.changeValue(value === element.data.value, index)
+                })
             }
         },
-        emitEvent(current) {
-            this.triggerEvent('change', current);
-        }
-    }
-});
+        emitEvent(item) {
+            this.triggerEvent('change', { ...item, name: this.data.name })
+        },
+    },
+})

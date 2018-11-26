@@ -1,101 +1,223 @@
-function addNum (num1, num2) {
-    let sq1, sq2, m;
-    try {
-        sq1 = num1.toString().split('.')[1].length;
+const MAX_SAFE_INTEGER = Number.MAX_SAFE_INTEGER || Math.pow(2, 53) - 1
+
+const toNumberWhenUserInput = (num) => {
+    if (/\.\d*0$/.test(num) || num.length > 16) {
+        return num
     }
-    catch (e) {
-        sq1 = 0;
+
+    if (isNaN(num)) {
+        return num
     }
-    try {
-        sq2 = num2.toString().split('.')[1].length;
+
+    return Number(num)
+}
+
+const getValidValue = (value, min, max) => {
+    let val = parseFloat(value)
+
+    if (isNaN(val)) {
+        return value
     }
-    catch (e) {
-        sq2 = 0;
+
+    if (val < min) {
+        val = min
     }
-    m = Math.pow(10, Math.max(sq1, sq2));
-    return (Math.round(num1 * m) + Math.round(num2 * m)) / m;
+
+    if (val > max) {
+        val = max
+    }
+
+    return val
 }
 
 Component({
-    externalClasses: ['i-class'],
-
+    externalClasses: ['wux-class', 'wux-sub-class', 'wux-input-class', 'wux-add-class'],
     properties: {
-        // small || default || large
-        size: String,
-        value: {
-            type: Number,
-            value: 1
+        shape: {
+            type: String,
+            value: 'square',
         },
         min: {
             type: Number,
-            value: -Infinity
+            value: -MAX_SAFE_INTEGER,
         },
         max: {
             type: Number,
-            value: Infinity
+            value: MAX_SAFE_INTEGER,
         },
         step: {
             type: Number,
-            value: 1
-        }
+            value: 1,
+        },
+        defaultValue: {
+            type: Number,
+            value: 0,
+        },
+        value: {
+            type: Number,
+            value: 0,
+            observer(newVal, oldVal) {
+                if (this.data.controlled) {
+                    this.updated(newVal)
+                }
+            },
+        },
+        disabled: {
+            type: Boolean,
+            value: true,
+        },
+        longpress: {
+            type: Boolean,
+            value: false,
+        },
+        color: {
+            type: String,
+            value: 'balanced',
+        },
+        controlled: {
+            type: Boolean,
+            value: false,
+        },
     },
-    
-
+    data: {
+        inputValue: 0,
+        disabledMin: false,
+        disabledMax: false,
+    },
     methods: {
-        handleChangeStep(e, type) {
-            const { dataset = {} } = e.currentTarget;
-            const { disabled } = dataset;
-            const { step } = this.data;
-            let { value } = this.data;
+        /**
+         * 更新值
+         */
+        updated(value, condition = true, trigger = false) {
+            const { min, max } = this.data
+            const inputValue = getValidValue(value, min, max)
+            const disabledMin = inputValue <= min
+            const disabledMax = inputValue >= max
 
-            if (disabled) return null;
-
-            if (type === 'minus') {
-                value = addNum(value, -step);
-            } else if (type === 'plus') {
-                value = addNum(value, step);
+            // 更新数值，判断最小或最大值禁用 sub 或 add 按钮
+            if (condition) {
+                this.setData({
+                    inputValue,
+                    disabledMin,
+                    disabledMax,
+                })
             }
 
-            if (value < this.data.min || value > this.data.max) return null;
-
-            this.handleEmit(value, type);
+            // 触发事件
+            if (trigger) {
+                this.triggerEvent('change', { value: inputValue })
+            }
         },
+        /**
+         * 数字计算函数
+         */
+        calculation(type, meta) {
+            const { disabledMax, disabledMin, inputValue, step, longpress, controlled } = this.data
 
-        handleMinus(e) {
-            this.handleChangeStep(e, 'minus');
-        },
-
-        handlePlus(e) {
-            this.handleChangeStep(e, 'plus');
-        },
-
-        handleBlur(e) {
-            let { value } = e.detail;
-            const { min, max } = this.data;
-
-            if (!value) {
-                setTimeout(() => {
-                    this.handleEmit(value);
-                }, 16);
-                return;
+            // add
+            if (type === 'add') {
+                if (disabledMax) return false
+                this.updated(inputValue + step, !controlled, true)
             }
 
-            value = +value;
-            if (value > max) {
-                value = max;
-            } else if (value < min) {
-                value = min;
+            // sub
+            if (type === 'sub') {
+                if (disabledMin) return false
+                this.updated(inputValue - step, !controlled, true)
             }
 
-            this.handleEmit(value);
+            // longpress
+            if (longpress && meta) {
+                this.timeout = setTimeout(() => this.calculation(type, meta), 100)
+            }
         },
-        handleEmit (value, type) {
-            const data = {
-                value: value
-            };
-            if (type) data.type = type;
+        /**
+         * 当键盘输入时，触发 input 事件
+         */
+        bindinput(e) {
+            this.clearInputTimer()
+            this.inputTime = setTimeout(() => {
+                const value = toNumberWhenUserInput(e.detail.value)
+                this.updated(value, !this.data.controlled)
+                this.triggerEvent('change', { value })
+            }, 300)
+        },
+        /**
+         * 输入框聚焦时触发
+         */
+        bindfocus(e) {
+            this.triggerEvent('focus', e.detail)
+        },
+        /**
+         * 输入框失去焦点时触发
+         */
+        bindblur(e) {
+            // always set input value same as value
+            this.setData({
+                inputValue: this.data.inputValue,
+            })
 
-            this.triggerEvent('change', data);
-        }
-    }
-});
+            this.triggerEvent('blur', e.detail)
+        },
+        /**
+         * 手指触摸后，超过350ms再离开
+         */
+        bindlongpress(e) {
+            const { type } = e.currentTarget.dataset
+            const { longpress } = this.data
+            if (longpress) {
+                this.calculation(type, true)
+            }
+        },
+        /**
+         * 手指触摸后马上离开
+         */
+        bindtap(e) {
+            const { type } = e.currentTarget.dataset
+            const { longpress } = this.data
+            if (!longpress || longpress && !this.timeout) {
+                this.calculation(type, false)
+            }
+        },
+        /**
+         * 	手指触摸动作结束
+         */
+        bindtouchend(e) {
+            this.clearTimer()
+        },
+        /**
+         * 手指触摸动作被打断，如来电提醒，弹窗
+         */
+        touchcancel(e) {
+            this.clearTimer()
+        },
+        /**
+         * 清除长按的定时器
+         */
+        clearTimer() {
+            if (this.timeout) {
+                clearTimeout(this.timeout)
+                this.timeout = null
+            }
+        },
+        /**
+         * 清除输入框的定时器
+         */
+        clearInputTimer() {
+            if (this.inputTime) {
+                clearTimeout(this.inputTime)
+                this.inputTime = null
+            }
+        },
+    },
+    attached() {
+        const { defaultValue, value, controlled } = this.data
+        const inputValue = controlled ? value : defaultValue
+
+        this.updated(inputValue)
+    },
+    detached() {
+        this.clearTimer()
+        this.clearInputTimer()
+    },
+})

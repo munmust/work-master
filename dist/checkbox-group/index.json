@@ -1,7 +1,6 @@
 {
     "component": true,
-    "usingComponents":
-    {
-        "i-cell-group": "../cell-group/index"
+    "usingComponents": {
+        "wux-cell-group": "../cell-group/index"
     }
 }

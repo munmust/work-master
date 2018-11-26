@@ -1,0 +1,17 @@
+<!--pages/service/mk_detail/index.wxml-->
+<wux-white-space size='large'/>
+<wux-white-space size='large'/>
+<wux-white-space size='large'/>
+<wux-wing-blank size='large'>
+  <wux-cell-group title='主要信息'>
+    <wux-cell title='名称' extra='{{detail.name}}'/>
+    <wux-cell title='编号' extra='{{detail.id}}'/>
+    <wux-cell title='举办单位' extra='{{detail.unit}}'/>
+    <wux-cell title='活动类型' extra='{{detail.type}}'/>
+  </wux-cell-group>
+  <wux-cell-group title='其他'>
+    <wux-cell title='状态' extra='{{detail.status}}'/>
+    <wux-cell title='时长' extra='{{detail.duration}}小时'/>
+    <wux-cell title='描述信息' extra='{{detail.message}}'/>
+  </wux-cell-group>
+</wux-wing-blank>

@@ -1,26 +1,32 @@
 Component({
-    externalClasses: ['i-class'],
-
+    externalClasses: ['wux-class'],
     options: {
-        multipleSlots: true
+        multipleSlots: true,
     },
-
     properties: {
+        bordered: {
+            type: Boolean,
+            value: true,
+        },
         full: {
             type: Boolean,
-            value: false
-        },
-        thumb: {
-            type: String,
-            value: ''
+            value: false,
         },
         title: {
             type: String,
-            value: ''
+            value: '',
+        },
+        thumb: {
+            type: String,
+            value: '',
+        },
+        thumbStyle: {
+            type: String,
+            value: '',
         },
         extra: {
             type: String,
-            value: ''
-        }
-    }
-});
+            value: '',
+        },
+    },
+})

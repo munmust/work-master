@@ -1,0 +1,7 @@
+/* pages/test/index.wxss */
+.show{
+  display: block;
+}
+.hide{
+  display: none;
+}

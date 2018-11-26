@@ -1,56 +1,68 @@
-const prefixCls = 'i-checkbox';
-
 Component({
-    externalClasses: ['i-class'],
+    externalClasses: ['wux-class'],
     relations: {
         '../checkbox-group/index': {
-            type: 'parent'
-        }
+            type: 'parent',
+        },
     },
     properties: {
+        title: {
+            type: String,
+            value: '',
+        },
+        label: {
+            type: String,
+            value: '',
+        },
+        extra: {
+            type: String,
+            value: '',
+        },
         value: {
             type: String,
-            value: ''
+            value: '',
         },
         checked: {
             type: Boolean,
-            value: false
+            value: false,
+            observer(newVal) {
+                this.setData({
+                    inputChecked: newVal,
+                })
+            },
         },
         disabled: {
             type: Boolean,
-            value: false
+            value: false,
         },
         color: {
             type: String,
-            value: '#2d8cf0'
+            value: 'balanced',
         },
-        position: {
-            type: String,
-            value: 'left', //left right
-            observer: 'setPosition'
-        }
     },
     data: {
-        checked: true,
-        positionCls: `${prefixCls}-checkbox-left`,
-    },
-    attached() {
-        this.setPosition();
+        index: 0,
+        inputChecked: false,
     },
     methods: {
-        changeCurrent(current) {
-            this.setData({ checked: current });
+        checkboxChange(e) {
+            const { value, index, disabled } = this.data
+            const parent = this.getRelationNodes('../checkbox-group/index')[0]
+            const item = {
+                checked: e.detail.checked,
+                value,
+                index,
+            }
+
+            if (disabled) return
+
+            parent ? parent.emitEvent(item) : this.triggerEvent('change', item)
         },
-        checkboxChange() {
-            if (this.data.disabled) return;
-            const item = { current: !this.data.checked, value: this.data.value };
-            const parent = this.getRelationNodes('../checkbox-group/index')[0];
-            parent ? parent.emitEvent(item) : this.triggerEvent('change', item);
-        },
-        setPosition() {
+        changeValue(inputChecked = false, index = 0) {
             this.setData({
-                positionCls: this.data.position.indexOf('left') !== -1 ? `${prefixCls}-checkbox-left` : `${prefixCls}-checkbox-right`,
-            });
-        }
-    }
-});
+                inputChecked,
+                index,
+            })
+        },
+    },
+})

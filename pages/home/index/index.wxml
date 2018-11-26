@@ -1,0 +1,48 @@
+<!--个人信息-->
+<view class='user_info'>
+  <image class='user_avatar' src='../../../images/pic-user.png'></image>
+  <view class='user_info_detail'>
+    <view>{{stuName}}</view>
+    <view>{{stuId}}</view>
+  </view>
+</view>
+
+<view class='qrcode_switch'>
+  <image style='z-index:3' src='../../../images/icon-qrcode.svg' bindtap='toggleQrCode'></image>
+</view>
+
+
+<!--学生展示-->
+<view class='features'>
+
+  <!--校园活动-->
+  <function-bar title="校园活动" subtitle="校园活动记录" color="color1" bindmytap="changePage" data-type="school" imgSrc="../../images/schoolact.png" />
+
+  <!--社会实践-->
+  <function-bar title="社会实践" subtitle="社会实践记录" color="color2" bindmytap="changePage" data-type="social" imgSrc="../../images/socialact.png" />
+
+  <!--志愿活动-->
+  <function-bar title="志愿活动" subtitle="志愿活动记录" color="color3" bindmytap="changePage" data-type="volunteer" imgSrc="../../images/volunteer.png" />
+
+  <!--义工活动-->
+  <function-bar title="义工活动" subtitle="义工活动记录" color="color4" bindmytap="changePage" data-type="yigong" imgSrc="../../images/volunteer.png" />
+
+  <!--学生组织履历-->
+  <function-bar title="组织履历" subtitle="社团/学生组织履历" color="color5" bindmytap="changePage" data-type="organization" imgSrc="../../images/organization.png" />
+
+
+  <!--在class这里决定是否隐藏-->
+  <!--记录员-->
+  <function-bar title="记录员" subtitle="记录员入口" color="color6" bindmytap="changePage" data-type="recorder" imgSrc="../../images/recorder.png" extra-class="{{display_recorder?'show':'hide'}}" />
+
+  <!--新建活动-->
+  <function-bar title="活动相关" subtitle="新建活动/管理活动" color="color7" bindmytap="changePage" data-type="make" imgSrc="../../images/holdact.png" extra-class="{{display_maker?'show':'hide'}}" />
+</view>
+
+<!--二维码-->
+<wux-backdrop id="wux-backdrop" zIndex='2' />
+<view style='z-index:3' class='box4 {{display_qrcode}}' bindtap='toggleQrCode'>
+  <wux-divider text="点击隐藏" />
+  <image class='fengche' src='../../../images/img-fengche.png'></image>
+  <image class='qrcode' src='{{qrcode}}' />
+</view>

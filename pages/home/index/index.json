@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "信工第二课堂",
+  "usingComponents": {
+    "wux-backdrop": "../../../dist/backdrop/index",
+    "wux-divider": "../../../dist/divider/index",
+    "function-bar": "../../../dist/function-bar/index"
+  }
+}

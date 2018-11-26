@@ -1,0 +1,66 @@
+<!--顶部标签-->
+<wux-tabs controlled current="{{ current }}" bindchange="tabChange">
+    <wux-tab key="Running">
+      <image src="../../../../../images/icon-act-running.svg" 
+      style="width: 20px; height: 20px; margin-right: 5px;" />
+      <text>已上线</text>
+    </wux-tab>
+    <wux-tab key="Pending">
+      <image src="../../../../../images/icon-act-stop.svg" 
+      style="width: 20px; height: 20px; margin-right: 5px;" />
+      <text>准备中</text>
+    </wux-tab>
+    <wux-tab key="OffLine">
+      <image src="../../../../../images/icon-act-over.svg" 
+      style="width: 20px; height: 20px; margin-right: 5px;" />
+      <text>已下线</text>
+    </wux-tab>
+</wux-tabs>
+<!--‘已上线’页-->
+
+
+<view class='{{showPage==1?"show":"hide"}}'>
+  <wux-cell-group>
+    <block wx:for='{{runningList}}' wx:key='{{index}}'>
+      <wux-cell 
+        title="{{item.name}}" is-link 
+        label="{{item.created}}" extra="{{item.unit}}"
+        bindtap='click' data-index='{{index}}'  data-status='{{item.status}}'>
+      </wux-cell>
+    </block>
+  </wux-cell-group>
+</view>
+<!--‘准备中’页-->
+<view class='{{showPage==2?"show":"hide"}}'>
+  <wux-cell-group>
+    <block wx:for='{{pendingList}}' wx:key='{{index}}'>
+      <wux-cell 
+        title="{{item.name}}" is-link 
+        label="{{item.created}}" extra="{{item.unit}}"
+        bindtap='click' data-index='{{index}}'  data-status='{{item.status}}'>
+      </wux-cell>
+    </block>
+  </wux-cell-group>
+</view>
+<!--‘已下线’页-->
+<view class='{{showPage==3?"show":"hide"}}'>
+  <wux-cell-group>
+    <block wx:for='{{pauseList}}' wx:key='{{index}}'>
+      <wux-cell 
+        title="{{item.name}}" is-link 
+        label="{{item.created}}" extra="{{item.unit}}"
+        bindtap='click' data-index='{{index}}'  data-status='{{item.status}}'>
+      </wux-cell>
+    </block>
+  </wux-cell-group>
+  <wux-cell-group>
+    <block wx:for='{{passedList}}' wx:key='{{index}}'>
+      <wux-cell 
+        title="{{item.name}}" is-link 
+        label="{{item.created}}" extra="{{item.unit}}"
+        bindtap='click' data-index='{{index}}'  data-status='{{item.status}}'>
+      </wux-cell>
+    </block>
+  </wux-cell-group>
+</view>
+

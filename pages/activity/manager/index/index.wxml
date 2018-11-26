@@ -1,0 +1,20 @@
+<view>
+    <!--创建活动-->
+    <function-bar 
+      title="新建活动" 
+      subtitle="校园活动/社会实践/志愿活动/组织履历/义工" 
+      color="color1" 
+      bindmytap="changePage" 
+      data-type="make" 
+      imgSrc="../../images/holdact.png"/>
+
+    <!--活动管理-->
+    <function-bar 
+      title="管理活动" 
+      subtitle="管理活动/分派扫码员" 
+      color="color2" 
+      bindmytap="changePage" 
+      data-type="manage" 
+      imgSrc="../../images/undone.png"/>
+
+</view>

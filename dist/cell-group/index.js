@@ -1,33 +1,38 @@
 Component({
-    externalClasses: ['i-class'],
-
+    externalClasses: ['wux-class'],
     relations: {
         '../cell/index': {
             type: 'child',
-            linked () {
-                this._updateIsLastCell();
+            linked() {
+                this.updateIsLastElement('../cell/index')
             },
-            linkChanged () {
-                this._updateIsLastCell();
+            linkChanged() {
+                this.updateIsLastElement('../cell/index')
             },
-            unlinked () {
-                this._updateIsLastCell();
-            }
-        }
+            unlinked() {
+                this.updateIsLastElement('../cell/index')
+            },
+        },
     },
-
+    properties: {
+        title: {
+            type: String,
+            value: '',
+        },
+        label: {
+            type: String,
+            value: '',
+        },
+    },
     methods: {
-        _updateIsLastCell() {
-            let cells = this.getRelationNodes('../cell/index');
-            const len = cells.length;
-
-            if (len > 0) {
-                let lastIndex = len - 1;
-
-                cells.forEach((cell, index) => {
-                    cell.updateIsLastCell(index === lastIndex);
-                });
+        updateIsLastElement() {
+            const elements = this.getRelationNodes('../cell/index')
+            if (elements.length > 0) {
+                const lastIndex = elements.length - 1
+                elements.forEach((element, index) => {
+                    element.updateIsLastElement(index === lastIndex)
+                })
             }
-        }
-    }
-});
+        },
+    },
+})

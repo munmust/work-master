@@ -1,0 +1,27 @@
+page{
+  height: 100%;
+  font-size: 26rpx;
+  background-color: #f4f4f4;
+}
+
+.idcard{
+  width: 750rpx;
+  height: 150rpx;
+  padding-top: 50rpx;
+  display: flex;
+  justify-content: flex-start;
+  background: linear-gradient(#2980b9, #2980af);
+}
+.idcard-pic{
+  width: 130rpx;
+  height: 130rpx;
+  margin-left: 50rpx;
+  border-radius: 50%;
+  background-color: white;
+}
+.idcard-mes{
+  width: 250rpx;
+  height: 130rpx;
+  margin-left: 50rpx;
+  color: white;
+}

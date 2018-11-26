@@ -1,0 +1,28 @@
+<wux-white-space size='small'/>
+<!--活动名称-->
+<wux-wing-blank size='large'>
+  <wux-alert theme="positive">{{acName}}</wux-alert>
+</wux-wing-blank>
+
+<wux-white-space size='small'/>
+
+ <!--记录显示-->
+<wux-wing-blank size='default'>
+  <view class='notice'>
+    <wux-segmented-control theme="positive" values="{{ ['学号', '姓名'] }}" />
+    <block wx:for="{{list}}" wx:key="{{index}}">
+      <wux-segmented-control defaultCurrent='1' theme="stable" 
+      values="{{ [item.stuId, item.stuName] }}" />
+    </block>
+  </view>
+</wux-wing-blank>
+<!--提示信息-->
+<wux-wing-blank size='large'>
+  <view>●扫满5个自动提交</view>
+  <view>●如果未满5个，请手动提交</view>
+</wux-wing-blank>
+<!--两个按钮-->
+<wux-wing-blank size='large'>
+  <wux-button block bindtap='scanCode'><wux-icon type="qr-scanner" size="16" />扫码</wux-button>
+  <wux-button block bindtap='submit'><wux-icon type="allow-round-up" size="16" />提交</wux-button>
+</wux-wing-blank>

@@ -1,0 +1,10 @@
+.total-duration{
+  text-align: right;
+}
+
+.empty_page{
+  z-index: -1;
+  position: absolute;
+  width: 750rpx;
+  height: 1100rpx;
+}

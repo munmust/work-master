@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "活动详情",
+  "usingComponents": {
+    "wux-white-space": "../../../../../dist/white-space/index",
+    "wux-wing-blank": "../../../../../dist/wing-blank/index",
+    "wux-cell-group": "../../../../../dist/cell-group/index",
+    "wux-cell": "../../../../../dist/cell/index"
+  }
+}

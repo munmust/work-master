@@ -1,7 +1,0 @@
-<view class="mod-a">
-  <view class="mod t-name">
-    <view class="name">{{name}}</view>
-    <input bindinput="{{bindChange}}" class="input" maxlength="100" placeholder="{{placeholder}}" />
-    <image class="arrow-r" src="../../images/right.png"></image>
-  </view>
-</view>

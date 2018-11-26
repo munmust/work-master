@@ -1,22 +1,17 @@
 Component({
-    externalClasses: ['i-class'],
-
+    externalClasses: ['wux-class'],
     properties: {
         type: {
             type: String,
-            value: ''
-        },
-        custom: {
-            type: String,
-            value: ''
+            value: '',
         },
         size: {
             type: Number,
-            value: 14
+            value: 32,
         },
         color: {
             type: String,
-            value: ''
-        }
-    }
-});
+            value: '',
+        },
+    },
+})

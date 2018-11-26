@@ -1,0 +1,5 @@
+.notice{
+  width: 100%;
+  height: 650rpx;
+  text-align: center;
+}

@@ -1,0 +1,10 @@
+<!--pages/login/welcome.wxml-->
+<view class='box'>
+  <text>第</text>
+  <text>二</text>
+  <text>课</text>
+  <text>堂</text>
+  <text>成</text>
+  <text>绩</text>
+  <text>单</text>
+</view>

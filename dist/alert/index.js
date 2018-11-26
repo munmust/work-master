@@ -1,37 +1,44 @@
 Component({
-    externalClasses: ['i-class'],
+	externalClasses: ['wux-class'],
     options: {
-        multipleSlots: true
+        multipleSlots: true,
     },
     properties: {
-        //info, success, warning, error
-        type: {
+        theme: {
             type: String,
-            value: 'info'
+            value: 'balanced',
+        },
+        thumb: {
+            type: String,
+            value: '',
+        },
+        title: {
+            type: String,
+            value: '',
+        },
+        label: {
+            type: String,
+            value: '',
         },
         closable: {
             type: Boolean,
-            value: false
-        },
-        showIcon: {
-            type: Boolean,
-            default: false
-        },
-        desc: {
-            type: Boolean,
-            default: false
+            value: false,
         },
     },
     data: {
-        closed: false
+        visible: true,
     },
     methods: {
-        handleTap() {
-            this.setData({
-                closed: !this.data.closed,
-            });
-            this.triggerEvent('close');
+        onClose() {
+            if (this.data.closable) {
+                this.setData({
+                    visible: false
+                })
+            }
+            this.triggerEvent('click')
         },
-
-    }
-});
+        onClick() {
+            this.triggerEvent('click')
+        },
+    },
+})

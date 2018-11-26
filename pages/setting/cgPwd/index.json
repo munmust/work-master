@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "修改密码",
+  "usingComponents": {
+    "wux-cell-group": "../../../dist/cell-group/index",
+    "wux-cell": "../../../dist/cell/index",
+    "wux-input": "../../../dist/input/index",
+    "wux-white-space": "../../../dist/white-space/index",
+    "wux-button": "../../../dist/button/index"
+  }
+}

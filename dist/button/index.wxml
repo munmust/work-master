@@ -1,20 +1,25 @@
 <button
-    class="i-class i-btn {{ long ? 'i-btn-long' : '' }} {{ 'i-btn-' + size }} {{ 'i-btn-' + type }} {{ 'i-btn-' + shape }} {{ loading ? 'i-btn-loading' : '' }} {{ disabled ? 'i-btn-disabled' : ''}} {{ inline ? 'i-btn-inline' : '' }}"
-    hover-class="i-btn-hover"
-    bindtap="handleTap"
+    class="wux-class wux-button {{ type ? 'wux-button--' + type : '' }} {{ size ? 'wux-button--' + size : '' }} {{ block ? 'wux-button--block' : '' }} {{ full ? 'wux-button--full' : '' }} {{ clear ? 'wux-button--clear' : '' }} {{ outline ? 'wux-button--outline' : '' }} {{ disabled ? 'wux-button--disabled' : '' }}"
+    loading="{{ loading }}"
+    form-type="{{ formType }}"
     open-type="{{ openType }}"
-    app-parameter="{{ appParameter }}"
+    hover-class="wux-hover-class {{ !disabled ? 'wux-button--hover' : 'none' }}"
     hover-stop-propagation="{{ hoverStopPropagation }}"
     hover-start-time="{{ hoverStartTime }}"
     hover-stay-time="{{ hoverStayTime }}"
+    lang="{{ lang }}"
+    bindgetuserinfo="bindgetuserinfo"
     session-from="{{ sessionFrom }}"
     send-message-title="{{ sendMessageTitle }}"
     send-message-path="{{ sendMessagePath }}"
     send-message-img="{{ sendMessageImg }}"
     show-message-card="{{ showMessageCard }}"
     bindcontact="bindcontact"
-    bindgetuserinfo="bindgetuserinfo"
     bindgetphonenumber="bindgetphonenumber"
-    binderror="binderror"
-    plain="true"
-><view class="i-btn-loading-inner" wx:if="{{loading}}"></view><slot></slot></button>
+    app-parameter="{{ appParameter }}"
+    binderror="onError"
+    bindopensetting="bindopensetting"
+    bindtap="onTap"
+>
+    <slot></slot>
+</button>

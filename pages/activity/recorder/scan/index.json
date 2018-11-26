@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "扫码",
+  "usingComponents": {
+    "wux-wing-blank": "../../../../dist/wing-blank/index",
+    "wux-alert": "../../../../dist/alert/index",
+    "wux-white-space": "../../../../dist/white-space/index",
+    "wux-button": "../../../../dist/button/index",
+    "wux-segmented-control": "../../../../dist/segmented-control/index",
+    "wux-icon": "../../../../dist/icon/index"
+  }
+}

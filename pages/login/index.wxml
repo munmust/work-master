@@ -1,0 +1,35 @@
+<!--login.wxml-->
+<view class="container">
+  <view class="remind-box" wx:if="{{remind}}">
+    <image class="remind-img" src="/images/index/loading.gif"></image>
+  </view>
+  <block wx:else>
+    <!--背景图片-->
+    <image class="title" src="/images/index.jpg"></image>
+    <!--主体-->
+    <view class="content">
+      <!--图标-->
+      <image class="logo" src="/images/more/logo-old.png"></image>
+      <!--表单-->
+      <view class="bd">
+        <form class="login-form">
+          <view class="input-group {{userid_focus ? 'active' : ''}}">
+            <text class="input-label">帐号</text>
+            <input cursor-spacing="30" id="username" placeholder="默认帐号为学号"  
+            bindinput="usernameInput" value='{{username}}' />
+          </view>
+          <view class="input-group {{passwd_focus ? 'active' : ''}}">
+            <text class="input-label">密码</text>
+            <input password="true" cursor-spacing="30" id="password" 
+            placeholder="默认密码为Hziee+学号"  bindinput="passwordInput"
+            value='{{password}}'/>
+          </view>
+        </form>
+        <view class="confirm-btn" bindtap="login">
+            <text>登录</text>
+        </view>
+      </view>
+    </view>
+  </block>
+
+</view>

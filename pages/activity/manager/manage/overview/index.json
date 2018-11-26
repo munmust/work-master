@@ -1,0 +1,12 @@
+{
+  "navigationBarTitleText": "活动总览",
+  "usingComponents": {
+    "wux-card": "../../../../../../dist/card/index",
+    "wux-alert": "../../../../../../dist/alert/index",
+    "wux-tabs": "../../../../../../dist/tabs/index",
+    "wux-tab": "../../../../../../dist/tab/index",
+    "wux-cell-group": "../../../../../../dist/cell-group/index",
+    "wux-cell": "../../../../../../dist/cell/index",
+    "wux-white-space": "../../../../../../dist/white-space/index"
+  }
+}

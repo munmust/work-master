@@ -1,9 +1,0 @@
-<!--pages/login/welcome.wxml-->
-<view class='outBox'>
-  <view class='article'>
-    <view class='title'></view>
-    <view class='contain'>
-      第二课堂
-    </view>
-  </view>
-</view>

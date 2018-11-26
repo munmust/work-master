@@ -1,0 +1,7 @@
+/* pages/activity/normal/social/index.wxss */
+.empty_page{
+  z-index: -1;
+  position: absolute;
+  width: 750rpx;
+  height: 1100rpx;
+}

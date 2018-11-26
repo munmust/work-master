@@ -1,4 +1,0 @@
-<!--components/Header/header.wxml-->
-<view class='frame'>
-  <view class='txt'>{{txt}}</view>
-</view>

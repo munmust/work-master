@@ -1,56 +1,107 @@
-Component({
-    externalClasses: ['i-class'],
+const getDefaultActiveKey = (elements) => {
+    const target = elements.filter((element) => !element.data.disabled)[0]
+    if (target) {
+        return target.data.key
+    }
+    return null
+}
 
+const activeKeyIsValid = (elements, key) => {
+    return elements.map((element) => element.data.key).includes(key)
+}
+
+const getActiveKey = (elements, activeKey) => {
+    const defaultActiveKey = getDefaultActiveKey(elements)
+    return !activeKey ? defaultActiveKey : !activeKeyIsValid(elements, activeKey) ? defaultActiveKey : activeKey
+}
+
+Component({
+    externalClasses: ['wux-class'],
     relations: {
         '../tab/index': {
             type: 'child',
-            linked () {
-                this.changeCurrent();
+            linked() {
+                this.changeCurrent()
             },
-            linkChanged () {
-                this.changeCurrent();
+            linkChanged() {
+                this.changeCurrent()
             },
-            unlinked () {
-                this.changeCurrent();
-            }
-        }
+            unlinked() {
+                this.changeCurrent()
+            },
+        },
     },
-
     properties: {
+        defaultCurrent: {
+            type: String,
+            value: '',
+        },
         current: {
             type: String,
             value: '',
-            observer: 'changeCurrent'
-        },
-        color: {
-            type: String,
-            value: ''
+            observer: 'changeCurrent',
         },
         scroll: {
             type: Boolean,
-            value: false
+            value: false,
         },
-        fixed: {
+        controlled: {
             type: Boolean,
-            value: false
-        }
+            value: false,
+        },
+        theme: {
+            type: String,
+            value: 'balanced',
+        },
     },
-
+    data: {
+        activeKey: '',
+        keys: [],
+    },
     methods: {
-        changeCurrent (val = this.data.current) {
-            let items = this.getRelationNodes('../tab/index');
-            const len = items.length;
+        updated(value, condition) {
+            const elements = this.getRelationNodes('../tab/index')
+            const activeKey = getActiveKey(elements, value)
 
-            if (len > 0) {
-                items.forEach(item => {
-                    item.changeScroll(this.data.scroll);
-                    item.changeCurrent(item.data.key === val);
-                    item.changeCurrentColor(this.data.color);
-                });
+            if (elements.length > 0) {
+                if (condition) {
+                    this.setData({
+                        activeKey,
+                    })
+
+                    elements.forEach((element) => {
+                        element.changeCurrent(element.data.key === activeKey, this.data.scroll, this.data.theme)
+                    })
+                }
+            }
+
+            if (this.data.keys.length !== elements.length) {
+                this.setData({
+                    keys: elements.map((element) => element.data)
+                })
             }
         },
-        emitEvent (key) {
-            this.triggerEvent('change', { key });
-        }
-    }
-});
+        changeCurrent(value = this.data.current) {
+            this.updated(value, this.data.controlled)
+        },
+        emitEvent(key) {
+            this.triggerEvent('change', {
+                key,
+                keys: this.data.keys,
+            })
+        },
+        setActiveKey(activeKey) {
+            if (this.data.activeKey !== activeKey) {
+                this.updated(activeKey, !this.data.controlled)
+            }
+
+            this.emitEvent(activeKey)
+        },
+    },
+    ready() {
+        const { defaultCurrent, current, controlled } = this.data
+        const activeKey = controlled ? current : defaultCurrent
+
+        this.updated(activeKey, true)
+    },
+})

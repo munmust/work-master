@@ -1,8 +1,3 @@
-<view class="i-class i-checkbox" catchtap="checkboxChange">
-    <i-cell i-class="i-checkbox-cell">
-        <label>
-            <radio value="{{value}}" checked="{{checked}}" color="{{checked?color:''}}" disabled="{{disabled}}" class="i-checkbox-radio {{positionCls}}" />
-            <view class="i-checkbox-title">{{value}}</view>
-        </label>
-    </i-cell>
-</view>
+<wux-cell title="{{ title }}" label="{{ label }}" extra="{{ extra }}">
+    <wux-selectable slot="header" wux-class="wux-selectable--cell" value="{{ value }}" checked="{{ inputChecked }}" color="{{ color }}" disabled="{{ disabled }}" controlled bind:change="checkboxChange" />
+</wux-cell>

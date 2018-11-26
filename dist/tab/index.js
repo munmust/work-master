@@ -1,50 +1,47 @@
 Component({
-    externalClasses: ['i-class'],
-
+    externalClasses: ['wux-class'],
     relations: {
         '../tabs/index': {
-            type: 'parent'
-        }
+            type: 'parent',
+        },
     },
-
     properties: {
         key: {
             type: String,
-            value: ''
+            value: '',
         },
         title: {
             type: String,
-            value: ''
+            value: '',
         },
-        dot: {
+        disabled: {
             type: Boolean,
-            value: false
+            value: false,
         },
-        count: {
-            type: Number,
-            value: 0
-        }
     },
-
     data: {
         current: false,
-        currentColor: '',
-        scroll: false
+        scroll: false,
     },
-
     methods: {
-        changeCurrent (current) {
-            this.setData({ current });
+        changeCurrent(current, scroll, theme) {
+            this.setData({
+                current,
+                scroll,
+                theme,
+            })
         },
-        changeCurrentColor (currentColor) {
-            this.setData({ currentColor });
+        onTap() {
+            const { key, disabled } = this.data
+            const parent = this.getRelationNodes('../tabs/index')[0]
+
+            if (disabled || !parent) {
+                return false
+            }
+
+            this.triggerEvent('click', { key })
+
+            parent.setActiveKey(key)
         },
-        changeScroll (scroll) {
-            this.setData({ scroll });
-        },
-        handleClickItem () {
-            const parent = this.getRelationNodes('../tabs/index')[0];
-            parent.emitEvent(this.data.key);
-        }
-    }
-});
+    },
+})

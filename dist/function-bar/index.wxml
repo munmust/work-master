@@ -1,0 +1,7 @@
+<view class="m-home {{color}} extra-class" bindtap="onTap">
+  <image class="m-home_img" src="{{ imgSrc }}"></image>
+  <view class="m-home_text">
+    <view class="m-home_h2"><text>{{ title }}</text></view>
+    <view class="m-home_h3"><text>{{ subtitle }}</text></view>
+  </view>
+</view>

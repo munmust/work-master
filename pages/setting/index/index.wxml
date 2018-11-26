@@ -1,0 +1,6 @@
+<wux-white-space size='large'/>
+<wux-cell-group>
+  <wux-cell thumb='../../images/icon-cgPwd.svg' title='修改密码' bindtap='topage_cgpwd'/>
+  <wux-white-space size='small'/>
+  <wux-cell thumb='../../images/icon-logout.svg' title='退出登录' bindtap='toLogOut'/>
+</wux-cell-group>

@@ -1,0 +1,4 @@
+/* pages/activity/recorder/work/index.wxss */
+.empty_page{
+  height: 1100rpx;
+}
