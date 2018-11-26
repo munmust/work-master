@@ -7,7 +7,7 @@
   align-items: center;
   height: 80rpx;
   padding: 20rpx;
-  margin: 20rpx 20rpx 0;
+  margin: 20rpx 20rpx;
   border-radius: 5rpx;
   box-shadow: 5rpx 5rpx 5rpx black;
 }
@@ -59,8 +59,8 @@
   opacity: .8;
 }
 .color7{
-  background-color: #3c6312;
-  box-shadow: 5rpx 5rpx 5rpx #3c6312;
+  background-color: #1e3799;
+  box-shadow: 5rpx 5rpx 5rpx #1e3799;
   opacity: .8;
 }
 .color8{

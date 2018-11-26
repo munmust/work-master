@@ -76,7 +76,7 @@ page {
   border-radius: 5rpx;
   box-shadow: 5rpx 5rpx 5rpx black;
 }
-
+/* 
 .color-school {
   background-color: #3498db;
   box-shadow: 5rpx 5rpx 5rpx #3498db;
@@ -108,10 +108,10 @@ page {
 }
 
 .color-make {
-  background-color: #3c6382;
-  box-shadow: 5rpx 5rpx 5rpx #3c6382;
+  background-color: #1e3799;
+  box-shadow: 5rpx 5rpx 5rpx #1e3799;
   opacity: 0.8;
-}
+} */
 
 .m-home .m-home_img {
   height: 50rpx;
@@ -124,7 +124,7 @@ page {
 }
 
 .m-home .m-home_h2 {
-  color: #fff;
+  color: #ffffff;
   font-size: 35rpx;
 }
 
@@ -149,7 +149,7 @@ page {
   top: 300rpx;
   height: 700rpx;
   width: 600rpx;
-  background-color: white;
+  background-color: #ffffff;
   border-radius: 5rpx;
   right: 750rpx;
 }
