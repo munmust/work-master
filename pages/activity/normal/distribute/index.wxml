@@ -1,0 +1,13 @@
+<wux-cell-group title="往期活动章总数：{{total}} 剩余：{{surplus}}">
+  <wux-cell title="校园活动 （已分配：{{pastSchool}}）" hover-class="none">
+    <wux-input-number color="positive" value="{{schoolValue}}" bind:change="onChangeSchool" longpress slot="footer"  controlled min="{{ 0 }}" max="{{ schoolMax }}"/>
+  </wux-cell>
+  <wux-cell title="讲座活动 （已分配：{{pastLecture}}）" hover-class="none">
+    <wux-input-number color="balanced" value="{{lectureValue}}" bind:change="onChangeLecture" longpress slot="footer" controlled min="{{ 0 }}" max="{{ lectureMax }}"/>
+  </wux-cell>
+</wux-cell-group>
+  <wux-wing-blank size='large'>
+  <wux-white-space size='large'/>
+  <wux-white-space size='large'/>
+  <wux-button block type='positive' bind:click='toSubmit'>提交</wux-button>
+</wux-wing-blank>

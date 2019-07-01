@@ -1,0 +1,14 @@
+<!--pages/service/act_school/index.wxml-->
+<wux-alert theme="positive">共参与了<span class="hours"> {{listData.length}} </span>次“新学习”系列活动</wux-alert>
+<block wx:for="{{listData}}" wx:key="{{index}}">
+  <wux-white-space size='large'/>
+  <wux-wing-blank size="default">
+    <wux-card title="{{item.activityName}}"  extra="{{item.term}}">
+      <view slot="body">{{item.createTime}}</view>
+    </wux-card>
+  </wux-wing-blank>
+</block>
+
+<view class='empty_page' hidden='{{!empty}}'>
+  <wux-prompt visible="{{empty}}" title="空空如也" text="没有“新学习”系列活动" />
+</view>

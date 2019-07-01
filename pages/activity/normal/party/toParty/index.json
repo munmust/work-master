@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "入党考核活动",
+  "usingComponents": {
+    "function-bar": "../../../../../dist/function-bar/index"
+  }
+}

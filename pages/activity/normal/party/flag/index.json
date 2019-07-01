@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "“新学习”系列活动",
+  "usingComponents": {
+    "wux-card": "../../../../../dist/card/index",
+    "wux-wing-blank": "../../../../../dist/wing-blank/index",
+    "wux-alert": "../../../../../dist/alert/index",
+    "wux-white-space": "../../../../../dist/white-space/index",
+    "wux-prompt": "../../../../../dist/prompt/index"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText":"资格证书",
+  "usingComponents": {
+    "function-bar": "../../../../../dist/function-bar/index"
+  }
+}

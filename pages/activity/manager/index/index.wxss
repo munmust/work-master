@@ -82,3 +82,10 @@
 from {transform: scale(1);}
 to {transform: scale(0.97);}
 }
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
+}

@@ -1,11 +1,14 @@
 <!--pages/service/act_school/index.wxml-->
-
-<wux-alert theme="positive">共参与了<span class="hours"> {{listData.length}} </span>次校园活动</wux-alert>
+<wux-alert theme="positive">
+共参与了<span class="hours"> {{pastSchool+listData.length}} </span>次校园活动
+<text hidden='{{pastSchool==0}}'>（含往期{{pastSchool}}次）</text>
+</wux-alert>
 <block wx:for="{{listData}}" wx:key="{{index}}">
   <wux-white-space size='large'/>
   <wux-wing-blank size="default">
-    <wux-card thumb='../../images/icon-seal-school.svg' title="{{item.activityName}}">
-      <view slot="body">{{item.created}}</view>
+    <wux-card title="{{item.activityName}}">
+      <view slot="body">{{item.createTime}}</view>
+      <view slot="footer">{{item.term}}</view>
     </wux-card>
   </wux-wing-blank>
 </block>

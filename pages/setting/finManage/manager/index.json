@@ -1,0 +1,14 @@
+{
+  "navigationBarTitleText": "财务信息",
+  "enablePullDownRefresh": true,
+  "backgroundColor": "#323232",
+  "usingComponents": {
+    "wux-divider": "../../../../dist/divider/index",
+    "wux-segmented-control": "../../../../dist/segmented-control/index",
+    "wux-cell-group": "../../../../dist/cell-group/index",
+    "wux-cell": "../../../../dist/cell/index",
+    "wux-tabs": "../../../../dist/tabs/index",
+    "wux-tab": "../../../../dist/tab/index",
+    "wux-prompt": "../../../../dist/prompt/index"
+  }
+}

@@ -1,0 +1,38 @@
+<!--pages/setting/certificate/CET/certificateDetail/update/index.wxml-->
+<wux-select id="wux-selectCertificateType" />
+<wux-select id="wux-selectTeacherLevel" />
+<wux-wing-blank size='large'>
+<!--证书通用信息填写  -->
+  <wux-cell-group title='基本信息(必填)'>
+     <wux-cell >
+    <view class="mod t-sign-time">
+            <view class="key">证书类型</view>
+      <picker bindchange="bindTypeChange" value="{{typeIndex}}" range="{{typeArray}}">
+    <view class="picker">
+      <view >{{typeArray[typeIndex]}}</view>
+    </view>
+  </picker>
+         </view>
+        </wux-cell>
+    <wux-cell>
+    <label class="lab">成绩
+      <input class="inputW" placeholder='请输入成绩' value='{{certificateGrade}}' bind:change='input' />
+      </label>
+    </wux-cell>
+    <wux-cell>
+             <label class="lab">发证时间
+            <picker class="inputP" mode="date" fields='month' value="{{certificateTime}}" start="{{certificateStart}}" bindchange="changeCertificateTime">
+                    <view class="date">{{certificateTime}}</view>
+                </picker>
+                </label>
+                </wux-cell>
+    </wux-cell-group>
+<wux-cell-group title='证书详情'>
+    <wux-cell>
+    <textarea row="3" maxlength="200" cursor-spacing="70" placeholder="请输入证书上的全部信息" data-name='description' bindinput="bindTextAreaChange" value='{{description}}'></textarea>
+    </wux-cell>
+  </wux-cell-group>
+       <wux-white-space size='large' />
+    <wux-button block type='positive' bind:click='toSubmit'>提交</wux-button>
+   
+</wux-wing-blank>

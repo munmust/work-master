@@ -1,0 +1,8 @@
+/* pages/setting/changelog/index.wxss */
+.changelog{
+  margin: 20rpx 50rpx;
+}
+
+.title{
+  size: 20rpx;
+}

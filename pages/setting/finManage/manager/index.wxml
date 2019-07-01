@@ -1,0 +1,89 @@
+<view class='cont'>
+<view class="top" bindtap="termChange">
+<view class='term'>{{message}}</view>
+</view>
+
+<view class='money'>
+  <view class='actual'>实际金额：</view>
+  <view class='actualM'>{{actual}}</view>
+  <view class='budget'>预算：</view>
+  <view class='budgetM'>{{budget}}</view>
+</view>
+</view>
+
+<wux-divider  class='fg' show-text="{{ false }}" />
+<wux-segmented-control theme="positive" default-current="1" values="{{ ['账单', '审核状态'] }}" bind:change="mState"/>
+
+<view class='fg'>
+<view class='{{showPage==1?"show":"hide"}}'>
+  <wux-cell-group>
+    <block wx:for='{{billList}}' wx:key='{{index}}' class='bill'>
+      <wux-cell class="bill" wx:if="{{item.type=='positive'}}" thumb="../../images/1.png" title="{{item.financeName}}" is-link label="{{item.financeInfo}}" extra="+{{item.trueMoney}}" bindtap='click' data-index='{{index}}' data-status='bill'></wux-cell>
+      <wux-cell class="bill" wx:if="{{item.type=='negative'}}" thumb="../../images/2.png" title="{{item.financeName}}" is-link label="{{item.financeInfo}}" extra="-{{item.trueMoney}}" bindtap='click' data-index='{{index}}' data-status='bill'></wux-cell>
+    </block>
+  </wux-cell-group>
+</view>
+
+<view class='{{showPage==2?"show":"hide"}}'>
+  <wux-tabs wx:if="{{power==1}}" controlled current="{{ current }}" theme="positive" bindchange="tabChange">
+      <wux-tab key="ToBeAudited" title="待审核"></wux-tab>
+      <wux-tab key="ToCancel" title="已审核"></wux-tab>
+      <wux-tab key="Cancelled">
+        <text>已核销</text>
+        <image src="../../../../images/done.png" class='img' />
+      </wux-tab>
+  </wux-tabs>
+  <wux-tabs wx:else controlled current="{{ current }}" theme="positive" bindchange="tabChange">
+      <wux-tab key="MySubmit" title="我的提交"></wux-tab>
+      <wux-tab key="ToCancel" title="已审核"></wux-tab>
+      <wux-tab key="Cancelled">
+        <text>已核销</text>
+        <image src="../../../../images/done.png" class='img' />
+      </wux-tab>
+  </wux-tabs>
+
+  <view class='{{show==1?"show":"hide"}}'>
+    <wux-cell-group>
+    <block wx:for='{{toAuditedList}}' wx:key='{{index}}' class='bill'>
+      <wux-cell class="bill" thumb="../../images/3.png" title="{{item.financeName}}" is-link label="{{item.financeInfo}}" extra="{{item.budget}}" bindtap='click' data-index='{{index}}' data-status='unAudited'></wux-cell>
+    </block>
+    </wux-cell-group>
+  </view>
+
+  <view class='{{show==2?"show":"hide"}}'>
+    <wux-cell-group>
+    <block wx:for='{{toCancelList}}' wx:key='{{index}}' class='bill'>
+      <wux-cell class="bill" thumb="../../images/4.png" title="{{item.financeName}}" is-link label="{{item.financeInfo}}" extra="{{item.budget}}" bindtap='click' data-index='{{index}}' data-status='audited'></wux-cell>
+    </block>
+    </wux-cell-group>
+  </view>
+
+  <view class='{{show==3?"show":"hide"}}'>
+    <wux-cell-group>
+    <block wx:for='{{cancelledList}}' wx:key='{{index}}' class='bill'>
+      <wux-cell class="bill" thumb="../../images/5.png" title="{{item.financeName}}" is-link label="{{item.financeInfo}}" extra="{{item.trueMoney}}" bindtap='click' data-index='{{index}}' data-status='checked'></wux-cell>
+    </block>
+    </wux-cell-group>
+  </view>
+
+  <view class='{{show==4?"show":"hide"}}'>
+    <wux-cell-group>
+    <block wx:for='{{mySubList}}' wx:key='{{index}}' class='bill'>
+      <wux-cell class="bill" thumb="../../images/mysubmit.png" title="{{item.financeName}}" is-link label="{{item.financeInfo}}" extra="{{item.status}}" bindtap='click' data-index='{{index}}' data-status='mySub'></wux-cell>
+    </block>
+    </wux-cell-group>
+  </view>
+
+
+</view>
+
+</view>
+
+<image src='../../../../images/pen.png' class="post" bindtap='gotonewly'></image>
+
+<view class='empty_page'>
+  <wux-prompt visible="{{showPage==1?empty[0]:empty[show]}}" title="空空如也" text="没有财务信息" />
+</view>
+
+
+

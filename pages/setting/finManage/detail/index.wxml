@@ -1,0 +1,20 @@
+<!--pages/service/mk_detail/index.wxml-->
+<wux-white-space size='large'/>
+<wux-wing-blank size='large'>
+  <wux-cell-group title='主要信息'>
+    <wux-cell title='社团名称' extra='{{detail.organizationName}}'/>
+    <wux-cell title='标题' extra='{{detail.financeName}}'/>
+    <wux-cell title='类型' extra='{{detail.type}}'/>
+    <wux-cell title='预算金额' extra='{{detail.budget}}'/>
+    <wux-cell title='实际金额' extra='{{detail.trueMoney}}' class='{{type=="audited"?"hide":"show"}}'/>
+    <wux-cell title='审核日期' extra='{{detail.finishTime}}'/>
+    <wux-cell title='提交人' extra='{{detail.applicantName}}'/>
+    <wux-cell title='核销人' extra='{{detail.auditorName}}' class='{{type=="audited"?"hide":"show"}}'/>
+    <wux-cell title='内容' extra='{{detail.financeInfo}}'/>
+  </wux-cell-group>
+  <wux-cell-group title='其他'>
+    <wux-cell title='学期' extra='{{detail.term}}'/>
+    <wux-cell title='备注' extra='{{detail.remark}}'/>
+  </wux-cell-group>
+  <wux-button block type="positive" bindtap='change' class='{{showPut?"show":"hide"}}'>修改</wux-button>
+</wux-wing-blank>

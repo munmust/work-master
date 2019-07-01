@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "支援活动",
+  "navigationBarTitleText": "志愿活动",
   "usingComponents": {
     "wux-card": "../../../../dist/card/index",
     "wux-wing-blank": "../../../../dist/wing-blank/index",

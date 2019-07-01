@@ -1,0 +1,6 @@
+<!--pages/setting/borrow/index/index.wxml-->
+<view>  
+ <function-bar title="扫码借物资" subtitle="点击扫描二维码借物资" color="color_blue" bindmytap="toBorrowAsset" data-type="borrowAsset" imgSrc="../../../../../images/asset-scan.png"/>
+ 
+  <function-bar title="借用的物资" subtitle="借用物资的情况" color="color_green" bindmytap="toBorrowDetail" data-type="borrowDetail" imgSrc="../../../../../images/asset-detail.png"/>
+</view> 

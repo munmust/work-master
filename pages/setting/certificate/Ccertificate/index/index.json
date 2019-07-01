@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "学科竞赛证书",
+  "usingComponents": {
+    "function-bar": "../../../../../dist/function-bar/index"
+  }
+}

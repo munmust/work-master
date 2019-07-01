@@ -1,0 +1,44 @@
+
+<view class='nav' wx:if="{{power==1&show}}">
+  <view class='nav-item {{nav_color1}}' bindtap="change" data-item='2'>
+    收入
+  </view>
+  <view class='nav-item  {{nav_color2}}' bindtap="change" data-item='1'>
+    支出
+  </view>
+</view>
+
+<wux-wing-blank size='large' class='{{show?"hide":"show"}}'>
+  <wux-cell-group title='审核信息'>
+    <wux-cell title='社团名称' extra='{{detail.organizationName}}'/>
+    <wux-cell title='类型' extra='{{detail.type}}'/>
+    <wux-cell title='审核日期' extra='{{detail.finishTime}}'/>
+    <wux-cell title='提交人' extra='{{detail.applicantName}}' />
+    <wux-cell title='标题' extra='{{detail.financeName}}' />
+    <wux-cell title='内容' extra='{{detail.financeInfo}}' />
+    <wux-cell title='学期' extra='{{detail.term}}' />
+    <wux-cell title='备注' extra='{{detail.remark}}' />
+  </wux-cell-group>
+</wux-wing-blank>
+
+<wux-wing-blank size='large'>
+<wux-cell-group title="信息填写">
+  <wux-cell hover-class="none" class='{{show?"show":"hide"}}'>
+    <wux-input label="标题" placeholder="请输入标题" data-name='title' bind:change='input'/>
+  </wux-cell>
+  <wux-cell hover-class="none">
+    <wux-input label="金额" placeholder="0.00"  data-name='money' bind:change='input'>
+      <view slot="footer" style="margin-left: 5px">￥</view>
+    </wux-input>
+  </wux-cell>
+  <wux-cell hover-class="none" class='{{show?"show":"hide"}}'>
+    <wux-input label="内容" placeholder="请输入内容"  data-name='content' bind:change='input'/>
+  </wux-cell>
+  <wux-cell hover-class="none" class='{{show?"show":"hide"}}'>
+    <wux-input label="备注" placeholder="可选"  data-name='remark' bind:change='input'/>
+  </wux-cell>
+</wux-cell-group>
+
+<view class='btn'></view>
+<wux-button block type="positive" bindtap='submit'>提交</wux-button>
+</wux-wing-blank>

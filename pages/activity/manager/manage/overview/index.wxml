@@ -1,31 +1,58 @@
+<!--筛选项-->
+<view id="swiper-tab" class='{{showSearch?"show":"hide"}}'>
+  <view class="swiper-tab">
+    <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-currentind="0" bindtap="tabNav">{{first}}
+      <i data-currentind="0"></i>
+    </view>
+    <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-currentind="1" bindtap="tabNav">{{second}}
+      <i data-currentind="1"></i>
+    </view>
+    <view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}}" data-currentind="2" bindtap="tabNav">{{thirds}}
+      <i data-currentind="2"></i>
+    </view>
+  </view>
+
+  <!--筛选列表-->
+  <view class="tabLayer" hidden="{{tab[0]}}">
+    <text class="{{type_id==item.id?'active':''}}" wx:for="{{typeTabList}}" wx:key="p1" wx:for-item="item" data-id="{{item.id}}" data-index="0" bindtap="filter">{{item.title}}</text>
+  </view>
+  <view class="tabLayer" hidden="{{tab[1]}}">
+    <text class="{{term_id==item.id?'active':''}}" wx:for="{{termTabList}}" wx:key="p2" wx:for-item="item" data-id="{{item.id}}" data-index="1" bindtap="filter">{{item.title}}</text>
+  </view>
+  <view class="tabLayer" hidden="{{tab[2]}}">
+    <text class="{{order_id==0?'active':''}}" data-id="0" data-index="2" bindtap="filter">逆序</text>
+    <text class="{{order_id==1?'active':''}}" data-id="1" data-index="2" bindtap="filter">顺序</text>
+  </view>
+</view>
+
+
 <!--顶部标签-->
-<wux-tabs controlled current="{{ current }}" bindchange="tabChange">
-    <wux-tab key="Running">
-      <image src="../../../../../images/icon-act-running.svg" 
-      style="width: 20px; height: 20px; margin-right: 5px;" />
-      <text>已上线</text>
-    </wux-tab>
-    <wux-tab key="Pending">
-      <image src="../../../../../images/icon-act-stop.svg" 
-      style="width: 20px; height: 20px; margin-right: 5px;" />
-      <text>准备中</text>
-    </wux-tab>
-    <wux-tab key="OffLine">
-      <image src="../../../../../images/icon-act-over.svg" 
-      style="width: 20px; height: 20px; margin-right: 5px;" />
-      <text>已下线</text>
-    </wux-tab>
+<wux-tabs class='{{showState?"show":"hide"}}' controlled current="{{ current }}" bindchange="tabChange">
+  <wux-tab key="PUBLISHED">
+    <image src="../../../../../images/icon-act-running.svg" style="width: 20px; height: 20px; margin-right: 5px;" />
+    <text>已上线</text>
+  </wux-tab>
+  <wux-tab key="APPROVED">
+    <image src="../../../../../images/icon-act-stop.svg" style="width: 20px; height: 20px; margin-right: 5px;" />
+    <text>准备中</text>
+  </wux-tab>
+  <wux-tab key="FINISHED">
+    <image src="../../../../../images/icon-act-over.svg" style="width: 20px; height: 20px; margin-right: 5px;" />
+    <text>已下线</text>
+  </wux-tab>
+  <wux-tab key="RESTARTED">
+    <image src="../../../../../images/icon-act-running.svg" style="width: 20px; height: 20px; margin-right: 5px;" />
+    <text>重启中</text>
+  </wux-tab>
 </wux-tabs>
+
+
+
 <!--‘已上线’页-->
-
-
 <view class='{{showPage==1?"show":"hide"}}'>
   <wux-cell-group>
-    <block wx:for='{{runningList}}' wx:key='{{index}}'>
-      <wux-cell 
-        title="{{item.name}}" is-link 
-        label="{{item.created}}" extra="{{item.unit}}"
-        bindtap='click' data-index='{{index}}'  data-status='{{item.status}}'>
+    <block wx:for='{{publishList}}' wx:key='{{index}}'>
+      <wux-cell title="{{item.activityName}}" is-link label="{{item.start}}" extra="{{item.organizationMessage}}" bindtap='click' data-index='{{index}}' data-status='{{item.state}}'>
       </wux-cell>
     </block>
   </wux-cell-group>
@@ -33,11 +60,8 @@
 <!--‘准备中’页-->
 <view class='{{showPage==2?"show":"hide"}}'>
   <wux-cell-group>
-    <block wx:for='{{pendingList}}' wx:key='{{index}}'>
-      <wux-cell 
-        title="{{item.name}}" is-link 
-        label="{{item.created}}" extra="{{item.unit}}"
-        bindtap='click' data-index='{{index}}'  data-status='{{item.status}}'>
+    <block wx:for='{{approvList}}' wx:key='{{index}}'>
+      <wux-cell title="{{item.activityName}}" is-link label="{{item.start}}" extra="{{item.organizationMessage}}" bindtap='click' data-index='{{index}}' data-status='{{item.state}}'>
       </wux-cell>
     </block>
   </wux-cell-group>
@@ -45,22 +69,22 @@
 <!--‘已下线’页-->
 <view class='{{showPage==3?"show":"hide"}}'>
   <wux-cell-group>
-    <block wx:for='{{pauseList}}' wx:key='{{index}}'>
-      <wux-cell 
-        title="{{item.name}}" is-link 
-        label="{{item.created}}" extra="{{item.unit}}"
-        bindtap='click' data-index='{{index}}'  data-status='{{item.status}}'>
+    <block wx:for='{{finishList}}' wx:key='{{index}}'>
+      <wux-cell title="{{item.activityName}}" is-link label="{{item.start}}" extra="{{item.organizationMessage}}" bindtap='click' data-index='{{index}}' data-status='{{item.state}}'>
       </wux-cell>
     </block>
   </wux-cell-group>
+</view>
+<!--‘已重启’页-->
+<view class='{{showPage==4?"show":"hide"}}'>
   <wux-cell-group>
-    <block wx:for='{{passedList}}' wx:key='{{index}}'>
-      <wux-cell 
-        title="{{item.name}}" is-link 
-        label="{{item.created}}" extra="{{item.unit}}"
-        bindtap='click' data-index='{{index}}'  data-status='{{item.status}}'>
+    <block wx:for='{{restartList}}' wx:key='{{index}}'>
+      <wux-cell title="{{item.activityName}}" is-link label="{{item.start}}" extra="{{item.organizationMessage}}" bindtap='click' data-index='{{index}}' data-status='{{item.state}}'>
       </wux-cell>
     </block>
   </wux-cell-group>
 </view>
 
+<view class='empty_page'>
+  <wux-prompt visible="{{empty[showPage-1]}}" title="空空如也" text="没有活动信息" />
+</view>

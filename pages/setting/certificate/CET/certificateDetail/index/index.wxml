@@ -1,0 +1,20 @@
+<!--pages/setting/certificate/CET/certificateDetail/index/index.wxml-->
+<wux-alert theme="energized">待审核</wux-alert>
+<block wx:for="{{certificateList}}" wx:key="{{index}}">
+  <!-- <wux-white-space/> -->
+  <wux-wing-blank size="large"  >
+    <wux-cell wx:if="{{!item.ok}}" is-link  title="{{item.certificateName}}" id="{{item.certificateId}}" extra="{{item.status}}" bindtap="toChange" ></wux-cell>
+  </wux-wing-blank>
+  <!-- <wux-white-space/> -->
+</block>
+
+<wux-white-space size='large'/>
+
+<wux-alert theme="energized">已审核</wux-alert>
+<block wx:for="{{certificateList}}" wx:key="{{index}}">
+     <!-- <wux-white-space/> -->
+  <wux-wing-blank size="large"  >
+    <wux-cell wx:if="{{item.ok}}" is-link  title="{{item.certificateName}}" id="{{item.certificateId}}" extra="{{item.status}}" bindtap="toDetail" ></wux-cell>
+  </wux-wing-blank>
+  <!-- <wux-white-space/> -->
+</block>

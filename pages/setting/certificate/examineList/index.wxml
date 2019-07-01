@@ -1,0 +1,76 @@
+<wux-tabs controlled current="{{ current }}" bindchange="onChange">
+            <wux-tab key="tab1" title="未审核">
+            </wux-tab>
+            <wux-tab key="tab2" title="已审核">
+            OK
+            </wux-tab>
+        </wux-tabs>
+        <view wx:if="{{notPass}}">
+         <wux-tabs controlled current="{{currents}}" bindchange="onChanges">
+              <wux-tab key="tabs1" title="资格证书"></wux-tab>
+              <wux-tab key="tabs2" title="技能证书"></wux-tab>
+              <wux-tab key="tabs3" title="竞赛证书"></wux-tab>
+              <wux-tab key="tabs4" title="四六级证书"></wux-tab>
+            </wux-tabs>
+            <view wx:if="{{Q}}">
+              <block wx:for="{{QList}}" wx:key="{{index}}" >
+              <wux-white-space/>
+              <wux-wing-blank size="large"  >
+              <wux-card title="{{item.certificateName}}" id="{{item.certificateId}}" bindtap="toExamineQ">
+              <view slot="body">{{item.extInfo.description}}</view>
+              </wux-card>
+              </wux-wing-blank>
+                  <wux-white-space/>
+              </block>
+            </view>
+            <view wx:if="{{S}}">
+              <block wx:for="{{SList}}" wx:key="{{index}}" >
+              <wux-white-space/>
+              <wux-wing-blank size="large"  >
+              <wux-card title="{{item.certificateName}}" id="{{item.certificateId}}" bindtap="toExamineS">
+              <view slot="body">{{item.extInfo.description}}</view>
+              </wux-card>
+              </wux-wing-blank>
+                  <wux-white-space/>
+              </block>
+            </view>
+            <view wx:if="{{C}}">
+            <block wx:for="{{CList}}" wx:key="{{index}}" >
+              <wux-white-space/>
+              <wux-wing-blank size="large"  >
+              <wux-card title="{{item.competitionName}}" id="{{item.certificateId}}" bindtap="toExamineC">
+              <view slot="body">{{item.extInfo.description}}</view>
+              </wux-card>
+              </wux-wing-blank>
+                  <wux-white-space/>
+              </block>
+            </view>
+            <view wx:if="{{CET}}">
+            <block wx:for="{{CETList}}" wx:key="{{index}}" >
+              <wux-white-space/>
+              <wux-wing-blank size="large"  >
+              <wux-card title="{{item.certificateName}}" id="{{item.certificateId}}" bindtap="toExamineCET">
+              <view slot="body" >{{item.extInfo.description}}</view>
+              </wux-card>
+              </wux-wing-blank>
+                  <wux-white-space/>
+              </block>
+            </view>
+          </view>
+          <view wx:if="{{!notPass}}">
+            <view>
+            <block wx:for="{{certificateOkList}}" wx:key="{{index}}" >
+              <wux-white-space/>
+              <wux-wing-blank size="large"  >
+              <wux-card wx:if="{{item.certificateName}}" title="{{item.certificateName}}" id="{{item.certificateId}}" bindtap="toDetail">
+              <view id="{{item.certificateId}}" slot="body" >{{item.extInfo.description}}</view>
+              </wux-card>
+              
+               <wux-card wx:if="{{item.competitionName}}" title="{{item.competitionName}}" id="{{item.certificateId}}" bindtap="toDetail">
+              <view id="{{item.certificateId}}" slot="body" >{{item.extInfo.description}}</view>
+              </wux-card>
+              </wux-wing-blank>
+                  <wux-white-space/>
+              </block>
+            </view>
+          </view>

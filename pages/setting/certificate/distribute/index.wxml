@@ -1,0 +1,21 @@
+<!--记录员列表-->
+<wux-alert>分配列表</wux-alert>
+<scroll-view scroll-y='true' class='list'>
+  <checkbox-group wx:for="{{listData}}"       wx:key="{{index}}" 
+                  bindchange='checkBoxChange' data-index='{{item.stuId}}'>
+    <checkbox checked='{{item.checked}}' value='{{item.stuId}}'>
+      {{item.stuId}}-{{item.realName}}
+    </checkbox>
+  </checkbox-group>
+</scroll-view>
+<!--变更记录员-->
+<wux-wing-blank size='large'>
+  <i-notice-bar color='#ffffff' backgroundcolor="#2980b9">变更审核员</i-notice-bar>
+  <view class='labelItem'>
+    <view class='label'>学号</view>
+    <input class='contain' placeholder='请输入审核员的学号' bindinput='onInputChange'/>
+  </view>
+  <wux-button block bindtap='add'>添加</wux-button>
+  <wux-button block bindtap='repeal'>撤销</wux-button>
+</wux-wing-blank>
+

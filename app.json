@@ -5,18 +5,55 @@
     "pages/home/index/index",
     "pages/setting/cgPwd/index",
     "pages/setting/index/index",
+    "pages/setting/collect/index",
+    "pages/setting/finManage/orglist/index",
+    "pages/setting/finManage/manager/index",
+    "pages/setting/finManage/newly/index",
+    "pages/setting/finManage/examine/index",
+    "pages/setting/finManage/detail/index",
+    "pages/setting/finManage/putbudget/index",
     "pages/activity/teacher/index",
     "pages/activity/normal/school/index",
+    "pages/activity/normal/lecture/index",
+    "pages/activity/normal/work/index",
     "pages/activity/normal/organization/index",
     "pages/activity/normal/social/index",
     "pages/activity/normal/volunteer/index",
+    "pages/activity/normal/party/toParty/index",
+    "pages/activity/normal/party/flag/index",
+    "pages/activity/normal/party/exchange/index",
+    "pages/activity/normal/distribute/index",
     "pages/activity/recorder/work/index",
     "pages/activity/recorder/scan/index",
     "pages/activity/manager/index/index",
     "pages/activity/manager/make/index",
     "pages/activity/manager/manage/distribute/index",
     "pages/activity/manager/manage/overview/index",
-    "pages/activity/manager/manage/detail/index"
+    "pages/activity/manager/manage/detail/index",
+    "pages/setting/certificate/index/index",
+    "pages/setting/certificate/examineList/index",
+    "pages/setting/certificate/CET/index/index",
+    "pages/setting/certificate/Ccertificate/index/index",
+    "pages/setting/certificate/Qcertificate/index/index",
+    "pages/setting/certificate/Scertificate/index/index",
+    "pages/setting/certificate/Qcertificate/create/index",
+    "pages/setting/certificate/Qcertificate/certificateDetail/detail/index",
+    "pages/setting/certificate/Ccertificate/create/index",
+    "pages/setting/certificate/Scertificate/create/index",
+    "pages/setting/certificate/Qcertificate/certificateDetail/index/index",
+    "pages/setting/certificate/Qcertificate/certificateDetail/update/index",
+    "pages/setting/certificate/Scertificate/certificateDetail/detail/index",
+    "pages/setting/certificate/Scertificate/certificateDetail/index/index",
+    "pages/setting/certificate/Scertificate/certificateDetail/update/index",
+    "pages/setting/certificate/Ccertificate/certificateDetail/detail/index",
+    "pages/setting/certificate/Ccertificate/certificateDetail/index/index",
+    "pages/setting/certificate/Ccertificate/certificateDetail/update/index",
+    "pages/setting/certificate/CET/create/index",
+    "pages/setting/certificate/CET/certificateDetail/update/index",
+    "pages/setting/certificate/CET/certificateDetail/index/index",
+    "pages/setting/certificate/CET/certificateDetail/detail/index",
+    "pages/setting/certificate/distribute/index",
+    "pages/setting/borrow/borrowdetail/detail/index/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -25,11 +62,8 @@
     "navigationBarTextStyle": "white"
   },
   "tabBar": {
-    "color": "#dadada",
     "selectedColor": "#3780b9",
     "backgroundColor": "#fff",
-    "borderStyle": "#f6f6f6",
-    "font-size": "50px",
     "list": [
       {
         "pagePath": "pages/home/index/index",
@@ -44,5 +78,6 @@
         "selectedIconPath": "images/setting_active.png"
       }
     ]
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }

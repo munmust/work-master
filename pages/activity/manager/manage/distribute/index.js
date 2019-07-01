@@ -25,8 +25,8 @@ Page({
     var mes = JSON.parse(jsonStr);
     var that = this;
     //将传过来的活动id和活动名进行一个设置
-    that.data.activityId = mes.id;
-    that.data.activityName = mes.name;
+    that.data.activityId = mes.activityId;
+    that.data.activityName = mes.activityName;
     //基本信息存储后，加载页面
     that.loadPage();
     //将数据显示到页面上
@@ -45,21 +45,28 @@ Page({
   loadRecorders: function (success_callback) {
     var that = this;
     wx.request({
-      url: app.globalData.apiUrl + '/scanner/activityId',
-      method: 'POST',
-      header: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      data: { activityId: that.data.activityId },
+      url: app.globalData.apiUrl + '/activityStamp/stamper?activityId=' + that.data.activityId,
+      method: 'GET',
+      header: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Authorization': wx.getStorageSync('server_token')
+      },
+      data: {},
       success: function (res) {
-        switch (res.data.code) {
-          case 200:
-            that.data.listData = res.data.data.scannerList;
+        switch (res.data.errorCode) {
+          case "200":
+            that.data.listData = res.data.data;
             that.setData({
               listData: that.data.listData
             });
             //对查询到的信息进行剪裁
             success_callback();
             break;
-          case 500: app.warning('错误505'); break;
+          case "401":
+            app.reLaunchLoginPage();
+            break;
+          default:
+            app.warning(res.data.errorMsg);
         }
       },
       fail: function () { app.warning('服务器错误'); }
@@ -72,15 +79,17 @@ Page({
     var listData = that.data.listData;
     for (var i = 0; i < listData.length; i++) {
       //仅保留一个学号userId和姓名userName
-      delete listData[i].id;
-      delete listData[i].activityId;
-      delete listData[i].activityName;
-      delete listData[i].exparam;
+      delete listData[i].userInfoId;
+      delete listData[i].userId;
+      delete listData[i].sex;
+      delete listData[i].majorId;
+      delete listData[i].classId;
+      delete listData[i].enrollDate;
+      delete listData[i].extInfo;
       //然后设置checked属性和activityId属性
       listData[i].checked = false;
       listData[i].activityId = that.data.activityId;
     }
-    console.log(that.data.listData);
   },
 
   checkBoxChange: function (e) {
@@ -88,12 +97,11 @@ Page({
     var that = this;
     var listData = this.data.listData;
     for (var i = 0; i < listData.length; i++) {
-      if (listData[i].userId == e.currentTarget.dataset.index) {
+      if (listData[i].stuId == e.currentTarget.dataset.index) {
         listData[i].checked = !listData[i].checked;//置反checked属性即可
         break;
       }
     }
-    console.log(that.data.listData);
   },
 
   repeal: function (e) {
@@ -103,39 +111,39 @@ Page({
     var stuId;
     for (var i = 0; i < listData.length; i++) {
       if (listData[i].checked == false) continue;
-      stuId = listData[i].userId;
+      stuId = listData[i].stuId;
       wx.login({
         success: function (res) {
-          that.realRepeal(res.code, activityId, stuId);
+          that.realRepeal(activityId, stuId);
         }
       })
     }
   },
 
-  realRepeal: function (code, activityId, stuId) {//暂时只提供删除一个
+  realRepeal: function (activityId, stuId) {//暂时只提供删除一个
     var that = this;
-    var url;
-    url = '';//注意，由于用了DELETE,参数必须跟在url后面
-    url += app.globalData.apiUrl;
-    url += '/scanner?activityId=' + activityId;
-    url += '&stuId=' + stuId;
-    url += '&code=' + code;//新增的code
     wx.request({
-      url: url,
+      url: app.globalData.apiUrl + '/activityStamp/stamper',
       method: 'DELETE',
       header: {
-        'Content-Type': 'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW'
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Authorization': wx.getStorageSync('server_token')
       },
-      data: {},
+      data: {
+        stamperStuId: stuId,
+        activityId: activityId
+      },
       success: function (res) {
-        switch (res.data.code) {
-          case 200:
+        switch (res.data.errorCode) {
+          case "200":
             wx.showToast({ title: '撤销成功' });
             that.loadPage();
             break;
-          case 400: app.warning('错误400'); break;
-          case 404: app.warning('错误404'); break;
-          case 500: app.warning('没有权限'); break;
+          case "401":
+            app.reLaunchLoginPage();
+            break;
+          default:
+            app.warning(res.data.errorMsg);
         }
       },
       fail: function () { app.warning('服务器错误'); }
@@ -150,32 +158,35 @@ Page({
     var that = this;
     wx.login({
       success: function (res) {
-        that.realAdd(res.code);
+        that.realAdd();
       }
     })
   },
 
-  realAdd: function (code) {
+  realAdd: function () {
     var that = this;
     wx.request({
-      url: app.globalData.apiUrl + '/scanner',
+      url: app.globalData.apiUrl + '/activityStamp/stamper',
       method: 'POST',
-      header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      header: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Authorization': wx.getStorageSync('server_token')
+      },
       data: {
         activityId: that.data.activityId,
-        userId: that.data.newRecorderId,
-        code: code
+        stamperStuId: that.data.newRecorderId
       },
       success: function (res) {
-        switch (res.data.code) {
-          case 200:
+        switch (res.data.errorCode) {
+          case "200":
             wx.showToast({ title: '记录员添加成功' });
             that.loadPage();
             break;
-          case 400: app.warning('错误400'); break;
-          case 403: app.warning('已添加过该记录'); break;
-          case 404: app.warning('学号输入错误，请重新输入'); break;
-          case 500: app.warning('没有权限'); break;
+          case "401":
+            app.reLaunchLoginPage();
+            break;
+          default:
+            app.warning(res.data.errorMsg);
         }
       },
       fail: function () { app.warning('服务器错误'); }

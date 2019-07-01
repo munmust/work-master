@@ -1,0 +1,46 @@
+<!--pages/setting/certificate/Ccertificate/certificateDetail/detail/index.wxml-->
+<wux-wing-blank size='large'>
+<!--证书通用信息填写  -->
+  <wux-cell-group title='基本信息(必填)'>
+    <wux-cell class='p' title='竞赛名称' extra='{{certificateName}}'>
+    </wux-cell>
+    <wux-cell title='成绩等级' extra='{{certificateGrade}}'>
+    </wux-cell>
+    <wux-cell title='发证时间' extra='{{certificateTime}}' >
+    </wux-cell>
+    </wux-cell-group>
+    <!-- 按照选择的证书来显示需要填写的信息 -->
+    <wux-cell-group title='证书类型' >
+        <wux-cell title='证书类型'extra='{{certificateType}}' >
+    </wux-cell>
+    </wux-cell-group>
+    <wux-cell-group wx:if='{{isTeam}}' title='队伍信息'>
+        <wux-cell  title='队伍/作品名称'  extra='{{TeamName}}'>
+        </wux-cell>
+        <wux-cell wx:if='{{workerOne}}' title='队员' extra='{{workOne}}'>
+        </wux-cell>
+        <wux-cell wx:if='{{workerTwo}}' title='队员' extra='{{workTwo}}'>
+        </wux-cell>
+        <wux-cell wx:if='{{workerThree}}' title='队员' extra='{{workThree}}'>
+        </wux-cell>
+        <wux-cell wx:if='{{workerFour}}' title='队员' extra='{{workFour}}'>
+        </wux-cell>
+    </wux-cell-group>
+    <wux-cell-group wx:if='{{teacherOne||teacherTwo}}' title='指导老师（选填）'>
+    <wux-cell title='指导老师工号' wx:if='{{teacherOne}}' extra='{{teacherOneNumber}}'>
+    </wux-cell>
+    <wux-cell title='指导老师姓名' wx:if='{{teacherOne}}' extra='{{teacherOneName}}'>
+    </wux-cell>
+    <wux-cell title='指导老师工号' wx:if='{{teacherTwo}}' extra='{{teacherTwoNumber}}'>
+    </wux-cell>
+    <wux-cell title='指导老师工号' wx:if='{{teacherTwo}}' extra='{{teacherTwoName}}'>
+    </wux-cell>
+    </wux-cell-group>
+  <wux-cell-group title='证书详情'>
+    <wux-cell>
+      <wux-textarea disabled  rows="3" cursorSpacing="80" placeholder="{{description}}"/>
+    </wux-cell>
+  </wux-cell-group>
+<wux-white-space size='large' /> 
+  <wux-button wx:if="{{passBtn}}" block type='positive' bind:click='toPass'>通过</wux-button>
+</wux-wing-blank>

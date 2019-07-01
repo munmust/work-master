@@ -1,0 +1,7 @@
+{ 
+  "navigationBarTitleText": "证书录入",
+  "usingComponents": {
+    "wux-item": "../../../../dist/certificate-item/index",
+    "function-bar": "../../../../dist/function-bar/index"
+  }
+}

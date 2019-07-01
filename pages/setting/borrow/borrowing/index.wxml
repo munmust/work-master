@@ -1,0 +1,30 @@
+<!--pages/setting/borrow/borrowing/index.wxml-->
+
+<wux-wing-blank size='large'>
+  <wux-cell-group title="物资信息">
+    <wux-cell>
+      <wux-input class='show' label="物资名称" data-name='assetName' placeholder="{{assetName}}"
+      disabled />
+    </wux-cell>
+    <wux-cell>
+   <wux-input class='show' label="物资类型" data-name='assetType' placeholder="{{assetType}}"
+      disabled />
+ </wux-cell>
+    <wux-cell>
+      <wux-input label='所属组织' placeholder='{{assetOrganizationName}}' data-name='organizationMessage' disabled />
+    </wux-cell>
+  </wux-cell-group>
+
+  <wux-cell-group title='选择数量({{assetRemain}}/{{assetAmount}})'>
+    <wux-cell>
+      <wux-input data-name='loanAmount' placeholder='借用数量' label="数量" bindblur='loanInput' />
+    </wux-cell>
+  </wux-cell-group>
+<wux-cell-group title='备注'>
+    <wux-cell>
+      <wux-input data-name='assetInfo' placeholder='请填写物资用途' label="物资用途" bindblur='infoInput' />
+    </wux-cell>
+  </wux-cell-group>
+  <wux-white-space size='large' />
+  <wux-button block type='positive' bind:click='toSubmit'>提交</wux-button>
+</wux-wing-blank>

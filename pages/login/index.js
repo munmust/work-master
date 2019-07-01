@@ -51,28 +51,35 @@ Page({
     var that = this;
     //登录
     wx.request({
-      //url: app.globalData.apiUrl + '/user/login',
-      url: 'http://119.23.188.92:8000' + '/user/token',
+      url: app.globalData.apiUrl + '/user/openId',
       method: 'POST',
       header: { 'Content-Type': 'application/x-www-form-urlencoded' },
       data: {
         username: that.data.username,
-        password: that.data.password
+        password: that.data.password,
+        code: code
       },
       success: function (res) {
-        console.log(res);
         switch (res.data.errorCode) {
           case "200":
+          console.log(res);
             wx.setStorageSync('server_token', res.data.data.token);
             var token = wx.getStorageSync('server_token');
             app.globalData.stuId = res.data.data.userInfo.stuId;
             app.globalData.realName = res.data.data.userInfo.realName;
+            app.globalData.major = res.data.data.userInfo.major;
+            app.globalData.classId = res.data.data.userInfo.classId;
+            app.globalData.grade = res.data.data.userInfo.grade;
             app.globalData.roleInfo = res.data.data.roleInfo;
             wx.switchTab({
               url: '../home/index/index',
             })
             break;
-          default: app.warning(res.data.errorMsg);
+            case "401":
+            app.reLaunchLoginPage();
+            break;
+          default:
+            app.warning(res.data.errorMsg);
         }
       },
       fail: function () {

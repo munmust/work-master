@@ -1,0 +1,11 @@
+page{
+  height: 100%;
+  font-size: 26rpx;
+  background-color: #f4f4f4;
+}
+.show{
+  display: block;
+}
+.hide{
+  display: none;
+}

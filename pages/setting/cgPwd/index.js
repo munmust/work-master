@@ -48,8 +48,7 @@ Page({
 
   requestChangePwd: function (code, oldPwd, newPwd) {
     wx.request({
-      //url: app.globalData.apiUrl + '/user/pwd',
-      url: 'http://119.23.188.92:8000/user/pwd',
+      url: app.globalData.apiUrl + '/user/pwd',
       method: "PUT",
       header: { 'Content-Type': 'application/x-www-form-urlencoded',
                 'Authorization': wx.getStorageSync('server_token') },
@@ -65,7 +64,10 @@ Page({
           case "401":
             //token不正确时，清除本地token并跳转至登录界面
             wx.removeStorageSync('server_token');
-            wx.reLaunch({ url: '../../login/index' }); break;
+            wx.redirectTo({
+              url: '../login/index'
+            });
+            break;
           default:
             app.warning(res.data.errorMsg);
         }

@@ -1,0 +1,51 @@
+/* dist/certificate-item/index.wxss */
+.ci-home{
+  flex: 1; 
+   position: relative;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  height: 300rpx;
+  padding: 20rpx;
+  margin: 15rpx;
+  border-radius: 15rpx;
+}
+.ci-text{
+  display: flex;
+  flex-flow: column nowrap;
+  justify-items: center;
+  align-content: center;
+  text-align:center;
+  color: white;
+}
+.ci-text .ci-h1{
+  font-size: 18px;
+  font-weight: 600
+}
+.ci-text .ci-h2{
+  font-weight: 400;
+}
+/*
+通过type来显示图片
+*/
+.Scertificate{
+    background-color: #13c2c2;
+  box-shadow: 5rpx 5rpx 5rpx #08979c;
+  opacity: .8;
+}
+.Ccertificate{
+   background-color: #2f54eb;
+  box-shadow: 5rpx 5rpx 5rpx #1d39c4;
+  opacity: .8;
+}
+.CET{
+  background-color: #fa541c;
+  box-shadow: 5rpx 5rpx 5rpx #d4380d;
+  opacity: .8;
+}
+.Qcertificate{
+    background-color: #eb2f96;
+  box-shadow: 5rpx 5rpx 5rpx #c41d7f;
+  opacity: .8;
+}

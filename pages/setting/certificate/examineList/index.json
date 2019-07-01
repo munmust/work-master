@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "审核列表",
+  "usingComponents": {
+    "wux-card": "../../../../dist/card/index",
+    "wux-wing-blank": "../../../../dist/wing-blank/index",
+    "wux-white-space": "../../../../dist/white-space/index",
+    "wux-tabs": "../../../../dist/tabs/index",
+        "wux-tab": "../../../../dist/tab/index"
+  }
+}

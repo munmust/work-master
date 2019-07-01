@@ -28,43 +28,123 @@
   color: #F5F5F5;
   font-size: 25rpx;
 }
-.color1{
-  background-color: #3498db;
-  box-shadow: 5rpx 5rpx 5rpx #3498db;
+/* 
+配色基于Ant-Design
+https://ant.design/docs/spec/colors-cn
+挑选第六层作为主色，第七层作为底色
+*/
+.color_magenta{
+  background-color: #eb2f96;
+  box-shadow: 5rpx 5rpx 5rpx #c41d7f;
   opacity: .8;
 }
-.color2{
-  background-color: #27ae60;
-  box-shadow: 5rpx 5rpx 5rpx #27ae60;
+.color_purple{
+  background-color: #722ed1;
+  box-shadow: 5rpx 5rpx 5rpx #531dab;
   opacity: .8;
 }
-.color3{
-  background-color: #f39c12;
-  box-shadow: 5rpx 5rpx 5rpx #f39c12;
+.color_geekblue{
+  background-color: #2f54eb;
+  box-shadow: 5rpx 5rpx 5rpx #1d39c4;
   opacity: .8;
 }
-.color4{
-  background-color: #fc5c65;
-  box-shadow: 5rpx 5rpx 5rpx #fc5c65;
+.color_blue{
+  background-color: #1890ff;
+  box-shadow: 5rpx 5rpx 5rpx #096dd9;
   opacity: .8;
 }
-.color5{
-  background-color: #8e44ad;
-  box-shadow: 5rpx 5rpx 5rpx #8e44ad;
+.color_cyan{
+  background-color: #13c2c2;
+  box-shadow: 5rpx 5rpx 5rpx #08979c;
   opacity: .8;
 }
-.color6{
-  background-color: #3c6382;
-  box-shadow: 5rpx 5rpx 5rpx #3c6382;
+.color_green{
+  background-color: #52c41a;
+  box-shadow: 5rpx 5rpx 5rpx #389e0d;
   opacity: .8;
 }
-.color7{
-  background-color: #1e3799;
-  box-shadow: 5rpx 5rpx 5rpx #1e3799;
+.color_lime{
+  background-color: #a0d911;
+  box-shadow: 5rpx 5rpx 5rpx #7cb305;
   opacity: .8;
 }
-.color8{
-  background-color: #f3ac61;
-  box-shadow: 5rpx 5rpx 5rpx #f3ac61;
+.color_yellow{
+  background-color: #fadb14;
+  box-shadow: 5rpx 5rpx 5rpx #d4b106;
+  opacity: .8;
+}
+.color_gold{
+  background-color: #faad14;
+  box-shadow: 5rpx 5rpx 5rpx #d48806;
+  opacity: .8;
+}
+.color_orange{
+  background-color: #fa8c16;
+  box-shadow: 5rpx 5rpx 5rpx #d46b08;
+  opacity: .8;
+}
+.color_volcano{
+  background-color: #fa541c;
+  box-shadow: 5rpx 5rpx 5rpx #d4380d;
+  opacity: .8;
+}
+.color_red{
+  background-color: #f5222d;
+  box-shadow: 5rpx 5rpx 5rpx #cf1322;
+  opacity: .8;
+}
+.color_gray{
+  background-color: #8c8c8c;
+  box-shadow: 5rpx 5rpx 5rpx #8c8c8c;
+  opacity: .8;
+}
+.color_blue_1{
+  background-color: #e6f7ff;
+  box-shadow: 5rpx 5rpx 5rpx #bae7ff;
+  opacity: .8;
+}
+.color_blue_2{
+  background-color: #bae7ff;
+  box-shadow: 5rpx 5rpx 5rpx #91d5ff;
+  opacity: .8;
+}
+.color_blue_3{
+  background-color: #91d5ff;
+  box-shadow: 5rpx 5rpx 5rpx #69c0ff;
+  opacity: .8;
+}
+.color_blue_4{
+  background-color: #69c0ff;
+  box-shadow: 5rpx 5rpx 5rpx #40a9ff;
+  opacity: .8;
+}
+.color_blue_5{
+  background-color: #40a9ff;
+  box-shadow: 5rpx 5rpx 5rpx #1890ff;
+  opacity: .8;
+}
+.color_blue_6{
+  background-color: #1890ff;
+  box-shadow: 5rpx 5rpx 5rpx #096dd9;
+  opacity: .8;
+}
+.color_blue_7{
+  background-color: #096dd9;
+  box-shadow: 5rpx 5rpx 5rpx #0050b3;
+  opacity: .8;
+}
+.color_blue_8{
+  background-color: #0050b3;
+  box-shadow: 5rpx 5rpx 5rpx #003a8c;
+  opacity: .8;
+}
+.color_blue_9{
+  background-color: #003a8c;
+  box-shadow: 5rpx 5rpx 5rpx #002766;
+  opacity: .8;
+}
+.color_blue_10{
+  background-color: #002766;
+  box-shadow: 5rpx 5rpx 5rpx #002766;
   opacity: .8;
 }

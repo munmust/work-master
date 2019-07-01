@@ -1,0 +1,84 @@
+.top{
+  height: 180rpx;
+  width: 100%;
+}
+
+.content{
+  height: 100rpx;
+  width: 400rpx;
+  margin-top: 40rpx;
+  margin-left: 200rpx;
+}
+
+.money{
+  float: left;
+  margin-left: 40rpx;
+  line-height: 100rpx;
+  color: #FE7979;
+  font-size: 22px;
+}
+
+.cen{
+  float: left;
+  margin-left: 20rpx;
+  line-height: 100rpx;
+}
+
+.pic{
+  height: 100rpx;
+  width: 100rpx;
+  float: left;
+}
+
+.btnbox {
+  clear: both;
+  margin-top: 100px;
+}
+
+.btnitem1 {
+  width: 50%;
+  text-align: center;
+  float: left;
+}
+
+.btnitem2 {
+  width: 50%;
+  text-align: center;
+  float: left;
+}
+
+.btnsive {
+  border-radius: 4px;
+  width: 150px;
+  margin: 0 auto;
+}
+
+.btnitem1 .btnsive {
+  background-color: #FE7979;
+  color: #fff;
+  height: 40px;
+  line-height: 40px;
+}
+
+.btnitem1 .btnsive-hover {
+  background-color: #FAB3B3;
+}
+
+.btnitem1 .btnsive::after {
+  border: 1px solid #f6c142;
+}
+
+.btnitem2 .btnsive {
+  background-color: #36DEAA;
+  color: #fff;
+  height: 42px;
+  line-height: 42px;
+}
+
+.btnitem2 .btnsive-hover {
+  background-color: #8BEBCC;
+}
+
+.btnitem2 .btnsive::after {
+  border: none;
+}

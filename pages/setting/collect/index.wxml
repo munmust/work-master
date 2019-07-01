@@ -1,0 +1,18 @@
+<wux-select id="wux-select1" />
+<wux-select id="wux-select2" />
+<wux-select id="wux-select3" />
+<wux-white-space size='large'/>
+<wux-white-space size='large'/>
+<wux-white-space size='large'/>
+
+
+  <wux-cell-group title="必填">
+    <wux-cell title="年级" extra="{{ gradeTitle }}" bind:click="onGrade"></wux-cell>
+    <wux-cell title="专业" extra="{{ majorTitle }}" bind:click="onMajor"></wux-cell>
+    <wux-cell title="班级" extra="{{ classsTitle }}" bind:click="onClass"></wux-cell>
+  </wux-cell-group>
+  <wux-wing-blank size='large'>
+  <wux-white-space size='large'/>
+  <wux-white-space size='large'/>
+  <wux-button block type='positive' bind:click='toSubmit'>提交</wux-button>
+</wux-wing-blank>

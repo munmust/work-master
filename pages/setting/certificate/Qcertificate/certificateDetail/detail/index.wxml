@@ -1,0 +1,41 @@
+<!--pages/setting/certificate/Qcertificate/detail/index.wxml-->
+<!--pages/setting/certificate/Qcertificate/create/index.wxml-->
+<wux-select id="wux-selectCertificateType" />
+<wux-select id="wux-selectTeacherLevel" />
+<wux-wing-blank size='large'>
+<!--证书通用信息填写  -->
+  <wux-cell-group title='基本信息(必填)'>
+    <wux-cell title="证书名称" extra="{{certificateName}}">
+    </wux-cell>
+    <wux-cell title="发证单位" extra="{{certificateOrganization}}">
+    </wux-cell>
+    <wux-cell title="发证时间" extra="{{certificateTime}}">
+    </wux-cell>
+    </wux-cell-group>
+    <!-- 按照选择的证书来显示需要填写的信息 -->
+        <wux-cell-group title='证书类型'>
+          <wux-cell title="证书类型" extra="{{certificateType}}">
+          </wux-cell>
+       </wux-cell-group>
+    <!-- 教师资格证信息填写 -->
+      <wux-cell-group title='附加信息' wx:if="{{teacher}}">
+       <wux-cell title="证书资格等级" extra="{{teacherLevel}}">
+          </wux-cell>
+        <wux-cell title="任教学科" extra="{{teacherSubject}}">
+          </wux-cell>
+    </wux-cell-group>
+    <!-- 证书选填信息填写  -->
+    <wux-cell-group title='选填信息'>
+      <wux-cell title="证书编号" extra="{{certificateNumber}}">
+          </wux-cell>
+          <wux-cell title="证书等级" extra="{{rank}}">
+          </wux-cell>
+    </wux-cell-group>
+  <wux-cell-group title='证书详情'>
+    <wux-cell>
+      <wux-textarea disabled  rows="3" cursorSpacing="80" placeholder="{{description}}" data-name='description' value="{{description}}" bind:change='input' />
+    </wux-cell>
+  </wux-cell-group>
+    <wux-white-space size='large' /> 
+  <wux-button wx:if="{{passBtn}}" block type='positive' bind:click='toPass'>通过</wux-button>
+</wux-wing-blank>

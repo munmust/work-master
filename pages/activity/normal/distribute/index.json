@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "活动章分配",
+  "usingComponents": {
+    "wux-cell-group": "../../../../dist/cell-group/index",
+    "wux-cell": "../../../../dist/cell/index",
+    "wux-input-number": "../../../../dist/input-number/index",
+    "wux-white-space": "../../../../dist/white-space/index",
+    "wux-button": "../../../../dist/button/index",
+    "wux-wing-blank": "../../../../dist/wing-blank/index"
+  }
+}

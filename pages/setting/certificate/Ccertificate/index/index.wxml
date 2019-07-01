@@ -1,0 +1,5 @@
+<!--pages/setting/certificate/Ccertificate/index/index.wxml-->
+<view>
+ <function-bar title="证书录入" subtitle="录入持有的资格证书" color="color_blue" bindmytap="toCreateCertificate" data-type="school" imgSrc="../../images/schoolact.png" />
+ <function-bar title="我的证书" subtitle="查看我的证书状态" color="color_blue" bindmytap="toCertificateDetail" data-type="school" imgSrc="../../images/schoolact.png" />
+</view>

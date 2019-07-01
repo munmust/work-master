@@ -1,0 +1,41 @@
+<!--pages/setting/borrow/borrowdetail/detail/index.wxml-->
+<wux-select id="select-Dtype" />
+<wux-select id="select-Atype" />
+<wux-wing-blank size='large'>
+  <wux-cell-group title="借用详情">
+    <wux-cell>
+      <wux-input class='show' label="借用物资名称" data-name='assetName' placeholder="{{assetName}}"
+      disabled />
+    </wux-cell>
+    <wux-cell>
+      <wux-input data-name='loanAmount' placeholder='{{loanAmount}}' label="待还数量" disabled />
+    </wux-cell>
+    <wux-cell>
+      <wux-input data-name='assetInfo' placeholder='{{assetInfo}}' label="物资用途"   disabled />
+    </wux-cell>
+    <wux-cell>
+      <wux-input data-name='createTime' placeholder='{{createTime}}' label="借用时间"   disabled />
+    </wux-cell>
+  </wux-cell-group>
+  <wux-cell-group wx:if="{{assetD}}" title='归还/报损'>
+      <wux-cell title='归还类型' extra='{{reDType}}' bind:click="chooseDType" />
+  </wux-cell-group>
+
+   <wux-cell-group wx:if="{{!assetD}}" title='归还/消耗'>
+      <wux-cell title='归还类型' extra='{{reAType}}' bind:click="chooseAType" />
+     
+  </wux-cell-group>
+
+  <wux-cell-group title='数量({{loanAmount}})'>
+    <wux-cell>
+      <wux-input data-name='removeAmount' placeholder='请输入数量' label="数量" bindblur='numberInput' />
+    </wux-cell>
+  </wux-cell-group>
+<wux-cell-group title='备注'>
+    <wux-cell>
+      <wux-input data-name='ext_info' placeholder='物资状况' label="扩展信息" bindblur='Input' />
+    </wux-cell>
+  </wux-cell-group>
+  <wux-white-space size='large' />
+    <wux-button block type='positive' bind:click='toSubmit'>提交</wux-button>
+</wux-wing-blank>

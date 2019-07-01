@@ -1,0 +1,95 @@
+<!--pages/setting/certificate/Qcertificate/certificateDetail/update/index.wxml-->
+<wux-wing-blank size='large'>
+<!--证书通用信息填写  -->
+  <wux-cell-group title='基本信息(必填)'>
+    <wux-cell>
+        <label class="lab">证书全称
+      <input class="inputW" type="text" value='{{certificateName}}' data-name='certificateName'  placeholder="请输入证书全称" bind:change='input'>
+         
+      </input>
+      </label>
+    </wux-cell>
+ <wux-cell>
+     <label class="lab">发证单位
+      <input class="inputW" type="text" value='{{certificateUnit}}' data-name='certificateUnit'  placeholder="请输入发证单位" bind:change='input'>
+         
+      </input>
+      </label>
+    </wux-cell>
+         <wux-cell>
+             <label class="lab">发证时间
+            <picker class="inputW" mode="date" fields='month' value="{{certificateTime}}" start="{{certificateStart}}" bindchange="changeCertificateTime">
+                    <view class="date">{{certificateTime}}</view>
+                </picker>
+                </label>
+                </wux-cell>
+    </wux-cell-group>
+    <!-- 按照选择的证书来显示需要填写的信息 -->
+        <wux-cell-group title='证书类型'>
+      <!-- <wux-cell title="选择证书类型" extra="{{ certificateTypeValue }}" bind:click="changeCertificateType"></wux-cell>
+     -->
+     <wux-cell>
+     <view class="mod t-sign-time">
+            <view class="key">证书类型</view>
+      <!-- <wux-cell title="选择证书类型" extra="{{ certificateTypeValue }}" bind:click="changeCertificateType"></wux-cell> -->
+      <picker bindchange="bindTypeChange" value="{{typeIndex}}" range="{{typeArray}}">
+    <view class="picker">
+      <view >{{typeArray[typeIndex]}}</view>
+    </view>
+  </picker>
+         </view>
+        </wux-cell>
+    </wux-cell-group>
+    <!-- 教师资格证信息填写 -->
+      <wux-cell-group title='附加信息' wx:if="{{teacher}}">
+       <!-- <wux-cell  title="证书资格等级" extra="{{ teacherLevelValue }}" bind:click="checkedTeacherLevel"></wux-cell>
+          -->
+          <wux-cell>
+       <!-- <wux-cell title="证书资格等级" extra="{{ teacherLevelValue }}" bind:click="checkedTeacherLevel"> -->
+        <view class="mod t-sign-time">
+            <view class="key">证书资格等级</view>
+      <!-- <wux-cell title="选择证书类型" extra="{{ certificateTypeValue }}" bind:click="changeCertificateType"></wux-cell> -->
+      <picker bindchange="bindGradeChange" value="{{gradeIndex}}" range="{{gradeArray}}">
+    <view class="picker">
+      <view>{{gradeArray[gradeIndex]}}</view>
+    </view>
+</picker>
+</view>
+       </wux-cell>
+         <wux-cell >
+             <label class="lab">任教学科
+      <input class="inputW" type="text" value='{{teacherSubject}}' data-name='teacherSubject'  placeholder="请输入任教学科" bind:change='input'>
+      </input>
+      </label>
+    </wux-cell>
+    </wux-cell-group>
+    <!-- 证书选填信息填写  -->
+    <wux-cell-group title='选填信息'>
+     <wux-cell>
+        <label class="lab">证书编号
+      <input class="inputW" type="text" value='{{certificateNumber}}' data-name='certificateNumber'  placeholder="请输入证书编号(选填)" bind:change='input'>
+         
+      </input>
+      </label>
+    </wux-cell>
+    <wux-cell>
+         <label class="lab">证书等级
+      <input class="inputW" type="text" value='{{certificateGrade}}' data-name='certificateGrade'  placeholder="请输入证书等级(选填)" bind:change='input'>
+         
+      </input>
+      </label>
+    </wux-cell>
+    </wux-cell-group>
+  <wux-cell-group title='证书详情'>
+    <!-- <wux-cell>
+      <wux-textarea  rows="3" cursorSpacing="80" placeholder="请输入证书上的全部信息" defaultValue='{{description}}' data-name='description' bind:change='input' />
+    </wux-cell> -->
+      <wux-cell>
+    <textarea row="3" maxlength="200" cursor-spacing="70" placeholder="请输入证书上的全部信息" data-name='description' bindinput="bindTextAreaChange" value='{{description}}'></textarea>
+    </wux-cell>
+ </wux-cell-group>
+
+  <wux-white-space size='large' /> 
+  <wux-button block type='positive' bind:click='toSubmit'>提交</wux-button>
+
+</wux-wing-blank>

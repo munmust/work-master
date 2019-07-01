@@ -1,0 +1,29 @@
+/* pages/setting/certificate/index/index.wxss */
+.c-top{
+  display: flex;
+  height: 100px;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  font-size: 26px;
+  font-weight: 800;
+}
+.item-wrapper{
+  display: flex;
+  flex-flow: row wrap;
+}
+.item{
+  height: 50%;
+  width: 50%;
+}
+
+.show {
+  /* display: block; */
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.hide {
+  display: none;
+}
+

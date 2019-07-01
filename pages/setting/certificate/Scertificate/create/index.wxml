@@ -1,0 +1,37 @@
+<!--pages/setting/certificate/Scertificate/create/index.wxml-->
+<wux-wing-blank size='large'>
+  <wux-cell-group title='基本信息'>
+    <wux-cell>
+      <wux-input label="证书名称" placeholder='请输入证书全称' data-name='certificateName' bind:change='input' />
+    </wux-cell>
+    <wux-cell>
+      <wux-input label="证书等级" placeholder='请输入证书等级' data-name='certificateGrade' bind:change='input' />
+    </wux-cell>
+  <wux-cell>
+    <wux-input label="证书编号" placeholder='请输入证书编号(选填)' data-name='certificateNumber' bind:change='input' />
+  </wux-cell>
+  <wux-cell >
+   <view class="mod t-sign-time">
+    <view class="key">发证时间</view>
+    <picker mode="date" fields='month' value="{{certificateTime}}" start="{{certificateStart}}" bindchange="changeCertificateTime">
+      <view class="date">{{certificateTime}}</view>
+        </picker>
+    </view>
+</wux-cell>
+<wux-cell >
+    <view class="mod t-sign-time">
+            <view class="key">有效时间(选填)</view>
+            <picker mode="date" fields='month' value="{{certificateEndTime}}" start="{{certificateStart}}" bindchange="changeCertificateEndTime">
+                    <view class="date">{{certificateEndTime}}</view>
+                </picker>
+        </view>
+        </wux-cell>
+    </wux-cell-group>
+      <wux-cell-group title='证书详情'>
+    <wux-cell>
+      <wux-textarea  rows="3" maxlength="200" cursorSpacing="80" placeholder="请输入证书上的全部信息" data-name='description' bind:change='input' />
+    </wux-cell>
+  </wux-cell-group>
+    <wux-white-space size='large' />
+    <wux-button block type='positive' bind:click='toSubmit'>提交</wux-button>
+    </wux-wing-blank>

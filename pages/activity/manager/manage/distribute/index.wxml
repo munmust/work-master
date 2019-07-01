@@ -2,9 +2,9 @@
 <wux-alert>活动名称:{{activityName}}</wux-alert>
 <scroll-view scroll-y='true' class='list'>
   <checkbox-group wx:for="{{listData}}"       wx:key="{{index}}" 
-                  bindchange='checkBoxChange' data-index='{{item.userId}}'>
-    <checkbox checked='{{item.checked}}' value='{{item.userId}}'>
-      {{item.userId}}-{{item.userName}}
+                  bindchange='checkBoxChange' data-index='{{item.stuId}}'>
+    <checkbox checked='{{item.checked}}' value='{{item.stuId}}'>
+      {{item.stuId}}-{{item.realName}}
     </checkbox>
   </checkbox-group>
 </scroll-view>

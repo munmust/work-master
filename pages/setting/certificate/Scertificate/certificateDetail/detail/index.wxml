@@ -1,0 +1,22 @@
+<!--pages/setting/certificate/Scertificate/certificateDetail/detail/index.wxml-->
+<wux-wing-blank size='large'>
+<!--证书通用信息填写  -->
+  <wux-cell-group title='基本信息(必填)'>
+    <wux-cell title="证书名称" extra="{{certificateName}}">
+    </wux-cell>
+    <wux-cell title="证书等级" extra="{{certificateGrade}}">
+    </wux-cell>
+    <wux-cell title="发证时间" extra="{{certificateTime}}">
+    </wux-cell>
+    <wux-cell wx:if="{{endTime}}" title="有效时间" extra="{{certificateEndTime}}">
+    </wux-cell>
+    </wux-cell-group>
+  <wux-cell-group title='证书详情'>
+    <wux-cell>
+      <wux-textarea disabled  rows="3" cursorSpacing="80" placeholder="{{description}}" data-name='description' value="{{description}}" bind:change='input' />
+    </wux-cell>
+  </wux-cell-group>
+ <wux-white-space size='large' /> 
+  <wux-button wx:if="{{passBtn}}" block type='positive' bind:click='toPass'>通过</wux-button>
+</wux-wing-blank>
+

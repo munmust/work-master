@@ -2,12 +2,10 @@
   <wux-prompt visible="{{empty}}" title="空空如也" text="没有扫码任务" />
 </view>
 <block wx:for="{{listData}}" wx:key="{{index}}">
-  <wux-white-space size='default'/>
+  <wux-white-space size='default' />
   <wux-wing-blank size='default'>
-    <wux-card title="{{item.activityName}}" extra="扫码任务" bindtap='toScan' 
-              data-name="{{item.activityName}}" data-id="{{item.activityId}}">
-      <view slot="body">点击前往</view>
-      <view slot="footer">{{item.exparam}}</view>
+    <wux-card title="{{item.activityName}}" extra="{{item.type}}" bindtap='toScan' data-name="{{item.activityName}}" data-id="{{item.activityId}}" data-type="{{item.type}}">
+      <view slot="body">{{item.description}}</view>
     </wux-card>
   </wux-wing-blank>
 </block>

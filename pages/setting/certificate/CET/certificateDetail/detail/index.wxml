@@ -1,0 +1,20 @@
+<!--pages/setting/certificate/CET/certificateDetail/detail/index.wxml-->
+  <wux-cell-group title='基本信息'>
+          <wux-cell title="证书类型" extra="{{certificateType}}">
+              <!-- <wux-input disabled label="证书类型" placeholder='{{certificateType}}'  /> -->
+          </wux-cell>
+    <wux-cell title="成绩" extra="{{certificateGrade}}">
+      <!-- <wux-input disabled label="成绩" placeholder='{{certificateGrade}}' data-name='certificateGrade' bind:change='input' /> -->
+    </wux-cell>
+        <wux-cell title="发证时间" extra="{{certificateTime}}">
+              <!-- <wux-input disabled label="发证时间" placeholder='{{certificateTime}}'  /> -->
+          </wux-cell>
+      </wux-cell-group>
+         <wux-cell-group title='证书详情'>
+    <wux-cell>
+      <wux-textarea disabled  rows="3" cursorSpacing="80" placeholder='{{description}}' data-name='description' bind:change='input' />
+    </wux-cell>
+     <wux-white-space size='large' /> 
+  <wux-button wx:if="{{passBtn}}" block type='positive' bind:click='toPass'>通过</wux-button>
+
+  </wux-cell-group>

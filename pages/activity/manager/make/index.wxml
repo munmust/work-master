@@ -8,37 +8,65 @@
 
     <!--活动/职务名称-->
     <wux-cell>
-    <wux-input label="名称" placeholder='活动或职务的名称' data-name='act_name' bind:change='input'/>
+      <wux-input label="名称" placeholder='请输入活动名称' data-name='activityName' bind:change='input' />
     </wux-cell>
 
     <!--活动类型-->
-    <wux-cell title='活动类型' extra='{{act_type}}' bind:click="chooseType"/>
+    <wux-cell title='活动类型' extra='{{activityType}}' bind:click="chooseType" />
 
     <!--学期-->
-    <wux-cell title='学期' extra='{{act_term}}' bind:click="chooseTerm"/>
+    <wux-cell title='学期' extra='{{term}}' bind:click="chooseTerm" />
 
     <!--举办单位-->
     <wux-cell>
-    <wux-input label="举办单位" data-name='act_unit' bind:change='input'/>
+      <wux-input label="举办单位" placeholder='请输入活动主办方名称' data-name='organizationMessage' bind:change='input' />
     </wux-cell>
 
   </wux-cell-group>
+  <view class="mod-a mtop">
+  <view class="mod t-sign-time">
+            <text class="key">开始于</text>
+            <view class='c1'>
+            <picker mode="date" value="{{activitystartDay}}" start="{{activitystartDay}}" bindchange="startDateChange">
+                    <view class="date">{{activitystartDay}}<image class="arrow-d" src="../../../../images/more/down.png"></image></view>
+                </picker>
+            <view class="pipe"></view>
+            <picker mode="time" value="{{activityStartTime}}" bindchange="setStartTime">
+                <view class="value">{{activityStartTime}}<image class="arrow-r" src="../../../../images/more/right.png"></image></view>
+            </picker>
+            </view>
+        </view>
+
+        <view class="mod t-sign-time">
+            <text class="key">结束于</text>
+            <view class='c1'>
+            <picker mode="date" value="{{activityendDay}}" start="{{activityendDay}}" bindchange="endDateChange">
+                    <view class="date">{{activityendDay}}<image class="arrow-d" src="../../../../images/more/down.png"></image></view>
+                </picker>
+            <view class="pipe"></view>
+            <picker mode="time" value="{{activityEndTime}}" bindchange="setEndTime">
+                <view class="value">{{activityEndTime}}<image class="arrow-r" src="../../../../images/more/right.png"></image></view>
+            </picker>
+            </view>
+        </view>
+        </view>
 
 
   <wux-cell-group title='可选'>
-    <!--时长-->
-    <wux-cell title='志愿时长(时)'>
+    <!--时长不由创建活动控制-->
+    <!-- <wux-cell title='志愿时长(时)'>
       <wux-input-number data-name='act_hour' bind:change='input' disabled='{{false}}' slot="footer" />
     </wux-cell>
     <wux-cell title='志愿时长(分)'>
-      <wux-input-number data-name='act_minute' bind:change='input' disabled='{{false}}' slot="footer" />
-    </wux-cell>
+      <wux-input-number data-name='act_minute' bind:change='input' disabled='{{false}}' slot="footer" /> 
+    </wux-cell> -->
     <!--备注-->
-    <wux-cell><wux-input data-name='act_message' label="备注" bind:change='input'/>
+    <wux-cell>
+      <wux-input data-name='description' placeholder='填写活动详细信息' label="备注" bind:change='input' />
     </wux-cell>
   </wux-cell-group>
 
-  <wux-white-space size='large'/>
+  <wux-white-space size='large' />
   <wux-button block type='positive' bind:click='toSubmit'>提交</wux-button>
 
 </wux-wing-blank>

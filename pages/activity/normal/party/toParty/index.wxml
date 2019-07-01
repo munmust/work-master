@@ -1,0 +1,5 @@
+
+    <!--不定期升旗-->
+  <function-bar title="“新学习”系列活动" subtitle="初心剧场，早课查勤，不定期升旗" color="color_red" bindmytap="changePage" data-type="flag" imgSrc="../../../../../images/party.png"/>
+    <!--交换一小时-->
+  <function-bar title="交换一小时" subtitle="交换一小时记录" color="color_red" bindmytap="changePage" data-type="exchange" imgSrc="../../../../../images/party.png"/>

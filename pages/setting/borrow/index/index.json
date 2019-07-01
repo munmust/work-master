@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "物资借用",
+  "usingComponents": {
+    "wux-backdrop": "../../../../dist/backdrop/index",
+    "wux-divider": "../../../../dist/divider/index",
+    "function-bar": "../../../../dist/function-bar/index"
+  }
+}

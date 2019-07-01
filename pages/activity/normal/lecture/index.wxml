@@ -1,0 +1,18 @@
+<!--pages/service/act_school/index.wxml-->
+<wux-alert theme="positive">
+共参与了<span class="hours"> {{pastLecture+listData.length}} </span>次讲座活动
+<text hidden='{{pastLecture==0}}'>（含往期{{pastLecture}}次）</text>
+</wux-alert>
+<block wx:for="{{listData}}" wx:key="{{index}}">
+  <wux-white-space size='large'/>
+  <wux-wing-blank size="default">
+    <wux-card title="{{item.activityName}}">
+      <view slot="body">{{item.createTime}}</view>
+      <view slot="footer">{{item.term}}</view>
+    </wux-card>
+  </wux-wing-blank>
+</block>
+
+<view class='empty_page' hidden='{{!empty}}'>
+  <wux-prompt visible="{{empty}}" title="空空如也" text="没有活动章" />
+</view>

@@ -1,0 +1,32 @@
+<view class='top'>
+  <view class='content'>
+  <view><image src='../../../../images/money.png' class='pic'></image></view>
+  <view class='cen'>金额</view>
+  <view class='money'>{{detail.budget}}</view>
+  </view>
+</view>
+
+<view>
+<wux-wing-blank size='large'>
+  <wux-cell-group title='主要信息'>
+    <wux-cell title='提交日期' extra='{{detail.finishTime}}'/>
+    <wux-cell title='提交人' extra='{{detail.applicantName}}' />
+    <wux-cell title='标题' extra='{{detail.financeName}}' />
+    <wux-cell title='内容' extra='{{detail.financeInfo}}' />
+    <wux-cell title='备注' extra='{{detail.remark}}' />
+  </wux-cell-group>
+</wux-wing-blank>
+</view>
+
+<view class='btnbox'>
+    <view class='btnitem1'>
+      <button formType="submit" class='btnsive' hover-class="btnsive-hover" data-btn='1' bindtap='click'>
+        不通过
+      </button>
+    </view>
+    <view class='btnitem2'>
+      <button formType="submit" class='btnsive' hover-class="btnsive-hover" data-btn='2' bindtap='click'>
+        通过
+      </button>
+    </view>
+  </view>

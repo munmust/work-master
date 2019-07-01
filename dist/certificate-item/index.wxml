@@ -1,0 +1,7 @@
+<!--dist/certificate-item/index.wxml-->
+<view class='ci-home {{type}}'>
+<view class='ci-text'>
+<view class='ci-h1'><text>{{title}}</text></view>
+<view class='ci-h2'><text>{{subtitle}}</text></view>
+</view>
+</view>

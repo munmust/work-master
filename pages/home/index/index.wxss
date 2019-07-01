@@ -1,6 +1,6 @@
 page {
   height: 100%;
-  font-size: 26rpx;
+  font-size: 28rpx;
   background-color: #ffffff;
 }
 
@@ -22,11 +22,10 @@ page {
 }
 
 .user_info_detail {
-  width: 500rpx;
-  height: 130rpx;
-  margin-left: 50rpx;
+  width: 560rpx;
+  height: 170rpx;
+  margin-left: 80rpx;
   color: white;
-  margin: 30rpx auto;
 }
 
 .qrcode_switch {
@@ -204,8 +203,8 @@ page {
   width: 100rpx;
   height: 100rpx;
   position: absolute;
-  left: 50rpx;
-  animation: wind 8s infinite ease;
+  left:250rpx;
+  animation: wind 8s infinite linear;
 }
 
 .qrcode {

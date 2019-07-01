@@ -1,52 +1,86 @@
 // pages/setting/index/index.js
-var app=getApp();
+var app = getApp();
 Page({
 
   data: {
 
   },
+  toAboutUs: function () {
+    wx.navigateTo({
+      url: '../aboutUs/index',
+    })
+  },
 
-  topage_cgpwd:function(){
+  toChangelog: function () {
+    wx.navigateTo({
+      url: '../changelog/index',
+    })
+  },
+  toAsset: function () {
+    wx.navigateTo({
+      url: '../borrow/index/index',
+    })
+  },
+
+  toFinance: function () {
+    wx.navigateTo({
+      url: '../finManage/orglist/index',
+    })
+  },
+
+  toChangePwd: function() {
     wx.navigateTo({
       url: '../cgPwd/index',
     })
   },
 
-  toLogOut:function(e){
-    var that=this;
+  toCollect:function(){
+    wx.navigateTo({
+      url: '../collect/index',
+    })
+  },
+
+  toLogOut: function() {
+    var that = this;
     wx.showModal({
       content: '确认退出吗',
-      success: function (res) {
+      success: function(res) {
         if (!res.cancel) {
-          app.getCode(that.logOut);
+          that.logOut();
         }
       }
     })
   },
+  toCertificate: function () {
+    wx.navigateTo({
+      url: '../certificate/index/index',
+    })
+  },
 
-  logOut:function(code){
-    var url = app.globalData.apiUrl + '/user/openId?code=' + code;
+  logOut: function() {
     wx.request({
-      url: url,
+      url: app.globalData.apiUrl + '/user/openId',
       method: "DELETE",
-      header: { "Content-Type": "multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW" },
+      header: {
+        'Authorization': wx.getStorageSync('server_token')
+      },
       data: {},
-      success: function (res) {
-        switch (res.data.code) {
-          case 200:
-            wx.reLaunch({
-              url: '../../login/index',
-            })
+      success: function(res) {
+        switch (res.data.errorCode) {
+          case '200':
+            app.reLaunchLoginPage();
             break;
-          case 400: app.warning(res.data.msg); break;
-          case 404: app.warning(res.data.msg); break;
-          case 500: app.warning(res.data.msg); break;
+          case "401":
+            app.reLaunchLoginPage();
+            break;
+          default:
+            app.warning(res.data.errorMsg);
         }
       },
-      fail: function () {
+      fail: function() {
         app.warning('服务器错误');
       }
     })
   }
-  
+
 })

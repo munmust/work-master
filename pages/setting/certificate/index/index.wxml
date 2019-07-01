@@ -1,0 +1,15 @@
+<!--pages/setting/certificate/index/index.wxml-->
+<view class='c-top'>
+  证书录入
+</view>
+<view class="item-wrapper">
+<wux-item class='item' title='国家职业资格证书' type='Qcertificate' subtitle='资格证书录入/查询'  bindtap='toQcertificate' />
+<wux-item class='item' title='技能证书' type='Scertificate' subtitle='技能证书录入/查询' bindtap='toScertificate' />
+<wux-item class='item' title='学科竞赛证书' type='Ccertificate' subtitle='竞赛证书录入/查询' bindtap='toCcertificate' />
+<wux-item class='item' title='四六级成绩' type='CET' subtitle='四六级成绩录入/查询' bindtap='toCET' />
+</view>
+ <function-bar title="分配证书审核员" subtitle="分配审核权限" color="color_blue" bindmytap="toDistribute" imgSrc="../../images/schoolact.png" class="{{showDistribute?'show':'hide'}}"/>
+ <function-bar title="证书审核" subtitle="审核提交了的证书" color="color_blue" bindmytap="examine" imgSrc="../../images/schoolact.png" class="{{showExamine?'show':'hide'}}"/>
+<!-- <view>
+note:
+</view> -->

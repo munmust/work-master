@@ -8,13 +8,16 @@
 		"es6": true,
 		"postcss": true,
 		"minified": true,
-		"newFeature": true
+		"newFeature": true,
+		"autoAudits": false
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.2.0",
+	"libVersion": "2.5.2",
 	"appid": "wx551daf14b0dfa9c0",
-	"projectname": "branch-2",
+	"projectname": "%E7%AC%AC%E4%BA%8C%E8%AF%BE%E5%A0%82",
 	"isGameTourist": false,
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
 	"condition": {
 		"search": {
 			"current": -1,
@@ -24,13 +27,25 @@
 			"current": -1,
 			"list": []
 		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
 		"game": {
 			"currentL": -1,
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
-			"list": []
+			"current": 0,
+			"list": [
+				{
+					"id": 0,
+					"name": "update",
+					"pathName": "pages/prelogin/index",
+					"query": "",
+					"scene": null
+				}
+			]
 		}
 	}
 }

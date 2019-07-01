@@ -1,0 +1,80 @@
+.top{
+  position: relative;
+  font-size: 30rpx;
+  color: #fff;
+  height: 60rpx;
+}
+.term{
+  width: 250rpx;
+  height: 50rpx;
+  text-align: center;
+  line-height: 55rpx;
+  border:solid 1px;
+  border-radius:8px;
+  margin-top: 20rpx;
+  margin-left: 270rpx;
+}
+.money{
+  position: relative;
+  margin-top: 70rpx;
+  color: #fff;
+}
+.actual{
+  float: left;
+  margin-left: 80rpx;
+  font-size: 28rpx;
+}
+.actualM{
+  float: left;
+  font-size: 50rpx;
+}
+.budget{
+  float: left;
+  margin-left: 80rpx;
+  font-size: 28rpx;
+}
+.budgetM{
+  float: left;
+  font-size: 50rpx;
+}
+.fg{
+  position: relative;
+}
+.show{
+  display: block;
+}
+.hide{
+  display: none;
+}
+.bill{
+  font-size: 35rpx;
+}
+.post {
+    float: right;
+    background-color: #ffffff;
+    position: fixed;
+    bottom: 40px;
+    right: 20px;  
+    border: 0 solid #ffffff;
+    border-radius: 500px;
+    box-shadow: 4px 1px 1px #cccccc;
+    height: 50px;
+    width: 50px;
+}
+.img{
+  width: 45rpx;
+  height: 45rpx;
+  margin-left:10rpx;
+}
+.cont{
+  position: relative;
+  height: 230rpx;
+  background-color: #2980b9;
+}
+
+.empty_page{
+  z-index: -1;
+  position: absolute;
+  width: 750rpx;
+  height: 1600rpx;
+}

@@ -1,0 +1,34 @@
+<!--pages/setting/certificate/CET/create/index.wxml-->
+<wux-wing-blank size='large'>
+  <wux-cell-group title='基本信息'>
+    <wux-cell >
+    <view class="mod t-sign-time">
+            <view class="key">证书类型</view>
+      <picker bindchange="bindTypeChange" value="{{typeIndex}}" range="{{typeArray}}">
+    <view class="picker">
+      <view >{{typeArray[typeIndex]}}</view>
+    </view>
+  </picker>
+         </view>
+        </wux-cell>
+    <wux-cell>
+      <wux-input label="成绩" placeholder='请输入成绩' data-name='certificateGrade' bind:change='input' />
+    </wux-cell>
+        <wux-cell >
+     <view class="mod t-sign-time">
+            <view class="key">发证时间</view>
+            <picker mode="date" fields='month' value="{{certificateTime}}" start="{{certificateStart}}" bindchange="changeCertificateTime">
+                    <view class="date">{{certificateTime}}</view>
+                </picker>
+        </view>
+        </wux-cell>
+      </wux-cell-group>
+         <wux-cell-group title='证书详情'>
+    <wux-cell>
+      <wux-textarea  rows="3" maxlength="200" cursorSpacing="80" placeholder="请输入证书上的全部信息" data-name='description' bind:change='input' />
+    </wux-cell>
+  </wux-cell-group>
+     <wux-white-space size='large' />
+    <wux-button block type='positive' bind:click='toSubmit'>提交</wux-button>
+   
+    </wux-wing-blank>

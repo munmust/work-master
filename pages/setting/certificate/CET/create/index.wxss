@@ -1,0 +1,28 @@
+/* pages/setting/certificate/CET/create/index.wxss */
+.mod{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    /* height: 90rpx; */
+    /* padding: 0 30rpx; */
+  }
+  .date{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 0;
+    padding-right: 280rpx;
+    color: #2fcc85;
+    font-size: 16px;
+  }
+  .textareaTitle{
+    font-size: 18rpx;
+  }
+  
+  textarea {
+    width: 600rpx;
+  }
+  .picker{
+    /* padding: 0 125px 0 0; */
+  }

@@ -1,0 +1,113 @@
+<!--pages/setting/certificate/Ccertificate/certificateDetail/update/index.wxml-->
+<wux-wing-blank size='large'>
+  <wux-cell-group title='基本信息(必填)'>
+    <wux-cell>
+        <label class="lab">证书全称
+      <input class="inputW" type="text" value='{{certificateName}}' data-name='certificateName'  placeholder="请输入竞赛名称" bind:change='input'>
+         
+      </input>
+      </label>
+    </wux-cell>
+ <wux-cell>
+     <label class="lab">竞赛成绩
+      <input class="inputW" type="text" value='{{certificateGrade}}' data-name='certificateGrade'  placeholder="请输入竞赛成绩" bind:change='input'>
+      </input>
+      </label>
+    </wux-cell>
+         <wux-cell>
+             <label class="lab">发证时间
+            <picker class="inputW" mode="date" fields='month' value="{{certificateTime}}" start="{{certificateStart}}" bindchange="changeCertificateTime">
+                    <view class="date">{{certificateTime}}</view>
+                </picker>
+                </label>
+                </wux-cell>
+    </wux-cell-group>
+    <!-- 按照选择的证书来显示需要填写的信息 -->
+        <wux-cell-group title='证书类型'>
+     <wux-cell>
+     <view class="mod t-sign-time">
+            <view class="key">证书类型</view>
+      <picker bindchange="bindTypeChange" value="{{typeIndex}}" range="{{typeArray}}">
+    <view class="picker">
+      <view >{{typeArray[typeIndex]}}</view>
+    </view>
+  </picker>
+         </view>
+        </wux-cell>
+    </wux-cell-group>
+    <!-- 教师资格证信息填写 -->
+      <wux-cell-group title='队伍信息' wx:if="{{Team}}">
+       <!-- <wux-cell  title="证书资格等级" extra="{{ teacherLevelValue }}" bind:click="checkedTeacherLevel"></wux-cell>
+          -->
+           <wux-cell >
+             <label class="lab">队伍/作品名称
+      <input class="inputW" type="text" value='{{TeamName}}' data-name='TeamName'  placeholder="请输入队伍/作品名称" bind:change='input'>
+      </input>
+      </label>
+    </wux-cell>
+     <wux-cell >
+             <label class="lab">队伍成员
+      <input class="inputW" type="text" value='{{workOne}}' data-name='workOne'  placeholder="请输入队员学号" bind:change='input'>
+      </input>
+      </label>
+    </wux-cell>
+     <wux-cell >
+             <label class="lab">队伍成员
+      <input class="inputW" type="text" value='{{workTwo}}' data-name='workTwo'  placeholder="请输入队员学号" bind:change='input'>
+      </input>
+      </label>
+    </wux-cell>
+         <wux-cell >
+             <label class="lab">队伍成员
+      <input class="inputW" type="text" value='{{workThree}}' data-name='workThree'  placeholder="请输入队员学号" bind:change='input'>
+      </input>
+      </label>
+    </wux-cell>
+             <wux-cell >
+             <label class="lab">队伍成员
+      <input class="inputW" type="text" value='{{workFour}}' data-name='workFour'  placeholder="请输入队员学号" bind:change='input'>
+      </input>
+      </label>
+    </wux-cell>
+    </wux-cell-group>
+    <!-- 证书选填信息填写  -->
+    <wux-cell-group title='指导老师'>
+     <wux-cell>
+        <label class="lab">指导老师工号
+      <input class="inputW" type="text" value='{{teacherOneNumber}}' data-name='teacherOneNumber'  placeholder="请输入指导老师工号" bind:change='input'>
+         
+      </input>
+      </label>
+    </wux-cell>
+    <wux-cell>
+         <label class="lab">指导老师姓名
+      <input class="inputW" type="text" value='{{teacherOneName}}' data-name='teacherOneName'  placeholder="请输入指导老师姓名" bind:change='input'>
+         
+      </input>
+      </label>
+    </wux-cell>
+    <wux-cell>
+        <label class="lab">指导老师工号
+      <input class="inputW" type="text" value='{{teacherTwoNumber}}' data-name='teacherTwoNumber'  placeholder="请输入指导老师工号" bind:change='input'>
+         
+      </input>
+      </label>
+    </wux-cell>
+    <wux-cell>
+         <label class="lab">指导老师姓名
+      <input class="inputW" type="text" value='{{teacherTwoName}}' data-name='teacherTwoName'  placeholder="请输入指导老师姓名" bind:change='input'>
+         
+      </input>
+      </label>
+    </wux-cell>
+    </wux-cell-group>
+  <wux-cell-group title='证书详情'>
+      <wux-cell>
+    <textarea row="3" maxlength="200" cursor-spacing="70" placeholder="请输入证书上的全部信息" data-name='description' bindinput="bindTextAreaChange" value='{{description}}'></textarea>
+    </wux-cell>
+ </wux-cell-group>
+
+  <wux-white-space size='large' />
+  <wux-button block type='positive' bind:click='toSubmit'>提交</wux-button>
+
+</wux-wing-blank>

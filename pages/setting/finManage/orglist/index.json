@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "社团列表",
+  "usingComponents": {
+    "list-html": "../../../../dist/wx-index-list/wx-index-list"
+  }
+}

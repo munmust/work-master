@@ -1,5 +1,7 @@
 {
   "navigationBarTitleText": "活动总览",
+  "enablePullDownRefresh": true,
+  "backgroundColor": "#323232",
   "usingComponents": {
     "wux-card": "../../../../../../dist/card/index",
     "wux-alert": "../../../../../../dist/alert/index",
@@ -7,6 +9,7 @@
     "wux-tab": "../../../../../../dist/tab/index",
     "wux-cell-group": "../../../../../../dist/cell-group/index",
     "wux-cell": "../../../../../../dist/cell/index",
-    "wux-white-space": "../../../../../../dist/white-space/index"
+    "wux-white-space": "../../../../../../dist/white-space/index",
+    "wux-prompt": "../../../../../../dist/prompt/index"
   }
 }

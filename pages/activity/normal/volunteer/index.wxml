@@ -5,15 +5,16 @@
   次志愿活动
   <view class="total-duration">
     总计志愿时长
-    <span class="hours"> {{totalDuration}} </span>
+    <span class="hours"> {{totalTime}} </span>
     小时
   </view>
 </wux-alert>
 <block wx:for="{{listData}}" wx:key="{{index}}">
-  <wux-white-space size='large'/>
+  <wux-white-space size='large' />
   <wux-wing-blank size="default">
-    <wux-card thumb='../../images/icon-seal-volunteer.svg' title="{{item.activityName}}">
-      <view slot="body">{{item.created}}</view>
+    <wux-card title="{{item.activityName}}">
+      <view slot="body">{{item.activityTime}}小时</view>
+      <view slot="footer">{{item.createTime}}</view>
     </wux-card>
   </wux-wing-blank>
 </block>

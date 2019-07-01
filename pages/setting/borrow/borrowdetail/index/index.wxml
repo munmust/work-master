@@ -1,0 +1,25 @@
+<!--pages/setting/borrow/borrowdetail/index/index.wxml-->
+<wux-alert theme="energized">待归耐用品</wux-alert>
+<block wx:for="{{loanList}}" wx:key="{{index}}">
+  <wux-white-space size='small'/>
+  <wux-wing-blank size="default"  >
+    <wux-card wx:if="{{!item.type && item.show}}"  title="{{item.assetName}}" id="{{item.loanRecordId}}" bindtap="toDetail">
+      <view slot="body"></view>
+      <view slot="body">待还数量 ：{{item.remain}}</view>
+    </wux-card>
+  </wux-wing-blank>
+</block>
+<wux-white-space size='large'/>
+<wux-alert theme="energized">待归消耗品</wux-alert>
+<block wx:for="{{loanList}}" wx:key="{{index}}">
+  <wux-white-space size='small'/>
+  <wux-wing-blank size="default"  >
+    <wux-card wx:if="{{item.type && item.show}}" title="{{item.assetName}}" id="{{item.loanRecordId}}" bindtap="toDetail">
+      <view slot="body"></view>
+      <view slot="body">待还数量 ：{{item.remain}}</view>
+    </wux-card>
+  </wux-wing-blank>
+</block>
+<view class='empty_page' hidden='{{!empty}}'>
+  <wux-prompt visible="{{empty}}" title="空空如也" text="没有借用情况" />
+</view>

@@ -1,26 +1,49 @@
-<wux-white-space size='small'/>
 <!--活动名称-->
-<wux-wing-blank size='large'>
-  <wux-alert theme="positive">{{acName}}</wux-alert>
-</wux-wing-blank>
-
 <wux-white-space size='small'/>
+<wux-wing-blank size='small'>
+  <wux-alert theme="positive">{{Activity_Name}}</wux-alert>
+</wux-wing-blank>
+<wux-white-space size='small'/>
+
 
  <!--记录显示-->
-<wux-wing-blank size='default'>
+<wux-wing-blank size='small'>
   <view class='notice'>
     <wux-segmented-control theme="positive" values="{{ ['学号', '姓名'] }}" />
-    <block wx:for="{{list}}" wx:key="{{index}}">
+    <block wx:for="{{Participants_Array}}" wx:key="{{index}}">
       <wux-segmented-control defaultCurrent='1' theme="stable" 
-      values="{{ [item.stuId, item.stuName] }}" />
+      values="{{ [item.stuId, item.stuName] }}" bindtap='click' data-index='{{index}}'/>
     </block>
   </view>
 </wux-wing-blank>
+
+
 <!--提示信息-->
 <wux-wing-blank size='large'>
   <view>●扫满5个自动提交</view>
-  <view>●如果未满5个，请手动提交</view>
 </wux-wing-blank>
+
+
+<!--根据活动类型出现的选项-->
+<wux-cell-group>
+  <!--志愿时长-->
+  <wux-cell class="{{Show_Time?'':'hidden'}}" title='志愿/义工时长(时)' thumb='../../images/icon-time.svg'>
+    <wux-input-number step='{{0.5}}' slot='footer' bind:change='inputTime' disabled='{{false}}'/>
+  </wux-cell>
+  <!--交换一小时时长-->
+  <wux-cell class="{{Show_ChangeTime?'':'hidden'}}" title='交换一小时时长(时)' thumb='../../images/icon-time.svg'>
+    <wux-input-number step='{{1}}' slot='footer' bind:change='inputTime' disabled='{{false}}'/>
+  </wux-cell>
+  <!--义工工作-->
+  <wux-cell class="{{Show_Work?'':'hidden'}}" thumb='../../images/icon-work.svg'>
+    <wux-input label='义工工作' placeholder="在这里输入" bind:change='inputWork' />
+  </wux-cell>
+  <!--实践等级-->
+  <wux-select id="Grade_Select" />
+  <wux-cell class="{{Show_Grade?'':'hidden'}}" thumb='../../images/icon-level.svg' title="实践等级" extra="{{ Grade }}" bind:click="selectGrade"/>
+</wux-cell-group>
+
+
 <!--两个按钮-->
 <wux-wing-blank size='large'>
   <wux-button block bindtap='scanCode'><wux-icon type="qr-scanner" size="16" />扫码</wux-button>
