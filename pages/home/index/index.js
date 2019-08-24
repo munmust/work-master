@@ -26,11 +26,10 @@ Page({
       major: app.globalData.major,
       classId: app.globalData.classId,
       grade: app.globalData.grade,
-      roleInfo: app.globalData.roleInfo
+      roleInfo: app.globalData.roleInfo,
     });
     //活动章分配开放
     this.getStamp();
-    
     this.showFunctions();
   },
   onShow:function(){
@@ -39,6 +38,33 @@ Page({
       classId: app.globalData.classId,
       grade: app.globalData.grade,
     });
+    //获取信用分
+    this.getCreditScore();
+  },
+
+  //获取信用分
+  getCreditScore:function(){
+    var that = this;
+    wx.request({
+      url: app.globalData.apiUrl +'/user/creditScore',
+      method: 'GET',
+      header: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Authorization': wx.getStorageSync('server_token')
+      },
+      data:{
+        term: '2018A',
+      },
+      success: function (res) {
+        console.log("这是："+res.data.data);
+        that.setData({
+          creditScore: res.data.data
+        });
+      },
+      fail: function () {
+        app.warning('服务器错误');
+      }
+    })
   },
 
   //以往活动章获取

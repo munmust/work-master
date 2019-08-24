@@ -1,0 +1,98 @@
+// 状态按钮转换函数
+var switchState = {
+  st: function (status) {
+    var statusString = null;
+    switch (status) {
+      case '0':
+        //倒计时
+        statusString = "";
+        break;
+      case '1':
+        statusString = "未开始";
+        break;
+      case '2':
+        statusString = "报名";
+        break;
+      case '3':
+        statusString = "已报名";
+        break;
+      case '4':
+        statusString = "人已满";
+        break;
+      case '5':
+        statusString = "已过期";
+        break;
+    }   
+    return statusString;
+  }
+}
+
+// 按钮颜色转换
+var switchBtn = {
+  sbtn: function (status){
+    var statusString = null;
+    switch (status) {
+      case '0':
+        //倒计时
+        statusString = "btn-full";
+        break;
+      case '1':
+        //未开始
+        statusString = "";
+        break;
+      case '2':
+        //报名
+        statusString = "btn-primary";
+        break;
+      case '3':
+        //已报名
+        statusString = "btn-success";
+        break;
+      case '4':
+        //人已满
+        statusString = "btn-full";
+        break;
+      case '5':
+        //已过期
+        statusString = "btn-old";
+        break;
+    }
+    return statusString;
+  }
+}
+
+//按钮禁用选择
+var disableBtn = {
+  dsbtn: function (status) {
+    var statusString = "disable='";
+    if(status=='2'){
+      statusString+="true'";
+    }else{
+      statusString += "false'";
+    }
+    return statusString;
+  }
+}
+
+// 秒数转化为日期
+var dateChange={
+  dateChange: function (countDownNum) {
+    //days = Math.floor(countDownNum / 86400);
+   // hours = Math.floor((countDownNum % 86400) / 3600);
+    minutes = Math.floor(((countDownNum % 86400) % 3600) / 60);
+    seconds = Math.floor(((countDownNum % 86400) % 3600) % 60);
+    if (countDownNum<3600){
+      return   minutes + "分" + seconds + "秒后开始报名";
+    }else{
+      return "未开始报名";
+    }
+  }
+}
+
+// 导出对外暴露的属性
+module.exports = {
+  st: switchState.st,
+  btnst: switchBtn.sbtn,
+  dc:dateChange.dateChange,
+  dsbtn: disableBtn.dsbtn
+}

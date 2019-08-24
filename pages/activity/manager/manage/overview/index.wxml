@@ -26,7 +26,7 @@
 </view>
 
 
-<!--顶部标签-->
+<!--顶部标签--
 <wux-tabs class='{{showState?"show":"hide"}}' controlled current="{{ current }}" bindchange="tabChange">
   <wux-tab key="PUBLISHED">
     <image src="../../../../../images/icon-act-running.svg" style="width: 20px; height: 20px; margin-right: 5px;" />
@@ -85,6 +85,6 @@
   </wux-cell-group>
 </view>
 
-<view class='empty_page'>
+<!-- <view class='empty_page'>
   <wux-prompt visible="{{empty[showPage-1]}}" title="空空如也" text="没有活动信息" />
-</view>
+</view> -->

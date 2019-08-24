@@ -1,0 +1,11 @@
+<view>
+
+
+</view>
+
+<view>
+    <view class='empty_page' hidden='{{!empty}}'>
+      <wux-prompt visible="{{empty}}" title="暂无报名" text="请先创建报名" />
+    </view>
+    <button  class="btn-primary btn" bindtap="toRgistration">创建报名</button>
+</view>

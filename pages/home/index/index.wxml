@@ -6,6 +6,7 @@
     <view>{{stuId}}</view>
     <view>{{grade==null?'':grade}}{{grade==null?'':'级'}}</view>
     <view>{{major==null?'':major}}{{classId==null?'':classId}}</view>
+    <view>信用分：{{creditScore}}</view>
   </view>
 </view>
 

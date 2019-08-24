@@ -1,0 +1,15 @@
+.empty_page{
+  position: relative;
+  width: 750rpx;
+  height: 800rpx;
+}
+.btn {
+  width: 600rpx;
+  position: relative;
+  margin-top: 0px ;
+}
+.btn-primary {
+    color: #fff;
+    background-color: #2e6da4;
+    /* border-color: #2e6da4; */
+}

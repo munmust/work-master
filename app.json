@@ -12,6 +12,7 @@
     "pages/setting/finManage/examine/index",
     "pages/setting/finManage/detail/index",
     "pages/setting/finManage/putbudget/index",
+    "pages/participate/index",
     "pages/activity/teacher/index",
     "pages/activity/normal/school/index",
     "pages/activity/normal/lecture/index",
@@ -53,7 +54,9 @@
     "pages/setting/certificate/CET/certificateDetail/index/index",
     "pages/setting/certificate/CET/certificateDetail/detail/index",
     "pages/setting/certificate/distribute/index",
-    "pages/setting/borrow/borrowdetail/detail/index/index"
+    "pages/setting/borrow/borrowdetail/detail/index/index",
+    "pages/setting/registrationManager/index/index",
+    "pages/setting/registrationManager/registration/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -70,6 +73,12 @@
         "text": "个人",
         "iconPath": "images/features.png",
         "selectedIconPath": "images/features_active.png"
+      },
+      {
+        "pagePath": "pages/participate/index",
+        "text": "活动",
+        "iconPath": "images/booking.png",
+        "selectedIconPath": "images/booking_active.png"
       },
       {
         "pagePath": "pages/setting/index/index",

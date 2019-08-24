@@ -13,7 +13,7 @@ App({
     major:null,
     classId:null,
     grade:null,
-    apiUrl:   'https://hupanyouth.cn'
+    apiUrl: 'http://47.102.119.198:8000'
     //apiUrl: 'http://119.23.188.92:8000'
   },
 

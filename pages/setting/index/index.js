@@ -51,9 +51,16 @@ Page({
       }
     })
   },
+
   toCertificate: function () {
     wx.navigateTo({
       url: '../certificate/index/index',
+    })
+  },
+
+  toRegistrationManager: function(){
+    wx.navigateTo({
+      url: '../registrationManager/index/index',
     })
   },
 
