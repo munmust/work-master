@@ -46,7 +46,8 @@ Page({
     ],
     tab: [true, true],
     currentTab: null,
-    page:0
+    page:0,
+    stateId:0
   },
 
   onLoad: function() {
@@ -77,7 +78,12 @@ Page({
       that.setData({
         page:page
       });
+      wx.showLoading({
+        title: '正在获取数据中',
+      })
+      
       that.getdatalist();
+      wx.hideLoading({});
   },
   //请求后台 更多数据
   getdatalist:function(){
@@ -107,6 +113,8 @@ Page({
               })
               wx.showToast({
                 title: '暂无更多数据',
+                icon: 'none',
+                duration: 2000
               })
             }
             console.log(arr2);
@@ -115,16 +123,6 @@ Page({
               listData: arr1 //合并后更新datalist
             })
             break;
-          case "400":
-            wx.showToast({
-              title: res.data.errorMsg
-            })
-            break;
-          case "401":
-            app.reLaunchLoginPage();
-            break;
-          default:
-            app.warning(res.data.errorMsg);
         }
       },
       fail: function () {
@@ -176,9 +174,12 @@ Page({
 
 // 提交报名信息
   signUp(e){
+    wx.showLoading({
+      title: '正在报名中',
+    })
+    var that=this;
     let status = e.currentTarget.dataset.status;
     let activityId = e.currentTarget.dataset.activityid;
-    console.log(status);
     if (status==2){  
         wx.request({
           url: app.globalData.apiUrl +'/user/signUp',
@@ -192,15 +193,23 @@ Page({
           },
           success: function (res) {
             console.log(res.data)
-            wx.showToast({
-              title: res.data.errorMsg
-            });
+            switch (res.data.errorCode){
+              case "200":
+                wx.showToast({
+                  title: res.data.errorMsg
+                });
+                that.data.stateId='1';
+                that.data.activityStatus ="REGISTERED";
+                that.showState();
+              break;
+            }
           },
           fail: function () {
             app.warning('服务器错误');
           }   
         });
     }
+    wx.hideLoading({});
   },
 
   // 寻找活动状态
@@ -263,9 +272,15 @@ Page({
       this.showSeals();
     }else{
       that.data.activityStatus=that.stateChange(id);
+      that.setData({
+        stateId:id
+      })
       console.log(that.data.activityStatus);
       this.showState();
     }
+    that.setData({
+      page:0
+    })
 
     
   },
@@ -301,11 +316,29 @@ Page({
     }
   },
 
+// 筛选状态的接口
+  selectStateUrl:function(){
+      var that=this;
+      var stateId=that.data.stateId;     
+      switch (stateId){
+        case '0':
+          return  "/activityEntry";
+        case '1':
+          return "/user/registeredActivityEntry";
+        case '2':
+          return "/activityEntry";
+        
+      }
+     
+  },
+
   //状态 请求后台
   showState:function(){
     var that=this;
+    var m = app.globalData.apiUrl + that.selectStateUrl();
+    console.log(m);
     wx.request({
-      url: app.globalData.apiUrl + '/user/registeredActivityEntry',
+      url: app.globalData.apiUrl + that.selectStateUrl(),
       method: 'GET',
       header: {
         'Content-Type': 'application/x-www-form-urlencoded',
