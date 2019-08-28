@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "已通过",
+  "usingComponents": {
+    "wux-card": "/dist/card/index"
+  }
+}

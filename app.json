@@ -53,7 +53,22 @@
     "pages/setting/certificate/CET/certificateDetail/index/index",
     "pages/setting/certificate/CET/certificateDetail/detail/index",
     "pages/setting/certificate/distribute/index",
-    "pages/setting/borrow/borrowdetail/detail/index/index"
+    "pages/setting/borrow/borrowdetail/detail/index/index",
+        "pages/setting/broclass/index/index",
+        "pages/setting/broclass/create1/index",
+        "pages/setting/broclass/create2/index",
+        "pages/setting/broclass/form/index",
+        "pages/setting/broclass/search/index",
+        "pages/setting/broclass/succeed/index/index",
+        "pages/setting/broclass/reviewing/index/index",
+        "pages/setting/broclass/cancel/index/index",
+        "pages/setting/broclass/reviewing/detail/index",
+        "pages/setting/broclass/learningcheck/index/index",
+        "pages/setting/broclass/learningcheck/detail/index",
+        "pages/setting/broclass/leaguecheck/detail/index",
+        "pages/setting/broclass/leaguecheck/index/index",
+        "pages/setting/broclass/cancel/detail/index",
+        "pages/setting/broclass/succeed/detail/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

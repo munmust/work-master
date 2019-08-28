@@ -1,0 +1,31 @@
+/* pages/home/create2/index.wxss */
+.whole{
+  height: 400rpx;
+  width: 750rpx;
+  z-index: 5;
+}
+
+#bgimg{
+  height: 100%;
+  width: 100%;
+  z-index: 10;
+}
+
+#time{
+  height: 100rpx;
+  width: 637rpx;
+  /* background-color: blue; */
+  color: #92c7d3;
+  font-size: 40rpx;
+  z-index: 15;
+  position: absolute;
+  top: 230rpx;
+  left: 40rpx;
+  border-radius: 50rpx;
+  padding-left: 40rpx;
+  line-height: 100rpx;
+}
+
+button{
+  color: #92c7d3;
+}

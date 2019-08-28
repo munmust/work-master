@@ -1,0 +1,20 @@
+/* pages/home/learningcheck/detail/index.wxss */
+.main{
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.bd{
+  background: rgb(236, 236, 236);
+  color: black;
+  position: relative;
+  border-radius: 10px;
+  top: 20rpx;
+  width: 90%;  
+}
+
+.decide{
+  position: relative;
+  top: 50rpx;
+}

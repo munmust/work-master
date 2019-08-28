@@ -1,0 +1,16 @@
+<!--pages/home/learningcheck/index/index.wxml-->
+<view wx:for="{{commit_data}}" wx:key="{{index}}">
+
+  <view id="container">
+
+    <!-- <button bindtap='userchoose' data-index="{{index}}"> {{item.localeName}} {{item.timeDate}} {{item.timeBucket}}</button> -->
+
+    <wux-card title="{{item.localeName}}" bindtap='userchoose' data-index="{{index}}">
+      <view slot="body">日期:{{item.timeDate}}</view>
+      <view slot="footer">时间段:{{item.timeBucket}}</view>
+    </wux-card>
+
+  </view>
+
+</view>
+

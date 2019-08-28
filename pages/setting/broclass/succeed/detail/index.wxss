@@ -1,0 +1,15 @@
+/* pages/home/succeed/detail/index.wxss */
+.main{
+  display: flex;
+  justify-content: center;
+}
+
+.bd{
+  background: #52c41a;
+  color: white;
+  position: relative;
+  border-radius: 10px;
+  top: 20rpx;
+  width: 90%;  
+  
+}
