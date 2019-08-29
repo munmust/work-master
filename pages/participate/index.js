@@ -180,7 +180,7 @@ Page({
     var that=this;
     let status = e.currentTarget.dataset.status;
     let activityId = e.currentTarget.dataset.activityid;
-    if (status==2){  
+    if (status == "REGISTRATION"){  
         wx.request({
           url: app.globalData.apiUrl +'/user/signUp',
           method: 'POST',

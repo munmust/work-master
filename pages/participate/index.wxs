@@ -3,23 +3,23 @@ var switchState = {
   st: function (status) {
     var statusString = null;
     switch (status) {
-      case '0':
+      case "COUNTDOWN":
         //倒计时
         statusString = "";
         break;
-      case '1':
+      case "APPROVED":
         statusString = "未开始";
         break;
-      case '2':
+      case "REGISTRATION":
         statusString = "报名";
         break;
-      case '3':
+      case "REGISTERED":
         statusString = "已报名";
         break;
-      case '4':
+      case "EXCEED":
         statusString = "人已满";
         break;
-      case '5':
+      case "CANCELED":
         statusString = "已过期";
         break;
     }   
@@ -32,27 +32,27 @@ var switchBtn = {
   sbtn: function (status){
     var statusString = null;
     switch (status) {
-      case '0':
+      case "COUNTDOWN":
         //倒计时
         statusString = "btn-full";
         break;
-      case '1':
+      case "APPROVED":
         //未开始
         statusString = "";
         break;
-      case '2':
+      case "REGISTRATION":
         //报名
         statusString = "btn-primary";
         break;
-      case '3':
+      case "REGISTERED":
         //已报名
         statusString = "btn-success";
         break;
-      case '4':
+      case "EXCEED":
         //人已满
         statusString = "btn-full";
         break;
-      case '5':
+      case "CANCELED":
         //已过期
         statusString = "btn-old";
         break;

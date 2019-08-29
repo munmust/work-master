@@ -1,0 +1,79 @@
+<wux-select id="wux-selectCertificateType" />
+<wux-select id="wux-selectTeacherLevel" />
+<wux-wing-blank size='large'>
+<!--报名基本信息填写  -->
+<wux-cell-group title='报名基本填写信息'>
+
+    <wux-cell>
+      <label class="lab">标题
+        <input class="inputW" placeholder='请输入标题' value='{{title}}' disabled='{{isDisabled}}' bind:change='inputTitle' />
+      </label>
+    </wux-cell>
+
+     <wux-cell>
+      <label class="lab">人数
+        <input class="inputW" placeholder='请输入人数' value='{{people}}' disabled='{{isDisabled}}' bind:change='inputPeople' />
+      </label>
+    </wux-cell>
+
+    <wux-cell>
+      <label class="lab">联系人
+        <input class="inputW" placeholder='请输入联系人' value='{{linkman}}' disabled='{{isDisabled}}' bind:change='inputLinkman' />
+      </label>
+    </wux-cell>
+
+     <wux-cell>
+      <label class="lab">手机号
+        <input class="inputW" placeholder='请输入手机号' value='{{phoneNumber}}' disabled='{{isDisabled}}' bind:change='inputPhoneNumber' />
+      </label>
+    </wux-cell>
+
+
+    <wux-cell>
+             <label class="lab">开始时间
+            <view class="tui-picker-content">
+  <picker mode="multiSelector" disabled='{{isDisabled}}' value="{{dateTime}}" bindchange="changeStartTime" bindcolumnchange="changeDateTimeColumn" range="{{dateTimeArray}}">
+              <view class="date">
+                {{startTime}}
+              </view>
+  </picker>
+            </view>
+
+                </label>
+      </wux-cell>
+
+    <wux-cell>
+             <label class="lab">结束时间
+            <view class="tui-picker-content">
+  <picker mode="multiSelector" disabled='{{isDisabled}}' value="{{dateTime}}" bindchange="changeEndTime" bindcolumnchange="changeDateTimeColumn" range="{{dateTimeArray}}">
+              <view class="date">
+                {{endTime}}
+              </view>
+  </picker>
+            </view>
+
+                </label>
+      </wux-cell>
+
+    <wux-cell>
+      <label class="lab">选项
+        <input class="inputW" placeholder='请输入选项' disabled='{{isDisabled}}' value='{{box}}' bind:change='inputBox' />
+      </label>
+    </wux-cell>
+
+    </wux-cell-group>
+  <wux-cell-group title='说明'>
+    <wux-cell>
+    <textarea row="3" maxlength="200" cursor-spacing="70" placeholder="请输入活动说明" data-name='description' bindinput="bindTextAreaChange" value='{{description}}' disabled='{{isDisabled}}'></textarea>
+    </wux-cell>
+  </wux-cell-group>
+<view> 
+       <wux-white-space size='large' />
+    <wux-button block type='positive' bind:click='toSubmit'>发布</wux-button>
+</view>
+<!-- <view wx:if='{{!empty}}'>
+    <wux-button block type='positive'  bind:click='toChange'>修改</wux-button>
+    <wux-button block type='positive' bind:click='toSubmit'>发布</wux-button>
+</view> -->
+</wux-wing-blank>
+

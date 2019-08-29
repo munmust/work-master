@@ -47,7 +47,7 @@ Page({
   getExecl:function(){
       var that=this;
       wx.downloadFile({
-        url: app.globalData.apiUrl + '/activityEntry/activityEntryRecordFile？activityEntryId=2018121118128361052300710012018',
+        url: app.globalData.apiUrl + '/activityEntry/activityEntryRecordFile?activityEntryId=2018121118128361052300710012018',
         success: function (res) {
           console.log(res); var filePath = res.tempFilePath
 
