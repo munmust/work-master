@@ -19,7 +19,7 @@ var switchState = {
       case "EXCEED":
         statusString = "人已满";
         break;
-      case "CANCELED":
+      case "FINISHED":
         statusString = "已过期";
         break;
     }   
@@ -52,7 +52,7 @@ var switchBtn = {
         //人已满
         statusString = "btn-full";
         break;
-      case "CANCELED":
+      case "FINISHED":
         //已过期
         statusString = "btn-old";
         break;
@@ -81,8 +81,11 @@ var dateChange={
    // hours = Math.floor((countDownNum % 86400) / 3600);
     minutes = Math.floor(((countDownNum % 86400) % 3600) / 60);
     seconds = Math.floor(((countDownNum % 86400) % 3600) % 60);
-    if (countDownNum<3600){
-      return   minutes + "分" + seconds + "秒后开始报名";
+    if (countDownNum == 0){
+
+      return  "";
+    } else if (countDownNum<3600){
+      return minutes + "分" + seconds + "秒";
     }else{
       return "未开始报名";
     }

@@ -47,15 +47,32 @@ Page({
     tab: [true, true],
     currentTab: null,
     page:0,
-    stateId:0
+    stateId:0,
+   
+  },
+  
+  onLoad: function () {
+    var that = this;
+    that.showSeals(); 
+    that.countDown();
   },
 
-  onLoad: function() {
-    //默认显示全部
-    this.showSeals(); 
-  },
 
-  loadInfo(){
+/**
+ * 更新活动数据
+ */
+loadInfo(){
+  var that = this;
+  that.setData({
+    listData: that.data.demoData,
+  });
+},
+
+
+/**
+ * 计数器有关的函数
+ */
+  loadInfoF(){
     var that = this;
     // 给listDate赋值
     that.setData({
@@ -69,9 +86,22 @@ Page({
     // this.data.second.forEach(o=>console.log(o));
     that.countDown();
   },
+  loadInfoS(){
+    var that = this;
+    // 给listDate赋值
+    that.setData({
+      listData: that.data.demoData,
+    });
+    // total中转
+    let total = [];
+    // 将demodate内的秒数全部存入total数组
+    that.data.listData.forEach(o => total.push(o.second));
+    that.setData({ second: total });
+  },
 
-
-//下拉获取更多数据
+/**
+ * 上拉获取更多数据
+ */
   onReachBottom:function(){
       var that=this;
       var page=that.data.page+1;
@@ -85,7 +115,10 @@ Page({
       that.getdatalist();
       wx.hideLoading({});
   },
-  //请求后台 更多数据
+
+  /**
+   * 请求后台 更多数据
+   */
   getdatalist:function(){
     var that = this;
     wx.request({
@@ -133,13 +166,19 @@ Page({
   },
 
 
-// 时间转化函数
+
+/**
+ * 时间转化函数
+ */
   timeFormat(param) {
     //小于10的格式化函数
     return param < 10 ? '0' + param : param;
   },
 
-// 计数器
+
+/**
+ * 计数器
+ */
   countDown() {
     //倒计时函数
     // 获取当前时间，同时得到活动结束时间数组
@@ -160,19 +199,28 @@ Page({
     //}
   },
   
-// 加载弹框
+
+/**
+ * 加载弹框
+ */
   loadDetail(id) {
     wx.showLoading({
       title: '详情加载中...',
     })
   },
 
-  //筛选活动页面请求后台接口的连接
+
+  /**
+   * 筛选活动页面请求后台接口的连接
+   */
   getUrl(id){
     this.data.Url = app.globalData.apiUrl+id;//Url拼接  未完成  
   },
 
-// 提交报名信息
+
+/**
+ * 提交报名信息
+ */
   signUp(e){
     wx.showLoading({
       title: '正在报名中',
@@ -212,7 +260,10 @@ Page({
     wx.hideLoading({});
   },
 
-  // 寻找活动状态
+
+  /**
+   * 寻找活动状态
+   */
   searchSt(id){
     let D=this.data.listData;
     let status;
@@ -224,7 +275,10 @@ Page({
     }
   },
 
-// 头部筛选栏触发的函数
+
+/**
+ * 头部筛选栏触发的函数
+ */
   tabNav(e){
     var data = [true, true],
     index = e.target.dataset.currentind;
@@ -243,7 +297,10 @@ Page({
     }
   },
 
-  //筛选项点击操作
+
+  /**
+   * 筛选项点击操作
+   */
   filter: function (e) {
     var that = this,
     id = e.currentTarget.dataset.id,
@@ -269,7 +326,12 @@ Page({
     if(index==0){
       that.data.activityType=that.typeChange(id);
       console.log(that.data.activityType);
-      this.showSeals();
+      if (that.data.activityStatus =="REGISTERED"){
+        this.showState();
+      }else{
+        this.showSeals();
+      }
+    
     }else{
       that.data.activityStatus=that.stateChange(id);
       that.setData({
@@ -285,8 +347,9 @@ Page({
     
   },
 
-
-  //按钮状态转化 
+  /**
+   * 按钮状态转化
+   */
   stateChange(id){
     switch(id){
       case '0':
@@ -298,7 +361,9 @@ Page({
     }
   },
 
-  //类型转化
+  /**
+   * 类型转化
+   */
   typeChange(id) {
     switch (id) {
       case '0':
@@ -316,26 +381,33 @@ Page({
     }
   },
 
-// 筛选状态的接口
+
+/**
+ * 筛选状态的接口
+ */
   selectStateUrl:function(){
       var that=this;
-      var stateId=that.data.stateId;     
-      switch (stateId){
-        case '0':
+    var activityStatus=that.data.activityStatus;     
+    switch (activityStatus){
+      case "PUBLISHED":
           return  "/activityEntry";
-        case '1':
+      case "REGISTERED":
           return "/user/registeredActivityEntry";
-        case '2':
+      case "FINISHED":
           return "/activityEntry";
         
       }
      
   },
 
-  //状态 请求后台
+
+  /**
+   * 状态 请求后台
+   */
   showState:function(){
     var that=this;
     var m = app.globalData.apiUrl + that.selectStateUrl();
+  
     console.log(m);
     wx.request({
       url: app.globalData.apiUrl + that.selectStateUrl(),
@@ -345,8 +417,8 @@ Page({
         'Authorization': wx.getStorageSync('server_token')
       },
       data: {
-        state: this.data.activityStatus
-        // state:this.data.activityStatus,
+        state: this.data.activityStatus,
+        activityType: this.data.activityType
       },
       success: function (res) {
         switch (res.data.errorCode) {
@@ -354,9 +426,8 @@ Page({
             // 从后台请求数据成功之后，开始以下的操作
             that.setData({
               demoData: res.data.data.content,
-            });
-            console.log(that.data.demoData);
-            that.loadInfo();
+            });          
+              that.loadInfoS();        
             break;
           case "401":
             app.reLaunchLoginPage();
@@ -372,9 +443,12 @@ Page({
   },
   
 
-  // 类型  请求后台
+  /**
+   * 类型  请求后台
+   */
   showSeals: function(code) {
     var that = this;
+
     wx.request({
       url: app.globalData.apiUrl + '/activityEntry',
       method: 'GET',
@@ -384,7 +458,7 @@ Page({
       },
       data:{
         activityType:this.data.activityType,
-        // state:this.data.activityStatus,
+        state:this.data.activityStatus,
       },
       success: function(res) {
         switch (res.data.errorCode) {
@@ -393,8 +467,9 @@ Page({
             that.setData({
               demoData: res.data.data.content,
             });
-            console.log(that.data.demoData);
-            that.loadInfo();
+          
+              that.loadInfoS();
+           
             break;
           case "401":
             app.reLaunchLoginPage();

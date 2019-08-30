@@ -19,9 +19,9 @@
   </view>
 </view>
 
+<wxs module="btn" src="./index.wxs"></wxs>
 <!-- 显示下面的内容 -->
 <block wx:for="{{listData}}" wx:key="{{index}}"> 
-  <wxs module="btn" src="./index.wxs"></wxs>
   <wux-white-space size='large' />
   <wux-wing-blank size="default" class='blank_top'>
     <wux-card title="{{item.activityName}}" >
@@ -34,9 +34,12 @@
       </view>
       <view>
           <button  class="{{btn.btnst(item.status)}} btn" bindtap='signUp' data-status="{{item.status}}" data-activityid="{{item.activityEntryId}}">
-          {{btn.st(item.status)}}
-          <view wx:if="{{item.status==0}}">
-            <a wx:if="{{second[index]!=0}}">{{btn.dc(second[index])}}</a>
+           {{btn.st(item.status)}}
+            <view wx:if="{{item.status=='COUNTDOWN'}}">
+            <a wx:if="{{second[index]>=0}}">{{btn.dc(second[index])}}</a>
+            <button wx:if="{{second[index]==0}}" class="btn-end" bindtap='signUp' data-status="REGISTRATION" data-activityid="{{item.activityEntryId}}">
+            报名
+            </button>           
           </view>
           </button>
       </view>

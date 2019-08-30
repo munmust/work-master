@@ -31,6 +31,14 @@
 .inputW{
  padding-left:140rpx; 
 }
+
+.inputW{
+ padding-left:88rpx; 
+}
+.inputM{
+ padding-left:117rpx; 
+}
+
 .inputP{
   padding-left: 30px;
 }

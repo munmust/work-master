@@ -88,6 +88,40 @@ Page({
       empty: true,
     })
   },
+
+  /**
+   * 弹窗按钮
+   */
+  popup: function () {
+    var that=this;
+
+    wx.showModal({
+
+      title: '发布',
+
+      content: '您确认要发布报名信息吗？',
+
+      success: function (res) {
+
+        if (res.confirm) {
+
+          console.log('用户点击确定');
+          that.toSubmit();
+
+
+        } else if (res.cancel) {
+
+          console.log('用户点击取消')
+
+        }
+
+      }
+
+    })
+
+  },
+
+
   toSubmit:function(){
     var that=this;
     wx.request({
@@ -119,10 +153,11 @@ Page({
           console.log("跳转");
           that.navTo();
         }
-
+        that.navTo();
       },
       fail:function(res){
-        console.log(res.data)
+        console.log(res.data);
+    
       }
     })
 
@@ -131,7 +166,7 @@ Page({
 
   navTo:function(){
       wx.navigateTo({
-        url: '../../../participate/index',
+        url: '../index/index',
       });
   },
 

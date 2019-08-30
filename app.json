@@ -56,7 +56,8 @@
     "pages/setting/certificate/distribute/index",
     "pages/setting/borrow/borrowdetail/detail/index/index",
     "pages/setting/registrationManager/index/index",
-    "pages/setting/registrationManager/registration/index"
+    "pages/setting/registrationManager/registration/index",
+    "pages/setting/registrationManager/activity/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

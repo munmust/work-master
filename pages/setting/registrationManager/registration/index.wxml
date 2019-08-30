@@ -6,13 +6,13 @@
 
     <wux-cell>
       <label class="lab">标题
-        <input class="inputW" placeholder='请输入标题' value='{{title}}' disabled='{{isDisabled}}' bind:change='inputTitle' />
+        <input class="inputM" placeholder='请输入标题' value='{{title}}' disabled='{{isDisabled}}' bind:change='inputTitle' />
       </label>
     </wux-cell>
 
      <wux-cell>
       <label class="lab">人数
-        <input class="inputW" placeholder='请输入人数' value='{{people}}' disabled='{{isDisabled}}' bind:change='inputPeople' />
+        <input class="inputM" placeholder='请输入人数' value='{{people}}' disabled='{{isDisabled}}' bind:change='inputPeople' />
       </label>
     </wux-cell>
 
@@ -57,7 +57,7 @@
 
     <wux-cell>
       <label class="lab">选项
-        <input class="inputW" placeholder='请输入选项' disabled='{{isDisabled}}' value='{{box}}' bind:change='inputBox' />
+        <input class="inputM" placeholder='请输入选项' disabled='{{isDisabled}}' value='{{box}}' bind:change='inputBox' />
       </label>
     </wux-cell>
 
@@ -69,7 +69,7 @@
   </wux-cell-group>
 <view> 
        <wux-white-space size='large' />
-    <wux-button block type='positive' bind:click='toSubmit'>发布</wux-button>
+    <wux-button block type='positive' bind:click='popup'>发布</wux-button>
 </view>
 <!-- <view wx:if='{{!empty}}'>
     <wux-button block type='positive'  bind:click='toChange'>修改</wux-button>

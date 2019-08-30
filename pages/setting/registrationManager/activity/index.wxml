@@ -1,0 +1,6 @@
+ <wux-cell>
+      <label class="lab">activityId
+        <input class="inputM" placeholder='请输入活动id' value='{{activityId}}'  bind:change='inputId' />
+      </label>
+      <button bindtap="toIndex">提交</button>
+  </wux-cell>

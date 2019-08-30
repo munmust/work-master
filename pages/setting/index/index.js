@@ -60,7 +60,7 @@ Page({
 
   toRegistrationManager: function(){
     wx.navigateTo({
-      url: '../registrationManager/index/index',
+      url: '../registrationManager/activity/index',
     })
   },
 

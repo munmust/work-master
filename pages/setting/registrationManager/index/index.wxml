@@ -1,12 +1,80 @@
+
+
 <view wx:if='{{ifempty}}'>
     <view class='empty_page' hidden='{{!empty}}'>
       <wux-prompt visible="{{empty}}" title="暂无报名" text="请先创建报名" />
     </view>
     <button  class="btn-primary btn" bindtap="toRgistration">创建报名</button>
 </view>
+
+<wxs module="time" src="./index.wxs"></wxs>
 <view wx:else='{{!ifempty}}'>
-    <view class='empty_page' hidden='{{!empty}}'>
-      <wux-prompt visible="{{empty}}" title="已有报名信息" text="可以点击下方按钮导出" />
-    </view>
+
+    
+     <wux-cell-group title='已报名基本信息'>
+
+    <wux-cell>
+      <label class="lab">标题
+        <input class="inputM" placeholder='请输入标题' value='{{title}}' disabled='{{isDisabled}}'  />
+      </label>
+    </wux-cell>
+
+     <wux-cell>
+      <label class="lab">人数
+        <input class="inputM" placeholder='请输入人数' value='{{number}}' disabled='{{isDisabled}}' />
+      </label>
+    </wux-cell>
+
+    <wux-cell>
+      <label class="lab">联系人
+        <input class="inputW" placeholder='请输入联系人' value='{{linkman}}' disabled='{{isDisabled}}'  />
+      </label>
+    </wux-cell>
+
+     <wux-cell>
+      <label class="lab">手机号
+        <input class="inputW" placeholder='请输入手机号' value='{{contact}}' disabled='{{isDisabled}}'  />
+      </label>
+    </wux-cell>
+
+
+    <wux-cell>
+             <label class="lab">开始时间
+            <view class="tui-picker-content">
+
+              <view class="date">
+                {{start}}
+              </view>
+  
+            </view>
+
+                </label>
+      </wux-cell>
+
+    <wux-cell>
+             <label class="lab">结束时间
+            <view class="tui-picker-content">
+              <view class="date">
+                {{end}}
+              </view>
+ 
+            </view>
+
+                </label>
+      </wux-cell>
+
+    <wux-cell>
+      <label class="lab">选项
+        <input class="inputM" placeholder='请输入选项' disabled='{{isDisabled}}' value='{{choose}}' bind:change='inputBox' />
+      </label>
+    </wux-cell>
+
+    </wux-cell-group>
+  <wux-cell-group title='说明'>
+    <wux-cell>
+    <textarea row="3" maxlength="200" cursor-spacing="70" placeholder="{{note}}"  value='{{note}}' disabled='{{isDisabled}}'></textarea>
+    </wux-cell>
+  </wux-cell-group>
+
     <button  class="btn-primary btn" bindtap="getExecl">导出文件</button>
 </view>

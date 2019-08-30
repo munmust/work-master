@@ -1,13 +1,30 @@
 //pages/setting/registrationManager/index/index.js
 var app = getApp();
+var time = require('./time.js');
 Page({
   data:{
     empty: true,
     ifempty:true,
+    title: '',
+    term:'',
+    number: '',
+    linkman: '',
+    contact: '',
+    choose: '',
+    start: '2019-09-01 00:00:00',
+    end: '2019-09-01 00:00:00',
+    note: '',
+    top:'',
+    isDisabled:true,
+    
     activityId:'201812011402584031155910012018'
   },
-  onLoad:function(){
+  onLoad: function (option){
       var that=this;
+    console.log(option.activityId);
+      that.setData({
+        activityId: option.activityId
+      })
       wx.request({
         url: app.globalData.apiUrl +'/activityEntry' ,
         method: 'GET',
@@ -25,9 +42,22 @@ Page({
               app.warning('无报名信息');
               break;
             case '200':
-              console.log(res.data.errorMsg);
+             
+              var content = res.data.data.content[0];
+              console.log(content.title);
+              
               that.setData({
-                ifempty:false
+                ifempty: false,
+                title: content.title,
+                term: content.term,
+                number: content.number,
+                linkman: content.linkman,
+                contact: content.contact,
+                choose: content.choose,
+                start: time.date_time(content.start),
+                end: time.date_time(content.end),
+                note: content.note,
+                top: content.top,
               })
               break;
           }
