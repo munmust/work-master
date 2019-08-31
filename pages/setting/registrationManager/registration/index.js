@@ -17,6 +17,7 @@ Page({
     empty:true,
     isDisabled:false,
     errorCode:'',
+    activityId:'',
 
 // 以下涉及的数据有关于时间选择器
     date: '2018-10-01',
@@ -29,6 +30,7 @@ Page({
     endYear: 2088
 
   },
+
   bindTextAreaChange: function (e) {
     this.setData({
       description: e.detail.value
@@ -132,7 +134,7 @@ Page({
         'Authorization': wx.getStorageSync('server_token')
       },
       data:{
-        activityId: "201903161223129535086410012019",
+        activityId: that.data.activityId,
         title: that.data.title,
         number: that.data.people,
         linkman: that.data.linkman,
@@ -153,7 +155,7 @@ Page({
           console.log("跳转");
           that.navTo();
         }
-        that.navTo();
+        //that.navTo();
       },
       fail:function(res){
         console.log(res.data);
@@ -165,8 +167,9 @@ Page({
   },
 
   navTo:function(){
+     var that=this;
       wx.navigateTo({
-        url: '../index/index',
+        url: '../index/index?activityId='+that.data.activityId,
       });
   },
 
@@ -174,6 +177,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this;
+    console.log("hello");
+    console.log(options.activityId);
+    that.setData({
+      activityId: options.activityId
+    })
+
     // 获取完整的年月日 时分秒，以及默认显示的数组
     var obj = dateTimePicker.dateTimePicker(this.data.startYear, this.data.endYear);
     var obj1 = dateTimePicker.dateTimePicker(this.data.startYear, this.data.endYear);
@@ -200,7 +210,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
   },
 
   /**

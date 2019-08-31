@@ -6,25 +6,25 @@
 
     <wux-cell>
       <label class="lab">标题
-        <input class="inputM" placeholder='请输入标题' value='{{title}}' disabled='{{isDisabled}}' bind:change='inputTitle' />
+        <input class="inputM" placeholder='请输入标题' value='{{title}}' disabled='{{isDisabled}}' bindinput='inputTitle' />
       </label>
     </wux-cell>
 
      <wux-cell>
       <label class="lab">人数
-        <input class="inputM" placeholder='请输入人数' value='{{people}}' disabled='{{isDisabled}}' bind:change='inputPeople' />
+        <input class="inputM" placeholder='请输入人数' value='{{people}}' disabled='{{isDisabled}}' bindinput='inputPeople' />
       </label>
     </wux-cell>
 
     <wux-cell>
       <label class="lab">联系人
-        <input class="inputW" placeholder='请输入联系人' value='{{linkman}}' disabled='{{isDisabled}}' bind:change='inputLinkman' />
+        <input class="inputW" placeholder='请输入联系人' value='{{linkman}}' disabled='{{isDisabled}}' bindinput='inputLinkman' />
       </label>
     </wux-cell>
 
      <wux-cell>
       <label class="lab">手机号
-        <input class="inputW" placeholder='请输入手机号' value='{{phoneNumber}}' disabled='{{isDisabled}}' bind:change='inputPhoneNumber' />
+        <input class="inputW" placeholder='请输入手机号' value='{{phoneNumber}}' disabled='{{isDisabled}}' bindinput='inputPhoneNumber' />
       </label>
     </wux-cell>
 
@@ -32,7 +32,7 @@
     <wux-cell>
              <label class="lab">开始时间
             <view class="tui-picker-content">
-  <picker mode="multiSelector" disabled='{{isDisabled}}' value="{{dateTime}}" bindchange="changeStartTime" bindcolumnchange="changeDateTimeColumn" range="{{dateTimeArray}}">
+  <picker mode="multiSelector" disabled='{{isDisabled}}' value="{{dateTime}}" bindinput="changeStartTime" bindcolumnchange="changeDateTimeColumn" range="{{dateTimeArray}}">
               <view class="date">
                 {{startTime}}
               </view>
@@ -45,7 +45,7 @@
     <wux-cell>
              <label class="lab">结束时间
             <view class="tui-picker-content">
-  <picker mode="multiSelector" disabled='{{isDisabled}}' value="{{dateTime}}" bindchange="changeEndTime" bindcolumnchange="changeDateTimeColumn" range="{{dateTimeArray}}">
+  <picker mode="multiSelector" disabled='{{isDisabled}}' value="{{dateTime}}" bindinput="changeEndTime" bindcolumnchange="changeDateTimeColumn" range="{{dateTimeArray}}">
               <view class="date">
                 {{endTime}}
               </view>
@@ -57,7 +57,7 @@
 
     <wux-cell>
       <label class="lab">选项
-        <input class="inputM" placeholder='请输入选项' disabled='{{isDisabled}}' value='{{box}}' bind:change='inputBox' />
+        <input class="inputM" placeholder='请输入选项' disabled='{{isDisabled}}' value='{{box}}' bindinput='inputBox' />
       </label>
     </wux-cell>
 

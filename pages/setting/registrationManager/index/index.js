@@ -17,7 +17,7 @@ Page({
     top:'',
     isDisabled:true,
     
-    activityId:'201812011402584031155910012018'
+    activityId:''
   },
   onLoad: function (option){
       var that=this;
@@ -69,15 +69,24 @@ Page({
       })
   },
   toRgistration:function(){
+    var that=this;
     wx.navigateTo({
-      url: '../registration/index',
+      url: '../registration/index?activityId='+that.data.activityId,
     })
   },
 
   getExecl:function(){
       var that=this;
       wx.downloadFile({
-        url: app.globalData.apiUrl + '/activityEntry/activityEntryRecordFile?activityEntryId=2018121118128361052300710012018',
+        url: app.globalData.apiUrl + '/activityEntry/activityEntryRecordFile',
+        method: 'GET',
+        header: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'Authorization': wx.getStorageSync('server_token')
+        },
+        data: {
+          activityId: this.data.activityId
+        },
         success: function (res) {
           console.log(res); var filePath = res.tempFilePath
 

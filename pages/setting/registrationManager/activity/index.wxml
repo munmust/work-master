@@ -1,6 +1,15 @@
+ <wux-cell-group title='活动id'>
+ 
  <wux-cell>
       <label class="lab">activityId
-        <input class="inputM" placeholder='请输入活动id' value='{{activityId}}'  bind:change='inputId' />
+        <input class="inputM" placeholder='请输入活动id' value='{{activityId}}'  bindinput='inputId' />
       </label>
-      <button bindtap="toIndex">提交</button>
+
   </wux-cell>
+
+  <view> 
+       <wux-white-space size='large' />
+    <wux-button block type='positive' bind:click='judgeActivity'>提交</wux-button>
+  </view>
+
+  </wux-cell-group>
