@@ -409,7 +409,6 @@ Page({
             // //将获取的活动列表保存
             showPage = that.data.showPage;
             var contentTemp = res.data.data.content;
-            console.log(contentTemp);
             that.setData({
               listData: contentTemp
             });
@@ -432,7 +431,6 @@ Page({
                   hasMoreData: hasMoreDataTemp,
                   page: pageTemp
                 })
-
                 break;
               case 2:
                 that.setData({
