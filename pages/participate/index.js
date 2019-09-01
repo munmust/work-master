@@ -246,8 +246,14 @@ loadInfo(){
                 wx.showToast({
                   title: res.data.errorMsg
                 });
-                that.data.stateId='1';
-                that.data.activityStatus ="REGISTERED";
+                that.setData({
+                  activityStatus :"REGISTERED",
+                  activityType:" ",
+                  stateId:'1',
+                  type_id:0,
+                  term_id:1,
+                  tab:[true,false]
+                })
                 that.showState();
               break;
             }

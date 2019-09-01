@@ -32,7 +32,7 @@
     <wux-cell>
              <label class="lab">开始时间
             <view class="tui-picker-content">
-  <picker mode="multiSelector" disabled='{{isDisabled}}' value="{{dateTime}}" bindinput="changeStartTime" bindcolumnchange="changeDateTimeColumn" range="{{dateTimeArray}}">
+  <picker mode="multiSelector" disabled='{{isDisabled}}' value="{{dateTime}}" bindchange="changeStartTime" bindcolumnchange="changeDateTimeColumn" range="{{dateTimeArray}}">
               <view class="date">
                 {{startTime}}
               </view>
@@ -45,7 +45,7 @@
     <wux-cell>
              <label class="lab">结束时间
             <view class="tui-picker-content">
-  <picker mode="multiSelector" disabled='{{isDisabled}}' value="{{dateTime}}" bindinput="changeEndTime" bindcolumnchange="changeDateTimeColumn" range="{{dateTimeArray}}">
+  <picker mode="multiSelector" disabled='{{isDisabled}}' value="{{dateTime}}" bindchange="changeEndTime" bindcolumnchange="changeDateTimeColumn" range="{{dateTimeArray}}">
               <view class="date">
                 {{endTime}}
               </view>
