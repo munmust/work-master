@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "团学考核",
+  "usingComponents": {
+    "wux-card": "/dist/card/index"
+  }
+}

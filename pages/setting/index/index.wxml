@@ -4,6 +4,7 @@
   <wux-cell thumb='../../images/icon-update.svg' title='更新历史' bindtap='toChangelog' />
   <wux-cell thumb='../../images/icon-finance.svg' title='财务管理' bindtap='toFinance' />
   <wux-cell thumb='../../images/icon-asset.svg' title='扫码借物' bindtap='toAsset' />
+   <wux-cell thumb='../../images/class.png' title='借用教室' bindtap='toBorClass' />
   <!-- <wux-cell thumb='../../images/icon-collect.svg' title='信息收集' bindtap='toCollect' /> -->
   <wux-cell thumb='../../images/icon-certificate.svg' title='证书录入' bindtap='toCertificate' />
   <wux-cell thumb='../../images/icon-cgPwd.svg' title='修改密码' bindtap='toChangePwd' />

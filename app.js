@@ -14,7 +14,7 @@ App({
     classId:null,
     grade:null,
     apiUrl:   'https://hupanyouth.cn'
-    //apiUrl: 'http://119.23.188.92:8000'
+    // apiUrl: 'http://120.79.91.97:8666'
   },
 
   onLaunch: function () {

@@ -1,0 +1,54 @@
+<!--pages/home/learningcheck/detail/index.wxml-->
+<view class="main">
+  <view class="bd">
+
+    <view>
+      <text class='title' decode='{{true}}'>&nbsp;&nbsp;姓名:</text>
+      <text class='content' decode='{{true}}'>&nbsp;&nbsp;{{queryBean.userName}}</text>
+    </view>
+
+    <view>
+      <text class='title' decode='{{true}}'>&nbsp;&nbsp;联系电话:</text>
+      <text class='content' decode='{{true}}'>&nbsp;&nbsp;{{queryBean.tel}}</text>
+    </view>
+
+    <view>
+      <text class='title' decode='{{true}}'>&nbsp;&nbsp;所属部门:</text>
+      <text class='content' decode='{{true}}'>&nbsp;&nbsp;{{queryBean.organizationName}}</text>
+    </view>
+
+    <view>
+      <text class='title' decode='{{true}}'>&nbsp;&nbsp;借用场地:</text>
+      <text class='content' decode='{{true}}'>&nbsp;&nbsp;{{queryBean.localeCode}}</text>
+    </view>
+
+    <view>
+      <text class='title' decode='{{true}}'>&nbsp;&nbsp;借用日期:</text>
+      <text class='content' decode='{{true}}'>&nbsp;&nbsp;{{queryBean.timeDate}}</text>
+    </view>
+
+    <view>
+      <text class='title' decode='{{true}}'>&nbsp;&nbsp;借用时间段:</text>
+      <text class='content' decode='{{true}}'>&nbsp;&nbsp;{{queryBean.timeBucket}}</text>
+    </view>
+
+    <view>
+      <text class='title' decode='{{true}}'>&nbsp;&nbsp;用途:</text>
+      <text class='content' decode='{{true}}'>&nbsp;&nbsp;{{queryBean.usages}}</text>
+    </view>
+    <view>
+      <text class='title' decode='{{true}}'>&nbsp;&nbsp;备注:</text>
+      <text class='content' decode='{{true}}'>&nbsp;&nbsp;{{queryBean.remark}}</text>
+    </view>
+  </view>
+</view>
+
+<view class="decide">
+    <button bindtap='pass'>
+      <view>通过</view>
+    </button>
+
+    <button bindtap='deny'>
+      <view>不通过</view>
+    </button>
+  </view>

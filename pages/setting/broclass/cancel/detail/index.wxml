@@ -1,0 +1,17 @@
+<!--pages/home/cancel/detail/index.wxml-->
+<view class="main">
+  <view class="bd">
+      <view class="textcontent">
+        <text class='title' decode='{{true}}'>&nbsp;&nbsp;联系电话:</text>
+        <text class='content'>  {{queryBean.tel}}</text>
+      </view>
+      <view>
+        <text class='title' decode='{{true}}'>&nbsp;&nbsp;用途:</text>
+        <text class='content'>  {{queryBean.usages}}</text>
+      </view>
+      <view>
+        <text class='title' decode='{{true}}'>&nbsp;&nbsp;备注:</text>
+        <text class='content'>  {{queryBean.remark}}</text>
+      </view>
+  </view>
+</view>

@@ -18,7 +18,7 @@
 <view class='features'>
 
 <!--党建活动-->
-  <function-bar title="入党考核活动" subtitle="党建活动记录" color="color_red" bindmytap="changePage" data-type="party" imgSrc="../../images/party.png" class="{{not_student?'show':'hide'}}"/>
+  <function-bar title="入党考核活动" subtitle="党建活动记录" color="color_red" bindmytap="changePage" data-type="party" imgSrc="../../images/party.png" />
 
   <!--活动章分配-->
   <function-bar title="活动章分配" subtitle="往期活动章分配" color="color_blue" bindmytap="changePage" data-type="distribute" imgSrc="../../images/distribute.png" class="{{total==0?'hide':'show'}}"/>

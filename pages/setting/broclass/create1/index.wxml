@@ -1,0 +1,19 @@
+ <!--pages/home/create1/index.wxml-->
+<view class="whole">
+
+
+  <image id="bgimg" src="/images/dateClass.png"></image>
+
+  <picker id="room" bindchange='bindPickerChange' bindcolumnchange='bindColumnChange' value="{{index}}" range="{{locale_name}}">
+    <view>{{choosed_class}}</view>
+  </picker>
+
+  <picker id="date" mode='date' value="{{time_date}}" start="{{current_date}}" end="{{end_date}}" bindchange="bindTimeChange">
+    <view>{{time_date}}</view>
+  </picker>
+  
+</view>
+
+<view>
+    <button bindtap='submit'>确定</button>
+</view>

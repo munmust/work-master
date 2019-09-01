@@ -1,0 +1,93 @@
+<!--pages/home/form/index.wxml-->
+<view>
+
+  <!--使用须知-->
+  <view id="notice">
+
+    <view id="line1"></view>
+
+    <text id="title1">使用须知\n</text>
+    
+    <text class="text">1、C501、C505及湖畔运动馆实行预约借用制度\n</text>
+    <text class="text">2、借用后请保持借用场地的整洁\n</text>
+    <text class="text">3、场地借用须上传团委审批佐证材料，未上传视\n</text>
+    <text class="text">为未获批准，不予通过审核\n</text>
+    <text class="text">4、如有疑问可联系：格致楼232 孙老师\n\n</text>
+
+  </view>
+
+  <view>
+
+    <view class="input">
+
+        <view class="line2"></view>
+
+        <text class="title">联系方式</text>
+        <text class="star">*\n</text>
+        <text class="detail">请输入11位手机长号{{tel_length}}/11</text>
+        
+        <input cursor-spacing='30' value='{{tel}}' bindinput='telinput' maxlength='11'></input>
+
+    </view>
+
+    <view class="input">
+
+        <view class="line2"></view>
+
+        <text class="title">所属部门</text>
+        <text class="star">*\n</text>
+        <text class="detail">请输入所属部门{{org_length}}/30</text>
+        <input cursor-spacing='30' value='{{org}}' bindinput='orginput' maxlength='30'></input>
+
+    </view>
+
+    <view class="input">
+
+      <view id="line3"></view>
+
+      <text class="title">用途</text>
+      <text class="star">*\n</text>
+      <text class="detail">请详细写明使用用途!{{usage_length}}/40</text>
+        
+      <textarea cursor-spacing='30' value='{{usage}}' bindinput='usageinput' maxlength='40'></textarea>
+
+    </view>
+
+    <view class="input">
+
+      <view id="line4"></view>
+        
+      <text class="title">备注</text>
+      <text class="star">*\n</text>
+      <text class="detail">如有需要请写备注{{remark_length}}/100</text>
+        
+      <textarea cursor-spacing='30' value='{{remark}}' bindinput='remarkinput' maxlength='100'></textarea>
+
+    </view>
+
+    <view class="input">
+
+      <view id="line5"></view>
+
+      <text class="title">请上传审核材料</text>
+      <text class="star">\n</text>
+      <text class="detail">如：场地申请表、团委相关组织指导老师审批同意\n的聊天记录等\n支持jpg,png,gif,bmp,psd,tiff等图片格式</text>
+
+      
+    </view>
+
+    <view class='input'>
+      <image id="photo" src='{{avatarUrl}}' bindtap='imginput'></image>
+    </view>
+
+    <view id="submit" bindtap='submit'>
+
+      <image id="btnimg" src='/images/button.png'></image>
+
+      <text id="btntext">提交预约申请</text>
+      
+    </view>
+
+  </view>
+
+</view>

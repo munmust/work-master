@@ -1,0 +1,12 @@
+/* pages/home/reviewing/index/index.wxss */
+/* button{
+  width: 100%;
+  margin-top:20rpx;
+  background-color:#40a9ff;
+  color:white;
+  border-radius: 8rpx;
+} */
+
+#container{
+  padding-top: 20rpx;
+}

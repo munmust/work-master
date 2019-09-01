@@ -1,0 +1,8 @@
+<!--pages/home/search/index.wxml-->
+<view>  
+ <function-bar title="审核中" subtitle="正在审核的申请" color="color_blue" bindmytap="toReviewing" data-type="" imgSrc=""/>
+ 
+  <function-bar title="已通过" subtitle="审核已经通过的申请" color="color_green" bindmytap="toSucceed" data-type="" imgSrc=""/>
+
+  <function-bar title="已取消" subtitle="已被取消的申请" color="color_magenta" bindmytap="toCancel" data-type="" imgSrc=""/>
+</view>

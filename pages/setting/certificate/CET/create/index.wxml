@@ -23,6 +23,11 @@
         </view>
         </wux-cell>
       </wux-cell-group>
+      <!-- <wux-cell-group title='证书图片上传'>
+    <wux-cell>
+      <wux-input label="上传证书图片" placeholder='选择上传的图片' data-name='certificateImg' bindtap='changeCertificateImg'/>
+    </wux-cell>
+    </wux-cell-group> -->
          <wux-cell-group title='证书详情'>
     <wux-cell>
       <wux-textarea  rows="3" maxlength="200" cursorSpacing="80" placeholder="请输入证书上的全部信息" data-name='description' bind:change='input' />

@@ -1,0 +1,14 @@
+<!--pages/home/index/index.wxml-->
+<view>
+<view class="{{can_show?'can_show':'can_hide'}}">你没有申请借用的权限</view>
+  <view class="{{show_view_locale?'header_view_show':'header_view_hide'}}">
+    <function-bar title="场地查询" subtitle="可用场地查询并申请场地" color="color_blue" bindmytap="apply" data-type="" imgSrc=""/>
+    <function-bar title="申请结果查询" subtitle="已提交的申请状态查询" color="color_blue" bindmytap="locale_search" data-type="" imgSrc=""/>
+  </view>
+  <view class="{{show_view_learning?'header_view_show':'header_view_hide'}}">
+    <function-bar title="学工审核" subtitle="学工审核场地申请" color="color_gold" bindmytap="learning_search" data-type="" imgSrc=""/>
+  </view>
+  <view class="{{show_view_league?'header_view_show':'header_view_hide'}}">
+    <function-bar title="团学审核" subtitle="团学审核场地申请" color="color_gold" bindmytap="league_search" data-type="" imgSrc=""/>
+  </view>
+</view>

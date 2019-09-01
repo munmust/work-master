@@ -21,13 +21,16 @@ Page({
       url: '../borrow/index/index',
     })
   },
-
+  toBorClass:function(){
+    wx.navigateTo({
+      url: '../broclass/index/index',
+    })
+  },
   toFinance: function () {
     wx.navigateTo({
       url: '../finManage/orglist/index',
     })
   },
-
   toChangePwd: function() {
     wx.navigateTo({
       url: '../cgPwd/index',

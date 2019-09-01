@@ -56,6 +56,7 @@ Page({
         switch (res.data.errorCode) {
           case "200":
             that.data.listData = res.data.data;
+            console.log(res.data.data)
             that.setData({
               listData: that.data.listData
             });

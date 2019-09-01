@@ -15,6 +15,7 @@ Page({
     description: '',
     certificateStart: '2000-01', //时间选择最早时间
     certificateTime: '',
+    imgUrl:''
   },
   input: function (e) {
     var that = this;
@@ -89,58 +90,72 @@ Page({
                 icon: "none",
                 duration: 3000
               });
-            } else {
-              wx.request({
-                url: app.globalData.apiUrl + '/certificate',
-                method: "POST",
-                header: {
-                  'Content-Type': 'application/json',
-                  'Authorization': wx.getStorageSync('server_token')
-                },
-                data: {
-                  "certificatePublishTime": certificatePublishTime.getTime(),
-                  "certificateType": "CET_4_6",
-                  "rank": thank.certificateType,
-                  "certificateGrade": thank.certificateGrade,
-                  "extInfo": {
-                    "description": thank.description
-                  }
-                },
-                success: function (res) {
-                  switch (res.data.errorCode) {
-                    case '200':
-                      wx.redirectTo({
-                        url: '../index/index',
-                      })
-                      wx.showToast({
-                        title: '创建成功',
-                        icon: 'success',
-                        duration: 3000
-                      })
-                      break;
-                    default:
-                      wx.showToast({
-                        title: res.data.errorMsg,
-                        icon: 'none',
-                        duration: 3000
-                      })
-                      break;
-                  }
+            } else{
+              // if(thank.imgUrl===""){
+              //   wx.showModal({
+              //     title: '询问',
+              //     content: '确定不上传证书图片？',
+              //     success(res) {
+              //       if (res.confirm) {
+              //         console.log('用户点击确定')
+                      wx.request({
+                        url: app.globalData.apiUrl + '/certificate',
+                        method: "POST",
+                        header: {
+                          'Content-Type': 'application/json',
+                          'Authorization': wx.getStorageSync('server_token')
+                        },
+                        data: {
+                          "certificatePublishTime": certificatePublishTime.getTime(),
+                          "certificateType": "CET_4_6",
+                          "rank": thank.certificateType,
+                          "certificateGrade": thank.certificateGrade,
+                          "extInfo": {
+                            "description": thank.description
+                          }
+                        },
+                        success: function (res) {
+                          switch (res.data.errorCode) {
+                            case '200':
+                              wx.redirectTo({
+                                url: '../index/index',
+                              })
+                              wx.showToast({
+                                title: '创建成功',
+                                icon: 'success',
+                                duration: 3000
+                              })
+                              break;
+                            default:
+                              wx.showToast({
+                                title: res.data.errorMsg,
+                                icon: 'none',
+                                duration: 3000
+                              })
+                              break;
+                          }
 
-                },
-                fail: function (error) {
-                  wx.showToast({
-                    title: '创建失败',
-                    icon: 'none',
-                    duration: 3000
-                  })
-                }
-              })
+                        },
+                        fail: function (error) {
+                          wx.showToast({
+                            title: '创建失败',
+                            icon: 'none',
+                            duration: 3000
+                          })
+                        }
+                      })
+                  //   } else if (res.cancel) {
+                  //     console.log('用户点击取消')
+                  //   }
+                  // }
+                // })
+              }
+             
+            }
             }
           }
-        }
       }
-    }
+    // }
 
   },
   /**
@@ -162,6 +177,33 @@ Page({
     this.setData({
       'certificateTime': e.detail.value,
     });
+  },
+  changeCertificateImg:function(){
+    var that=this;
+    wx.chooseImage({
+      count:1,
+      sizeType: ['compressed'],
+      sourceType: ['album', 'camera'],
+      success: ret => {
+        var filePath = ret.tempFilePaths[0];
+        wx.uploadFile({
+          url: 'https://sm.ms/api/upload',
+          filePath: filePath,
+          name: 'smfile',
+          success: res => {
+            wx.showToast({
+              title: '图片上传成功'
+            })
+            let data = JSON.parse(res.data);
+            that.setData({
+              imgUrl:data.data.url
+            })
+           
+          }
+        });
+      }
+    })
+    
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
