@@ -139,6 +139,8 @@ loadInfo(){
             // 从后台请求数据成功之后，开始以下的操作
             var arr1 = that.data.listData; //从data获取当前datalist数组
             var arr2 = res.data.data.content; //从此次请求返回的数据中获取新数组
+            var second1=that.data.second;
+            var second2 = [];
             if(arr2.length==0){
               var page=that.data.page-1;
               that.setData({
@@ -152,8 +154,13 @@ loadInfo(){
             }
             console.log(arr2);
             arr1 = arr1.concat(arr2); //合并数组
+
+            arr2.forEach(o => second2.push(o.second));
+            second1=second1.concat(second2);
+
             that.setData({
-              listData: arr1 //合并后更新datalist
+              listData: arr1, //合并后更新datalist
+              second: second1
             })
             break;
         }
@@ -193,7 +200,7 @@ loadInfo(){
         }
       }
       this.setData({ second: sec });
-      //console.log(sec);
+      // console.log(sec);
       setTimeout(this.countDown, 1000);
       //console.log(1);
     //}

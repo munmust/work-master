@@ -35,7 +35,7 @@
       <view>
           <button  class="{{btn.btnst(item.status)}} btn" bindtap='signUp' data-status="{{item.status}}" data-activityid="{{item.activityEntryId}}">
            {{btn.st(item.status)}}
-            <view wx:if="{{item.status=='COUNTDOWN'}}">
+          <view wx:if="{{item.status=='COUNTDOWN'}}">
             <a wx:if="{{second[index]>=0}}">{{btn.dc(second[index])}}</a>
             <button wx:if="{{second[index]==0}}" class="btn-end" bindtap='signUp' data-status="REGISTRATION" data-activityid="{{item.activityEntryId}}">
             报名

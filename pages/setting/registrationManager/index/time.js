@@ -1,7 +1,7 @@
 // util.js
 //时间戳转换成日期时间
 function js_date_time(unixtime) {
-  var dateTime = new Date(parseInt(unixtime) * 1000)
+  var dateTime = new Date(parseInt(unixtime) )
   var year = dateTime.getFullYear();
   var month = dateTime.getMonth() + 1;
   var day = dateTime.getDate();
