@@ -33,15 +33,15 @@
          <text>{{item.description}}\n</text>
       </view>
       <view>
-          <button  class="{{btn.btnst(item.status)}} btn" bindtap='signUp' data-status="{{item.status}}" data-activityid="{{item.activityEntryId}}">
+          <button  class="{{btn.btnst(item.status)}} btn" bindtap='judgeSignUp' data-status="{{item.status}}" data-activityid="{{item.activityEntryId}}" data-time="{{item.start}}">
            {{btn.st(item.status)}}
+          </button>
           <view wx:if="{{item.status=='COUNTDOWN'}}">
-            <a wx:if="{{second[index]>=0}}">{{btn.dc(second[index])}}</a>
-            <button wx:if="{{second[index]==0}}" class="btn-end" bindtap='signUp' data-status="REGISTRATION" data-activityid="{{item.activityEntryId}}">
+            <button wx:if="{{second[index]>=0}}" class="btn-full">{{btn.dc(second[index])}}</button>
+            <button wx:if="{{second[index]==0}}" class="btn-primary" bindtap='judgeSignUp' data-time="{{item.start}}" data-status="REGISTRATION" data-activityid="{{item.activityEntryId}}">
             报名
             </button>           
           </view>
-          </button>
       </view>
     
       </view>

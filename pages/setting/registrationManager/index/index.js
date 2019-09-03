@@ -21,7 +21,7 @@ Page({
   },
   onLoad: function (option){
       var that=this;
-    console.log(option.activityId);
+    console.log("ll"+option.activityId);
       that.setData({
         activityId: option.activityId
       })
@@ -77,37 +77,46 @@ Page({
 
   getExecl:function(){
       var that=this;
+      var id=that.data.activityId;
+    console.log("这是m"+id);
       wx.downloadFile({
-        url: app.globalData.apiUrl + '/activityEntry/activityEntryRecordFile',
+        url: app.globalData.apiUrl + '/activityEntry/activityEntryRecordFile"',
         method: 'GET',
         header: {
           'Content-Type': 'application/x-www-form-urlencoded',
           'Authorization': wx.getStorageSync('server_token')
         },
         data: {
-          activityId: this.data.activityId
+          activityEntryId:id
         },
         success: function (res) {
-          console.log(res); var filePath = res.tempFilePath
+          console.log(res.statusCode); var filePath = res.tempFilePath
 
           console.log(filePath)
-
-          wx.openDocument({
-            filePath: filePath,
-            fileType: 'xls',
-            success: function (res) {
-              console.log("打开文档成功")
-              console.log(res);
-            },
-            fail: function (res) {
-              console.log("fail");
-              console.log(res)
-            },
-            complete: function (res) {
-              console.log("complete");
-              console.log(res)
-            }
-          })
+          if (res.statusCode=="404"){
+            wx.showToast({
+              title: '暂无报名记录',
+              icon: 'none',
+              duration: 2000
+            })
+          }else{
+            wx.openDocument({
+              filePath: filePath,
+              fileType: 'xls',
+              success: function (res) {
+                console.log("打开文档成功")
+                console.log(res);
+              },
+              fail: function (res) {
+                console.log("fail");
+                console.log(res)
+              },
+              complete: function (res) {
+                console.log("complete");
+                console.log(res)
+              }
+            })
+          }
         },
         fail: function (res) {
           console.log('fail')

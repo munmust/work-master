@@ -1,5 +1,6 @@
 var app=getApp();
 var dateTimePicker = require('dateTimePicker.js');
+var utils=require('../../../../utils/util.js')
 Page({
 
   /**
@@ -178,10 +179,13 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    console.log("hello");
+    //console.log("hello");
+    var time = utils.formatTime(new Date());
     console.log(options.activityId);
     that.setData({
-      activityId: options.activityId
+      activityId: options.activityId,
+      startTime:time,
+      endTime:time
     })
 
     // 获取完整的年月日 时分秒，以及默认显示的数组

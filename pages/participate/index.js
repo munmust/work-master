@@ -224,17 +224,64 @@ loadInfo(){
     this.data.Url = app.globalData.apiUrl+id;//Url拼接  未完成  
   },
 
+/**
+ * 活动报名确认弹框触发
+ */
+
+
+judgeSignUp(e){
+  var that = this;
+  var status = e.currentTarget.dataset.status;
+  var activityId = e.currentTarget.dataset.activityid;
+  var time = e.currentTarget.dataset.time;
+  if (status == "REGISTRATION") {
+    that.popup(status, activityId,time);
+  }
+},
+
+
+
+  /**
+     * 弹窗按钮
+     */
+  popup: function (status, activityId, time) {
+    var that = this;
+    wx.showModal({
+
+      title: '提交报名',
+
+      content: '开始时间:'+time,
+
+      success: function (res) {
+
+        if (res.confirm) {
+
+          console.log('用户点击确定');
+          that.signUp(status, activityId);
+
+
+        } else if (res.cancel) {
+
+          console.log('用户点击取消')
+
+        }
+
+      }
+
+    })
+
+  },
+
+
 
 /**
  * 提交报名信息
  */
-  signUp(e){
+  signUp(status, activityId){
     wx.showLoading({
       title: '正在报名中',
     })
     var that=this;
-    let status = e.currentTarget.dataset.status;
-    let activityId = e.currentTarget.dataset.activityid;
     if (status == "REGISTRATION"){  
         wx.request({
           url: app.globalData.apiUrl +'/user/signUp',
