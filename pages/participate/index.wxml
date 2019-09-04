@@ -3,10 +3,10 @@
 <view  class='{{showSearch?"show":"hide"}}'>
   <view class="swiper-tab">
     <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-currentind="0" bindtap="tabNav">类型
-      <i data-currentind="0"></i>
+      <!-- <i data-currentind="0"></i> -->
     </view>
     <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-currentind="1" bindtap="tabNav">状态
-      <i data-currentind="1"></i>
+      <!-- <i data-currentind="1"></i> -->
     </view>
   </view>
 
@@ -19,6 +19,8 @@
   </view>
 </view>
 
+<wux-white-space size='large' /> 
+<wux-white-space size='large' /> 
 <wxs module="btn" src="./index.wxs"></wxs>
 <!-- 显示下面的内容 -->
 <block wx:for="{{listData}}" wx:key="{{index}}"> 
@@ -28,10 +30,12 @@
       <view slot="body">
       <label>时间：</label> <text>{{item.start}}\n</text>
       <label wx:if="{{item.location!=null}}">地点：<text>{{item.location}}\n</text></label> 
-      <label>描述：</label>  
-      <view class='text_style'>
+      <label>描述：
+        <!-- <view class='text_style'> -->
          <text>{{item.description}}\n</text>
-      </view>
+        <!-- </view> -->
+      </label>  
+     
       <view>
           <button  class="{{btn.btnst(item.status)}} btn" bindtap='judgeSignUp' data-status="{{item.status}}" data-activityid="{{item.activityEntryId}}" data-time="{{item.start}}">
            {{btn.st(item.status)}}

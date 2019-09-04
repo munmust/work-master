@@ -1,6 +1,7 @@
 var app=getApp();
 var dateTimePicker = require('dateTimePicker.js');
-var utils=require('../../../../utils/util.js')
+var utils=require('../../../../utils/util.js');
+var check = require('../../../../utils/checkutil.js');
 Page({
 
   /**
@@ -11,7 +12,7 @@ Page({
     people:'',
     linkman:'',
     phoneNumber:'',
-    box:'',
+    choose:'',
     startTime: '2019-09-01 00:00:00',
     endTime:'2019-09-01 00:00:00',
     description: '',
@@ -73,10 +74,10 @@ Page({
       phoneNumber: e.detail.value
     })
   },
-  inputBox: function (e) {
+  inputChoose: function (e) {
     console.log(e.detail.value)
     this.setData({
-      box: e.detail.value
+      choose: e.detail.value
     })
   },
   toSave:function(){
@@ -109,7 +110,8 @@ Page({
         if (res.confirm) {
 
           console.log('用户点击确定');
-          that.toSubmit();
+
+          that.formChecking();
 
 
         } else if (res.cancel) {
@@ -124,6 +126,85 @@ Page({
 
   },
 
+  /**
+   * 表单校验
+   */
+  formChecking:function(){
+    var that=this;
+    var title=that.data.title;
+    var people = that.data.people;
+    var linkman = that.data.linkman;
+    var phoneNumber = that.data.phoneNumber;
+    var note=that.data.description;
+    var pass=true;
+    
+    if(title==''){
+      pass=false;
+      wx.showToast({
+        title: "请输入标题",
+        icon: 'none',
+      })
+    }
+    
+    if (!that.checkNInteger(people)){
+      pass=false;
+      wx.showToast({
+        title: "人数必须大于零",
+        icon: 'none',
+      })
+    }
+
+    if(!check.checkC(linkman)){
+      pass=false;
+      wx.showToast({
+        title: "请输入中文名",
+        icon: 'none',
+      })
+    }
+    
+    if (!that.checkPhone(phoneNumber)){
+      pass = false;
+      wx.showToast({
+        title: "请输入正确手机号",
+        icon: 'none',
+      })
+    }
+
+    if (note == '') {
+      pass = false;
+      wx.showToast({
+        title: "说明不能为空",
+        icon: 'none',
+      })
+    }
+
+    
+    if(pass){
+      that.toSubmit();
+    }
+
+
+          
+                  
+  },
+
+  /**
+   * 正整数校验
+   * 
+   */
+  checkNInteger (value) {
+    let reg = /^[1-9]\d*$/;
+    return reg.test(value);
+  },
+
+  /**
+   * 手机号校验
+   */
+  checkPhone(value){
+    let reg = /^1[3456789]\d{9}$/;
+    return reg.test(value);
+    
+  },
 
   toSubmit:function(){
     var that=this;
@@ -140,7 +221,7 @@ Page({
         number: that.data.people,
         linkman: that.data.linkman,
         contact: that.data.phoneNumber,
-        choose: that.data.box,
+        choose: that.data.choose,
         start: that.data.startTime,
         end: that.data.endTime,
         note: that.data.description,

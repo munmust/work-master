@@ -28,6 +28,7 @@ const checkPInteger=(value)=>{
     let reg=/^[0-9]+$/;
     return reg.test(value);
 }
+
 /**
  * 验证value为负整数
  */

@@ -32,7 +32,7 @@
     <wux-cell>
              <label class="lab">开始时间
             <view class="tui-picker-content">
-  <picker mode="multiSelector" disabled='{{isDisabled}}' value="{{dateTime}}" bindchange="changeStartTime" bindcolumnchange="changeDateTimeColumn" range="{{dateTimeArray}}">
+  <picker mode="multiSelector" disabled='{{isDisabled}}' value="{{startTime}}" bindchange="changeStartTime" bindcolumnchange="changeDateTimeColumn" range="{{dateTimeArray}}">
               <view class="date">
                 {{startTime}}
               </view>
@@ -45,7 +45,7 @@
     <wux-cell>
              <label class="lab">结束时间
             <view class="tui-picker-content">
-  <picker mode="multiSelector" disabled='{{isDisabled}}' value="{{dateTime}}" bindchange="changeEndTime" bindcolumnchange="changeDateTimeColumn" range="{{dateTimeArray}}">
+  <picker mode="multiSelector" disabled='{{isDisabled}}' value="{{endTime}}" bindchange="changeEndTime" bindcolumnchange="changeDateTimeColumn" range="{{dateTimeArray}}">
               <view class="date">
                 {{endTime}}
               </view>
@@ -57,14 +57,14 @@
 
     <wux-cell>
       <label class="lab">选项
-        <input class="inputM" placeholder='请输入选项' disabled='{{isDisabled}}' value='{{box}}' bindinput='inputBox' />
+        <input class="inputM" placeholder='请输入选项' disabled='{{isDisabled}}' value='{{choose}}' bindinput='inputChoose' />
       </label>
     </wux-cell>
 
     </wux-cell-group>
   <wux-cell-group title='说明'>
     <wux-cell>
-    <textarea row="3" maxlength="200" cursor-spacing="70" placeholder="请输入活动说明" data-name='description' bindinput="bindTextAreaChange" value='{{description}}' disabled='{{isDisabled}}'></textarea>
+    <textarea row="3" maxlength="200" cursor-spacing="70" placeholder="请输入活动说明()" data-name='description' bindinput="bindTextAreaChange" value='{{description}}' disabled='{{isDisabled}}'></textarea>
     </wux-cell>
   </wux-cell-group>
 <view> 

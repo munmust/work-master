@@ -168,7 +168,6 @@ loadInfo(){
       fail: function () {
         app.warning('服务器错误');
       }
-
     })
   },
 
@@ -446,7 +445,7 @@ judgeSignUp(e){
  * 筛选状态的接口
  */
   selectStateUrl:function(){
-      var that=this;
+    var that=this;
     var activityStatus=that.data.activityStatus;     
     switch (activityStatus){
       case "PUBLISHED":
@@ -455,9 +454,7 @@ judgeSignUp(e){
           return "/user/registeredActivityEntry";
       case "FINISHED":
           return "/activityEntry";
-        
-      }
-     
+      }   
   },
 
 
@@ -508,7 +505,6 @@ judgeSignUp(e){
    */
   showSeals: function(code) {
     var that = this;
-
     wx.request({
       url: app.globalData.apiUrl + '/activityEntry',
       method: 'GET',

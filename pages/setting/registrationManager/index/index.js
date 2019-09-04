@@ -15,6 +15,7 @@ Page({
     end: '2019-09-01 00:00:00',
     note: '',
     top:'',
+    activityEntryId:'',
     isDisabled:true,
     
     activityId:''
@@ -58,6 +59,7 @@ Page({
                 end: time.date_time(content.end),
                 note: content.note,
                 top: content.top,
+                activityEntryId:content.activityEntryId
               })
               break;
           }
@@ -77,23 +79,23 @@ Page({
 
   getExecl:function(){
       var that=this;
-      var id=that.data.activityId;
+      var id=that.data.activityEntryId;
     console.log("这是m"+id);
       wx.downloadFile({
-        url: app.globalData.apiUrl + '/activityEntry/activityEntryRecordFile"',
+        url: app.globalData.apiUrl + '/activityEntry/activityEntryRecordFile?' +'activityEntryId='+id,
         method: 'GET',
         header: {
-          'Content-Type': 'application/x-www-form-urlencoded',
+          //'Content-Type': 'application/x-www-form-urlencoded',
           'Authorization': wx.getStorageSync('server_token')
         },
-        data: {
-          activityEntryId:id
-        },
+        // data: {
+        //   activityEntryId:id
+        // },
         success: function (res) {
           console.log(res.statusCode); var filePath = res.tempFilePath
 
           console.log(filePath)
-          if (res.statusCode=="404"){
+          if (res.statusCode=="500"){
             wx.showToast({
               title: '暂无报名记录',
               icon: 'none',

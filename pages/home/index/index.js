@@ -53,7 +53,7 @@ Page({
         'Authorization': wx.getStorageSync('server_token')
       },
       data:{
-        term: '2018A',
+        term: '',
       },
       success: function (res) {
         console.log("这是："+res.data.data);
