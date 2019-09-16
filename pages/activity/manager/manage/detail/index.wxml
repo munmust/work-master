@@ -17,4 +17,9 @@
     <wux-cell title='地点' extra='{{detail.location}}'/>
     <wux-cell title='描述信息' extra='{{detail.description}}'/>
   </wux-cell-group>
+    <view> 
+        <wux-white-space size='large' />
+        <button class='add-li' type='positive' bindtap="judgeActivity">报名管理</button>
+    </view>
+     
 </wux-wing-blank>
