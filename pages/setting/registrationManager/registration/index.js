@@ -3,7 +3,6 @@ var dateTimePicker = require('dateTimePicker.js');
 var utils=require('../../../../utils/util.js');
 var check = require('../../../../utils/checkutil.js');
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -13,14 +12,14 @@ Page({
     linkman:'',
     phoneNumber:'',
     choose:'',
-    startTime: '2019-09-01 00:00:00',
+    startTime: "",
     endTime:'2019-09-01 00:00:00',
+    pikerDefaultDate:[0,0,0,0,0,0],
     description: '',
     empty:true,
     isDisabled:false,
     errorCode:'',
     activityId:'',
-
 // 以下涉及的数据有关于时间选择器
     date: '2018-10-01',
     time: '12:00',
@@ -30,52 +29,77 @@ Page({
     dateTime1: null,
     startYear: 2019,
     endYear: 2088
-
   },
 
+  /**
+   * 选取piker的当前时间显示默认值
+   */
+  getpikerDefaultDate:function(){
+    var timestamp = Date.parse(new Date());
+    var date = new Date(timestamp);
+    var pikerDefaultDate = this.data.pikerDefaultDate;
+    var year = date.getFullYear();
+    var month = date.getMonth() + 1;
+    var day = date.getDate();
+    var hour = date.getHours();
+    var minute = date.getMinutes();
+    var second = date.getSeconds();
+    //console.log(year + ":" + month + ":" + day + ":" + hour + ":" + minute + ":" + second)
+    pikerDefaultDate[0] = year - 2019;
+    pikerDefaultDate[1] = month - 1;
+    pikerDefaultDate[2] = day - 1;
+    pikerDefaultDate[3] = hour;
+    pikerDefaultDate[4] = minute ;
+    pikerDefaultDate[5] = second ;
+    this.setData({
+      pikerDefaultDate: pikerDefaultDate
+    })
+
+  },
   bindTextAreaChange: function (e) {
     this.setData({
       description: e.detail.value
     })
   },
   changeEndTime:  function(e) {
-    console.log("结束时间"+e.detail.value);
+   // console.log("结束时间"+e.detail.value);
     this.setData({
       endTime: e.detail.value,
     });
   },
   changeStartTime: function (e) {
-    console.log("开始时间"+e.detail.value);
+    this.getpikerDefaultDate();
+   // console.log("开始时间"+e.detail.value);
     this.setData({
       startTime: e.detail.value,
     });
   },
   inputTitle: function (e) {
-    console.log(e.detail.value)
+    // console.log(e.detail.value)
     this.setData({
       title: e.detail.value
     })
   },
   inputPeople: function (e) {
-    console.log(e.detail.value)
+    //console.log(e.detail.value)
     this.setData({
       people: e.detail.value
     })
   },
   inputLinkman: function (e) {
-    console.log(e.detail.value)
+    //console.log(e.detail.value)
     this.setData({
       linkman: e.detail.value
     })
   },
   inputPhoneNumber: function (e) {
-    console.log(e.detail.value)
+    //console.log(e.detail.value)
     this.setData({
       phoneNumber: e.detail.value
     })
   },
   inputChoose: function (e) {
-    console.log(e.detail.value)
+    //console.log(e.detail.value)
     this.setData({
       choose: e.detail.value
     })
@@ -98,26 +122,15 @@ Page({
    */
   popup: function () {
     var that=this;
-
     wx.showModal({
-
       title: '发布',
-
       content: '您确认要发布报名信息吗？',
-
       success: function (res) {
-
         if (res.confirm) {
-
-          console.log('用户点击确定');
-
+         //console.log('用户点击确定');
           that.formChecking();
-
-
         } else if (res.cancel) {
-
-          console.log('用户点击取消')
-
+          //console.log('用户点击取消')
         }
 
       }
@@ -181,10 +194,7 @@ Page({
     
     if(pass){
       that.toSubmit();
-    }
-
-
-          
+    }          
                   
   },
 
@@ -241,11 +251,9 @@ Page({
       },
       fail:function(res){
         console.log(res.data);
-    
       }
     })
-
-   
+  
   },
 
   navTo:function(){
@@ -260,6 +268,7 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
+    that.getpikerDefaultDate();
     //console.log("hello");
     var time = utils.formatTime(new Date());
     console.log(options.activityId);
@@ -269,13 +278,14 @@ Page({
       endTime:time
     })
 
+    var nowDate=new Date();
     // 获取完整的年月日 时分秒，以及默认显示的数组
     var obj = dateTimePicker.dateTimePicker(this.data.startYear, this.data.endYear);
     var obj1 = dateTimePicker.dateTimePicker(this.data.startYear, this.data.endYear);
     // 精确到分的处理，将数组的秒去掉
     var lastArray = obj1.dateTimeArray.pop();
     var lastTime = obj1.dateTime.pop();
-
+    console.log(obj.dateTimeArray);
     this.setData({
       dateTime: obj.dateTime,
       dateTimeArray: obj.dateTimeArray,
@@ -283,56 +293,6 @@ Page({
       dateTime1: obj1.dateTime
     });
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-    
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-    
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-    
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-    
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-    
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-    
-  },
-
-
   changeDate(e) {
     this.setData({ date: e.detail.value });
   },
@@ -340,21 +300,17 @@ Page({
     this.setData({ time: e.detail.value });
   },
   changeEndTime(e) {
+    this.getpikerDefaultDate();
     const that = this;
-    console.log("打印时间~~~~~~~~~~~~~~~~~~~~~", this.data.dateTimeArray);
-
-    this.setData({ dateTime: e.detail.value });
-
-    console.log("打印时间", this.data.dateTime);
-
+    //console.log("打印时间~~~~~~~~~~~~~~~~~~~~~", this.data.dateTimeArray);
+   this.setData({ dateTime: e.detail.value });
+    //console.log("打印时间", this.data.dateTime);
     var aaa1 = that.data.dateTime[0];
     var aaa2 = that.data.dateTime[1];
     var aaa3 = that.data.dateTime[2];
     var aaa4 = that.data.dateTime[3];
     var aaa5 = that.data.dateTime[4];
     var aaa6 = that.data.dateTime[5];
-
-
     var time1 = that.data.dateTimeArray[0][aaa1];
     var time2 = that.data.dateTimeArray[1][aaa2];
     var time3 = that.data.dateTimeArray[2][aaa3];
@@ -362,28 +318,27 @@ Page({
     var time5 = that.data.dateTimeArray[4][aaa5];
     var time6 = that.data.dateTimeArray[5][aaa6];
     var time = time1 + '-' + time2 + '-' + time3 + ' ' + time4 + ':' + time5 + ':' + time6;
-    console.log("结束时间:", time);
+    //console.log("结束时间:", time);
     that.setData({
       endTime: time
     })
 
   },
+
   changeStartTime(e) {
     const that = this;
-    console.log("打印时间~~~~~~~~~~~~~~~~~~~~~", this.data.dateTimeArray);
+    
+    //console.log("打印时间~~~~~~~~~~~~~~~~~~~~~", this.data.dateTimeArray);
 
     this.setData({ dateTime: e.detail.value });
 
-    console.log("打印时间", this.data.dateTime);
-
+    //console.log("打印时间", this.data.dateTime);
     var aaa1 = that.data.dateTime[0];
     var aaa2 = that.data.dateTime[1];
     var aaa3 = that.data.dateTime[2];
     var aaa4 = that.data.dateTime[3];
     var aaa5 = that.data.dateTime[4];
     var aaa6 = that.data.dateTime[5];
-
-
     var time1 = that.data.dateTimeArray[0][aaa1];
     var time2 = that.data.dateTimeArray[1][aaa2];
     var time3 = that.data.dateTimeArray[2][aaa3];
@@ -391,7 +346,7 @@ Page({
     var time5 = that.data.dateTimeArray[4][aaa5];
     var time6 = that.data.dateTimeArray[5][aaa6];
     var time = time1 + '-' + time2 + '-' + time3 + ' ' + time4 + ':' + time5 + ':' + time6;
-    console.log("开始时间:", time);
+    //console.log("开始时间:", time);
     that.setData({
       startTime:time
     })

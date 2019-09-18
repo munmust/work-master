@@ -1,6 +1,7 @@
 function withData(param) {
   return param < 10 ? '0' + param : '' + param;
 }
+
 function getLoopArray(start, end) {
   var start = start || 0;
   var end = end || 1;
@@ -10,6 +11,7 @@ function getLoopArray(start, end) {
   }
   return array;
 }
+
 function getMonthDay(year, month) {
   var flag = year % 400 == 0 || (year % 4 == 0 && year % 100 != 0), array = null;
 
@@ -58,6 +60,7 @@ function dateTimePicker(startYear, endYear, date) {
   var defaultDate = date ? [...date.split(' ')[0].split('-'), ...date.split(' ')[1].split(':')] : getNewDateArry();
   // 处理联动列表数据
   /*年月日 时分秒*/
+  console.log("defualtDate"+defaultDate[0]);
   dateTimeArray[0] = getLoopArray(start, end);
   dateTimeArray[1] = getLoopArray(1, 12);
   dateTimeArray[2] = getMonthDay(defaultDate[0], defaultDate[1]);
@@ -68,6 +71,7 @@ function dateTimePicker(startYear, endYear, date) {
   dateTimeArray.forEach((current, index) => {
     dateTime.push(current.indexOf(defaultDate[index]));
   });
+
 
   return {
     dateTimeArray: dateTimeArray,

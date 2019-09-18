@@ -49,7 +49,7 @@ Page({
         console.log(res.data);
         switch (res.data.errorCode) {
           case "400":
-            app.warning('无报名信息');
+            // app.warning('无报名信息');
             that.toRegistration();
             break;
           case "200":
