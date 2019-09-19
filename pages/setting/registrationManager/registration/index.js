@@ -384,6 +384,10 @@ Page({
     var arr = this.data.dateTime, dateArr = this.data.dateTimeArray;
 
     arr[e.detail.column] = e.detail.value;
+    if(arr[0]==-1||arr[1]==-1){
+      arr[0]=0;
+      arr[1]=0;
+    }
     var defaul1 = String(dateArr[0][arr[0]]);
     var defaul2 = String(dateArr[1][arr[1]]);
     dateArr[2] = dateTimePicker.getMonthDay(defaul1.substring(0, 2), defaul2.substring(0,2));
