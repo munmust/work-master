@@ -104,7 +104,7 @@ Page({
           }else{
             wx.openDocument({
               filePath: filePath,
-              fileType: 'xls',
+              fileType: 'xlsx',
               success: function (res) {
                 console.log("打开文档成功")
                 console.log(res);
