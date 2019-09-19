@@ -34,8 +34,8 @@ Page({
   /**
    * 选取piker的当前时间显示默认值
    */
-  getpikerDefaultDate:function(){
-    var timestamp = Date.parse(new Date());
+  getpikerDefaultDate: function (timestamp){
+    // var timestamp = Date.parse(new Date());
     var date = new Date(timestamp);
     var pikerDefaultDate = this.data.pikerDefaultDate;
     var year = date.getFullYear();
@@ -68,7 +68,6 @@ Page({
     });
   },
   changeStartTime: function (e) {
-    this.getpikerDefaultDate();
    // console.log("开始时间"+e.detail.value);
     this.setData({
       startTime: e.detail.value,
@@ -268,7 +267,8 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    that.getpikerDefaultDate();
+    var timestamp = Date.parse(new Date());
+    that.getpikerDefaultDate(timestamp);
     //console.log("hello");
     var time = utils.formatTime(new Date());
     console.log(options.activityId);
@@ -300,7 +300,7 @@ Page({
     this.setData({ time: e.detail.value });
   },
   changeEndTime(e) {
-    this.getpikerDefaultDate();
+    
     const that = this;
     //console.log("打印时间~~~~~~~~~~~~~~~~~~~~~", this.data.dateTimeArray);
    this.setData({ dateTime: e.detail.value });
@@ -318,6 +318,10 @@ Page({
     var time5 = that.data.dateTimeArray[4][aaa5];
     var time6 = that.data.dateTimeArray[5][aaa6];
     var time = time1 + '-' + time2 + '-' + time3 + ' ' + time4 + ':' + time5 + ':' + time6;
+    //console.log("开始时间:", time);
+
+    time = that.getRidOfChinese(time);
+
     //console.log("结束时间:", time);
     that.setData({
       endTime: time
@@ -339,6 +343,7 @@ Page({
     var aaa4 = that.data.dateTime[3];
     var aaa5 = that.data.dateTime[4];
     var aaa6 = that.data.dateTime[5];
+    console.log(aaa3);
     var time1 = that.data.dateTimeArray[0][aaa1];
     var time2 = that.data.dateTimeArray[1][aaa2];
     var time3 = that.data.dateTimeArray[2][aaa3];
@@ -347,10 +352,30 @@ Page({
     var time6 = that.data.dateTimeArray[5][aaa6];
     var time = time1 + '-' + time2 + '-' + time3 + ' ' + time4 + ':' + time5 + ':' + time6;
     //console.log("开始时间:", time);
+   
+    time = that.getRidOfChinese(time);
+
     that.setData({
       startTime:time
     })
+    time=time.substring(0,19);
+    time = time.replace(/-/g, '/');
+    var timestamp = new Date(time).getTime();
+    that.getpikerDefaultDate(timestamp);
 
+  },
+  /**
+   * 剔除生成时间里的中文
+   */
+  getRidOfChinese(time){
+    time = time.split("年").join("");
+    time = time.split("月").join("");
+    time = time.split("日").join("");
+    time = time.split("时").join("");
+    time = time.split("分").join("");
+    time = time.split("秒").join("");
+    console.log(time);
+    return time;
   },
   changeDateTime1(e) {
     this.setData({ dateTime1: e.detail.value });
@@ -359,7 +384,9 @@ Page({
     var arr = this.data.dateTime, dateArr = this.data.dateTimeArray;
 
     arr[e.detail.column] = e.detail.value;
-    dateArr[2] = dateTimePicker.getMonthDay(dateArr[0][arr[0]], dateArr[1][arr[1]]);
+    var defaul1 = String(dateArr[0][arr[0]]);
+    var defaul2 = String(dateArr[1][arr[1]]);
+    dateArr[2] = dateTimePicker.getMonthDay(defaul1.substring(0, 2), defaul2.substring(0,2));
 
     this.setData({
       dateTimeArray: dateArr,

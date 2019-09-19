@@ -2,12 +2,12 @@ function withData(param) {
   return param < 10 ? '0' + param : '' + param;
 }
 
-function getLoopArray(start, end) {
+function getLoopArray(start, end,type) {
   var start = start || 0;
   var end = end || 1;
   var array = [];
   for (var i = start; i <= end; i++) {
-    array.push(withData(i));
+    array.push(withData(i)+type);
   }
   return array;
 }
@@ -23,16 +23,16 @@ function getMonthDay(year, month) {
     case '08':
     case '10':
     case '12':
-      array = getLoopArray(1, 31)
+      array = getLoopArray(1, 31,"日")
       break;
     case '04':
     case '06':
     case '09':
     case '11':
-      array = getLoopArray(1, 30)
+      array = getLoopArray(1, 30,"日")
       break;
     case '02':
-      array = flag ? getLoopArray(1, 29) : getLoopArray(1, 28)
+      array = flag ? getLoopArray(1, 29, "日") : getLoopArray(1, 28, "日")
       break;
     default:
       array = '月份格式不正确，请重新输入！'
@@ -61,12 +61,12 @@ function dateTimePicker(startYear, endYear, date) {
   // 处理联动列表数据
   /*年月日 时分秒*/
   console.log("defualtDate"+defaultDate[0]);
-  dateTimeArray[0] = getLoopArray(start, end);
-  dateTimeArray[1] = getLoopArray(1, 12);
+  dateTimeArray[0] = getLoopArray(start, end,"年");
+  dateTimeArray[1] = getLoopArray(1, 12,"月");
   dateTimeArray[2] = getMonthDay(defaultDate[0], defaultDate[1]);
-  dateTimeArray[3] = getLoopArray(0, 23);
-  dateTimeArray[4] = getLoopArray(0, 59);
-  dateTimeArray[5] = getLoopArray(0, 59);
+  dateTimeArray[3] = getLoopArray(0, 23,"时");
+  dateTimeArray[4] = getLoopArray(0, 59,"分");
+  dateTimeArray[5] = getLoopArray(0, 59,"秒");
 
   dateTimeArray.forEach((current, index) => {
     dateTime.push(current.indexOf(defaultDate[index]));
