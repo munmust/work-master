@@ -1,60 +1,125 @@
 <!--pages/activity/normal/social/index.wxml-->
 <!--筛选项-->
 <view  class='{{showSearch?"show":"hide"}}'>
+
   <view class="swiper-tab">
-    <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-currentind="0" bindtap="tabNav">类型
+    <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-currentind="0" bindtap="tabNav">
+      类型{{typeTabList[type_id]?' - '+typeTabList[type_id].title:''}}
       <!-- <i data-currentind="0"></i> -->
     </view>
-    <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-currentind="1" bindtap="tabNav">状态
+    <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-currentind="1" bindtap="tabNav">
+      状态{{typeState[term_id]?' - '+typeState[term_id].title:''}}
       <!-- <i data-currentind="1"></i> -->
     </view>
   </view>
 
    <!--筛选列表-->
   <view class="tabLayer" hidden="{{tab[0]}}">
-    <text class="{{type_id==item.id?'active':''}}" wx:for="{{typeTabList}}" wx:key="p1" wx:for-item="item" data-id="{{item.id}}" data-index="0" bindtap="filter">{{item.title}}</text>
+    <text class="{{type_id==item.id?'active':''}}" 
+          wx:for="{{typeTabList}}" 
+          wx:key="p1" 
+          wx:for-item="item" 
+          data-id="{{item.id}}" 
+          data-index="0" 
+          bindtap="filter">
+          {{item.title}}
+    </text>
   </view>
+
   <view class="tabLayer" hidden="{{tab[1]}}">
-    <text class="{{term_id==item.id?'active':''}}" wx:for="{{typeState}}" wx:key="p2" wx:for-item="item" data-id="{{item.id}}" data-index="1" bindtap="filter">{{item.title}}</text>
+    <text class="{{term_id==item.id?'active':''}}" 
+          wx:for="{{typeState}}" 
+          wx:key="p2" 
+          wx:for-item="item" 
+          data-id="{{item.id}}" 
+          data-index="1" 
+          bindtap="filter">
+          {{item.title}}
+    </text>
   </view>
+
 </view>
 
 <wux-white-space size='large' /> 
 <wux-white-space size='large' /> 
 <wxs module="btn" src="./index.wxs"></wxs>
-<!-- 显示下面的内容 -->
-<block wx:for="{{listData}}" wx:key="{{index}}"> 
+<!-- 主体活动的内容 -->
+<block wx:for="{{listData}}" wx:key="index"> 
   <wux-white-space size='large' />
   <wux-wing-blank size="default" class='blank_top'>
-    <wux-card title="{{item.activityName}}" >
-      <view slot="body">
-      <label>时间：</label> <text>{{item.start}}\n</text>
-      <label wx:if="{{item.location!=null}}">地点：<text>{{item.location}}\n</text></label> 
-      <label>描述：
-        <!-- <view class='text_style'> -->
-         <text>{{item.description}}\n</text>
-        <!-- </view> -->
-      </label>  
+    <!-- <view
+        data-activityname="{{item.activityName}}"
+        data-time="{{item.start}}"
+        data-status="{{item.status}}"
+        bindtap='tiketInfo'> -->
+
+      <wux-card title="{{item.activityName}}" 
+       data-activityname="{{item.activityName}}"
+        data-time="{{item.start}}"
+        data-status="{{item.status}}"
+        bindtap='tiketInfo'>
+      
+        <view slot="body">
+
+          <view data-activityname="{{item.activityName}}"
+            data-time="{{item.start}}"
+            data-status="{{item.status}}"
+            catchtap='tiketInfo'>
+            <label>时间：</label> <text>{{item.start}}\n</text>
+            <label wx:if="{{item.location!=null}}">地点：<text>{{item.location}}\n</text></label> 
+            <label>描述：
+              <!-- <view class='text_style'> -->
+              <text>{{item.description}}\n</text>
+              <!-- </view> -->
+            </label>
+          </view>
+          
      
-      <view>
-          <button  class="{{btn.btnst(item.status)}} btn" bindtap='judgeSignUp' data-status="{{item.status}}" data-activityid="{{item.activityEntryId}}" data-time="{{item.start}}">
-           {{btn.st(item.status)}}
-          </button>
+          <!-- <view wx:if="{{btn.cb(item.start,item.status)=='cancel'}}">
+            <button class="btn"
+              bindtap="judgeCancelSignUp"
+              data-activityentryId="{{item.activityEntryId}}"
+              data-activityname="{{item.activityName}}">
+              取消报名
+            </button>
+          </view> -->
+
+           <!-- <view class="ticket">
+             <label>门票信息:\n</label>
+            {{stuName}}同学，报名成功{{item.activityName}},请于{{item.start}}准时参加!
+           </view> -->
+         <button  
+              class="{{btn.btnst(item.status)}} btn" 
+              catchtap='judgeSignUp' 
+              data-status="{{item.status}}" 
+              data-activityid="{{item.activityEntryId}}" 
+              data-activityname="{{item.activityName}}"
+              data-time="{{item.start}}">
+              {{btn.st(item.status)}}
+          </button>  
           <view wx:if="{{item.status=='COUNTDOWN'}}">
             <button wx:if="{{second[index]>=0}}" class="btn-full">{{btn.dc(second[index])}}</button>
-            <button wx:if="{{second[index]==0}}" class="btn-primary" bindtap='judgeSignUp' data-time="{{item.start}}" data-status="REGISTRATION" data-activityid="{{item.activityEntryId}}">
-            报名
-            </button>           
+            <button wx:if="{{second[index]==0}}" 
+              class="btn-primary" 
+              catchtap='judgeSignUp' 
+              data-time="{{item.start}}" 
+              data-status="REGISTRATION" 
+              data-activityid="{{item.activityEntryId}}">
+              报名
+            </button>                
           </view>
-      </view>
-    
-      </view>
-      <!-- <view slot="footer">{{item.createTime}}</view> -->
-      <wux-white-space size='large' /> 
+        </view>
+
     </wux-card>
   </wux-wing-blank>
+
+          
+
 </block>
 
+<view class="bar"></view>
+
+<!-- 暂无活动显示 -->
 <view class='empty_page' hidden='{{!empty}}' wx:if="{{listData.length==0}}">
   <wux-prompt visible="{{empty}}" title="暂无活动" text="" />
 </view>

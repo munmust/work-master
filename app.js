@@ -13,7 +13,7 @@ App({
     major:null,
     classId:null,
     grade:null,
-    apiUrl: 'http://47.102.119.198:80'
+    apiUrl: 'http://www.supersuperz.top:8000'
     //apiUrl: 'http://119.23.188.92:8000'
   },
 

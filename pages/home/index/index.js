@@ -56,7 +56,7 @@ Page({
         term: '',
       },
       success: function (res) {
-        console.log("这是："+res.data.data);
+        //console.log("这是："+res.data.data);
         that.setData({
           creditScore: res.data.data
         });
@@ -193,7 +193,6 @@ Page({
   },
 
   toggleQrCode: function() {
-    
     if(this.data.show!='isshow'){
       if (this.data.display_qrcode != 'qrcode_show') { //如果未显示
         this.holdTime();

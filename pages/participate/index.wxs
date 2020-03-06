@@ -22,6 +22,9 @@ var switchState = {
       case "FINISHED":
         statusString = "已过期";
         break;
+      case "CANCEL_REGISTERED":
+        statusString="取消报名"
+        break;
     }   
     return statusString;
   }
@@ -56,6 +59,9 @@ var switchBtn = {
         //已过期
         statusString = "btn-old";
         break;
+      case "CANCEL_REGISTERED":
+        statusString="btn-success"
+        break;  
     }
     return statusString;
   }
@@ -92,10 +98,26 @@ var dateChange={
   }
 }
 
+//判断取消报名按钮
+var cancelBtn={
+  cancelBtn:function(time,status){
+    var currentTime=Date.parse(getDate());
+    var Time=time.replace('年',"-").replace('月',"-").replace('日',"");
+    var gap=(currentTime-getDate(Time).getTime())/1000;
+    // console.log(gap)
+    if(status=='REGISTERED'&&gap>5400){
+        return 'cancel';
+    }else if(status=='REGISTERED'&&gap<5400){
+      return 'ticket';
+    }
+  }
+}
+
 // 导出对外暴露的属性
 module.exports = {
   st: switchState.st,
   btnst: switchBtn.sbtn,
   dc:dateChange.dateChange,
-  dsbtn: disableBtn.dsbtn
+  dsbtn: disableBtn.dsbtn,
+  cb:cancelBtn.cancelBtn
 }

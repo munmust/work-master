@@ -1,57 +1,24 @@
-.total-duration{
-  text-align: right;
+page {
+  height: 100%;
+  font-size: 28rpx;
+  background-color: #ffffff;
 }
-.blank_top{
-  margin-top:10px;
-}
-.empty_page{
-  z-index: -1;
-  position: absolute;
-  width: 750rpx;
-  height: 1100rpx;
-}
-.text_style{
-  margin-left:44px; 
-  margin-right: 10px;
-  /* background-color: #00000069;
-  color: white; */
 
+
+.bar{
+  margin-top: 100px;
 }
+
 
 label{
   font-size: 15px;
   font-weight: 100;
-  
 }
 
 .btn {
   width: 600rpx;
   position: relative;
   margin-top: 30px ;
-    /* display: block;
-    padding-top: 6px;
-    padding-right: 20px;
-    padding-bottom: 6px;
-    padding-left: 20px;
-    margin-bottom: 0;
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 1.42857143;
-    text-align: center;
-    white-space: nowrap;
-    -ms-touch-action: manipulation;
-    touch-action: manipulation;
-    cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    background-image: none;
-    border: 1px solid transparent;
-    border-radius: 4px;
-    font-family: inherit;
-    -webkit-appearance: button;
-    margin-top: 20px; */
 }
 .btn-primary {
     color: #fff;
@@ -151,7 +118,7 @@ color: #fff;
 .tabLayer text{
   width:210rpx;
   height:60rpx;
-  line-height:60rpx;
+  line-height:22rpx;
   color: #666;
   float:left;
   border: solid 1px #eee;
@@ -163,12 +130,6 @@ color: #fff;
   border-color:#e64340;
   }
  
-.flex1 {
-    flex: 1;
-    overflow: hidden;
-    display: block;
-    color: #666;
-}
 
 .empty_page{
   z-index: -1;

@@ -1,4 +1,6 @@
+
 var app = getApp();
+var theTime;
 
 Page({
   data: {
@@ -42,36 +44,64 @@ Page({
       {
         'id': '2',
         'title': '已过期'
-      },
+      }
     ],
     tab: [true, true],
     currentTab: null,
     page:0,
     stateId:0,
-   
+    reachBottom:true,
+    display_ticket:'ticket_hide'
   },
   
   onLoad: function () {
     var that = this;
+    // this.$wuxBackdrop = $wuxBackdrop();
     that.showSeals(); 
     that.countDown();
+    this.setData({
+      stuName: app.globalData.realName,
+      stuId:app.globalData.stuId
+    })
   },
 
+  /**
+   * 门票信息
+   */
+  tiketInfo:function(e){
+    var name=e.currentTarget.dataset.activityname;
+    var time=e.currentTarget.dataset.time;
+    var status=e.currentTarget.dataset.status;
+    if(status=='CANCEL_REGISTERED'||status=='REGISTERED'){
+      console.log(status);
+      //this.toggleTickect();
+      var people="参与人:"+this.data.stuName;
+      var code="学号:"+this.data.stuId;
+      var title="恭喜同学，报名成功！ ";
+      var Time="活动日期："+time
+      wx.showActionSheet({
+        itemList: [title,name,Time, people,code],
+        success (res) {
+        },
+        fail (res) {
+        }
+      })
+    }
+  },
 
-/**
- * 更新活动数据
- */
-loadInfo(){
-  var that = this;
-  that.setData({
-    listData: that.data.demoData,
-  });
-},
+  /**
+   * 更新活动数据
+   */
+  loadInfo(){
+    var that = this;
+    that.setData({
+      listData: that.data.demoData,
+    });
+  },
 
-
-/**
- * 计数器有关的函数
- */
+  /**
+   * 计数器有关的函数
+   */
   loadInfoF(){
     var that = this;
     // 给listDate赋值
@@ -86,6 +116,7 @@ loadInfo(){
     // this.data.second.forEach(o=>console.log(o));
     that.countDown();
   },
+
   loadInfoS(){
     var that = this;
     // 给listDate赋值
@@ -99,10 +130,11 @@ loadInfo(){
     that.setData({ second: total });
   },
 
-/**
- * 上拉获取更多数据
- */
+  /**
+   * 上拉获取更多数据
+   */
   onReachBottom:function(){
+    if(this.data.reachBottom){ 
       var that=this;
       var page=that.data.page+1;
       that.setData({
@@ -114,6 +146,13 @@ loadInfo(){
       
       that.getdatalist();
       wx.hideLoading({});
+    }else{
+      wx.showToast({
+        title: '暂无更多数据',
+        icon: 'none',
+        duration: 2000
+      })
+    }    
   },
 
   /**
@@ -122,7 +161,7 @@ loadInfo(){
   getdatalist:function(){
     var that = this;
     wx.request({
-      url: app.globalData.apiUrl +"/activityEntry",
+      url: app.globalData.apiUrl +that.selectStateUrl(),
       method:"GET",
       header: {
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -132,6 +171,7 @@ loadInfo(){
         page:that.data.page,
         activityType:that.data.activityType,
         state:that.data.activityStatus,
+        limit:5
       },
       success: function (res) {
         switch (res.data.errorCode) {
@@ -144,13 +184,15 @@ loadInfo(){
             if(arr2.length==0){
               var page=that.data.page-1;
               that.setData({
-                page:page
+                page:page,
+                reachBottom:false
               })
               wx.showToast({
                 title: '暂无更多数据',
                 icon: 'none',
                 duration: 2000
               })
+
             }
             console.log(arr2);
             arr1 = arr1.concat(arr2); //合并数组
@@ -171,16 +213,13 @@ loadInfo(){
     })
   },
 
-
-
-/**
- * 时间转化函数
- */
+  /**
+   * 时间转化函数
+   */
   timeFormat(param) {
     //小于10的格式化函数
     return param < 10 ? '0' + param : param;
   },
-
 
 /**
  * 计数器
@@ -206,50 +245,43 @@ loadInfo(){
   },
   
 
-/**
- * 加载弹框
- */
-  loadDetail(id) {
-    wx.showLoading({
-      title: '详情加载中...',
-    })
-  },
-
-
   /**
-   * 筛选活动页面请求后台接口的连接
+   * 加载弹框
    */
-  getUrl(id){
-    this.data.Url = app.globalData.apiUrl+id;//Url拼接  未完成  
+  loadDetail() {
+      wx.showLoading({
+        title: '详情加载中...',
+      })
   },
 
-/**
- * 活动报名确认弹框触发
- */
+  /**
+   * 活动报名 确认弹框触发
+   */
+  judgeSignUp(e){
+    var that = this;
+    var status = e.currentTarget.dataset.status;
+    var activityId = e.currentTarget.dataset.activityid;
+    var time = e.currentTarget.dataset.time;
+    if (status == "REGISTRATION") {
+      that.SignUpPopup(status, activityId,time,"提交报名","开始时间:"+time);
+    }
+    if(status == "CANCEL_REGISTERED"){
+      var activityName=e.currentTarget.dataset.activityname;
+      that.CancelSignUpPopup(activityName,activityId);
+    }
 
-
-judgeSignUp(e){
-  var that = this;
-  var status = e.currentTarget.dataset.status;
-  var activityId = e.currentTarget.dataset.activityid;
-  var time = e.currentTarget.dataset.time;
-  if (status == "REGISTRATION") {
-    that.popup(status, activityId,time);
-  }
-},
-
-
+  },
 
   /**
-     * 弹窗按钮
-     */
-  popup: function (status, activityId, time) {
+    * 活动报名 弹窗按钮设置
+    */
+  SignUpPopup: function (status, activityId,title,arg) {
     var that = this;
     wx.showModal({
 
-      title: '提交报名',
+      title: title,
 
-      content: '开始时间:'+time,
+      content: arg,
 
       success: function (res) {
 
@@ -271,11 +303,32 @@ judgeSignUp(e){
 
   },
 
+  /**
+    * 取消报名 弹窗按钮设置
+    */
+  CancelSignUpPopup: function (activityname,activityentryId) {
+        var that = this;
+        wx.showModal({
+          title: '取消报名',
+          content: activityname,
+          success: function (res) {
+            if (res.confirm) {
+              console.log('用户点击确定');
+              that.cancelSignUp(activityentryId);
+            } else if (res.cancel) {
+              console.log('用户点击取消');
+            }
+    
+          }
+    
+        })
+    
+  },
 
 
-/**
- * 提交报名信息
- */
+  /**
+   * 提交报名信息
+   */
   signUp(status, activityId){
     wx.showLoading({
       title: '正在报名中',
@@ -319,6 +372,58 @@ judgeSignUp(e){
     wx.hideLoading({});
   },
 
+  /** 
+   *取消报名
+   */
+  cancelSignUp(activityEntryId){
+    var that=this;
+      var userId=app.globalData.stuId;
+      wx.request({
+        url: app.globalData.apiUrl +'/user/undoSignUp',
+        method: 'delete',
+        header: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'Authorization': wx.getStorageSync('server_token')
+        },
+        data:{
+          activityEntryId: activityEntryId
+        },
+        success: function (res) {
+          console.log(res.data)
+          switch (res.data.errorCode){
+            case "200":
+              that.setData({
+                activityStatus :"PUBLISHED",
+                type_id:null,
+                term_id:null,
+                currentTab:null,
+                tab: [true, true]
+              })
+              that.showState();
+              break;
+            case "500":  
+            case "400":  
+              var error=res.data.errorMsg;
+              wx.showModal({
+                title: '错误',
+                content: error,
+                success: function (res) {
+                  if (res.confirm) {
+                    console.log('用户点击确定');
+                  } else if (res.cancel) {
+                    console.log('用户点击取消');
+                  }
+                }
+              })
+            break;
+          }
+        },
+        fail: function () {
+          app.warning('服务器错误');
+        }   
+      });
+
+  },
 
   /**
    * 寻找活动状态
@@ -334,10 +439,9 @@ judgeSignUp(e){
     }
   },
 
-
-/**
- * 头部筛选栏触发的函数
- */
+  /**
+   * 头部筛选栏触发的函数
+   */
   tabNav(e){
     var data = [true, true],
     index = e.target.dataset.currentind;
@@ -355,7 +459,6 @@ judgeSignUp(e){
       })
     }
   },
-
 
   /**
    * 筛选项点击操作
@@ -440,10 +543,9 @@ judgeSignUp(e){
     }
   },
 
-
-/**
- * 筛选状态的接口
- */
+  /**
+   * 筛选状态的接口
+   */
   selectStateUrl:function(){
     var that=this;
     var activityStatus=that.data.activityStatus;     
@@ -457,15 +559,20 @@ judgeSignUp(e){
       }   
   },
 
-
   /**
    * 状态 请求后台
    */
   showState:function(){
     var that=this;
     var m = app.globalData.apiUrl + that.selectStateUrl();
-  
-    console.log(m);
+    that.setData({
+      currentTab:null,
+      page:0
+    });
+    //console.log(m);
+    wx.showLoading({
+      title: '正在获取数据中',
+    })
     wx.request({
       url: app.globalData.apiUrl + that.selectStateUrl(),
       method: 'GET',
@@ -474,8 +581,10 @@ judgeSignUp(e){
         'Authorization': wx.getStorageSync('server_token')
       },
       data: {
+        page:this.data.page,
         state: this.data.activityStatus,
-        activityType: this.data.activityType
+        activityType: this.data.activityType,
+        limit:5
       },
       success: function (res) {
         switch (res.data.errorCode) {
@@ -483,6 +592,7 @@ judgeSignUp(e){
             // 从后台请求数据成功之后，开始以下的操作
             that.setData({
               demoData: res.data.data.content,
+              reachBottom:true
             });          
               that.loadInfoS();        
             break;
@@ -492,9 +602,11 @@ judgeSignUp(e){
           default:
             app.warning(res.data.errorMsg);
         }
+        wx.hideLoading({});
       },
       fail: function () {
         app.warning('服务器错误');
+        wx.hideLoading({});
       }
     })
   },
@@ -505,6 +617,13 @@ judgeSignUp(e){
    */
   showSeals: function(code) {
     var that = this;
+    wx.showLoading({
+      title: '正在获取数据中',
+    })
+    that.setData({
+      currentTab:null,
+      page:0
+    });
     wx.request({
       url: app.globalData.apiUrl + '/activityEntry',
       method: 'GET',
@@ -515,6 +634,8 @@ judgeSignUp(e){
       data:{
         activityType:this.data.activityType,
         state:this.data.activityStatus,
+        page:this.data.page,
+        limit:5
       },
       success: function(res) {
         switch (res.data.errorCode) {
@@ -522,6 +643,7 @@ judgeSignUp(e){
           // 从后台请求数据成功之后，开始以下的操作
             that.setData({
               demoData: res.data.data.content,
+              reachBottom:true
             });
           
               that.loadInfoS();
@@ -533,9 +655,11 @@ judgeSignUp(e){
           default:
             app.warning(res.data.errorMsg);
         }
+        wx.hideLoading({});
       },
       fail: function() {
         app.warning('服务器错误');
+        wx.hideLoading({});
       }
     })
   }
