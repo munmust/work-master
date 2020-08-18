@@ -129,6 +129,9 @@ Page({
           app.warning('微信无法识别该二维码');
         }
         var currentTime = (new Date()).getTime();
+        if (app.globalData.timeTure == false) {
+          currentTime = app.globalData.localSetTime
+        }
         if (currentTime >= Participant_Mes.timestamp && (currentTime - Participant_Mes.timestamp)>=20000){
           app.warning('二维码已过期');
           return;

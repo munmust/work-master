@@ -21,6 +21,7 @@ Page({
         'Authorization': wx.getStorageSync('server_token')
       },
       success: function(res) {
+        console.log(res);
         switch (res.data.errorCode) {
           case "200":
             var timestr, newTimeStr;

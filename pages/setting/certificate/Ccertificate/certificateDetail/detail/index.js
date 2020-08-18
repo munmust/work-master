@@ -31,7 +31,9 @@ Page({
     teacherTwoName: '',
     description: '',
     passId: '',
-    passBtn: false
+    passBtn: false,
+    pictureUrl: '',
+    teamId: ''
   },
 
   /**
@@ -138,7 +140,9 @@ Page({
               teacherTwoNumber: data.teacher[1].teacherTwoNumber,
               teacherTwoName: data.teacher[1].teacherTwoName,
               description: data.extInfo.description,
-              certificateTime: date
+              certificateTime: date,
+              pictureUrl: data.pictureUrl,
+              teamId: data.teamId
             });
             break;
           default:
@@ -155,6 +159,13 @@ Page({
 
       }
     });
+  },
+  previewImg: function (e) {
+    let pic = e.currentTarget.dataset.src;
+    wx.previewImage({
+      urls: [pic],
+      current: pic,
+    })
   },
 /**
  * 证书审核
@@ -212,6 +223,49 @@ Page({
       }
     });
   },
+  notToPass: function () {
+    var that = this;
+    wx.showModal({
+      title: '提示',
+      content: '确定不通过该证书？',
+      success(res) {
+        if (res.confirm) {
+          wx.request({
+            url: app.globalData.apiUrl + '/certificateManager/certificate',
+            method: 'DELETE',
+            header: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+              'Authorization': wx.getStorageSync('server_token')
+            },
+            data: {
+              "certificateId": that.data.certificateId,
+              "certificateType": 'COMPETITION',
+              "teamId": that.data.teamId
+            },
+            success: function (res) {
+              console.log(res.data)
+              wx.navigateBack({});
+              wx.showToast({
+                title: '拒绝成功',
+                icon: 'success',
+                duration: 3000
+              })
+            },
+            fail: function (error) {
+              wx.showToast({
+                title: '网络错误',
+                icon: 'none',
+                duration: 3000
+              })
+            }
+          })
+        } else if (res.cancel) {
+
+        }
+      }
+    })
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

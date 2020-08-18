@@ -1,0 +1,46 @@
+/* pages/home/create1/index.wxss */
+.whole{
+  height: 710rpx;
+  width: 750rpx;
+  z-index: 5;
+}
+
+#bgimg{
+  height: 100%;
+  width: 100%;
+  z-index: 10;
+}
+
+#room{
+  height: 85rpx;
+  width: 617rpx;
+  /* background-color: blue; */
+  color: #92c7d3;
+  font-size: 40rpx;
+  z-index: 15;
+  position: absolute;
+  top: 182rpx;
+  left: 70rpx;
+  border-radius: 50rpx;
+  padding-left: 30rpx;
+  line-height: 85rpx;
+}
+
+#date{
+  height: 85rpx;
+  width: 617rpx;
+  /* background-color: blue; */
+  color: #92c7d3;
+  font-size: 40rpx;
+  z-index: 15;
+  position: absolute;
+  top: 522rpx;
+  left: 70rpx;
+  border-radius: 50rpx;
+  padding-left: 30rpx;
+  line-height: 85rpx;
+}
+
+button{
+  color: #92c7d3;
+}

@@ -36,6 +36,7 @@ Page({
     teacherLevel: '幼儿园教师资格证', //教师资格证资格
     description: '', //详情
     teacher: false, //判断显示
+    imgUrl: '../../../../../images/upload.png'
   },
   bindTypeChange(e) {
     var that = this;
@@ -215,7 +216,7 @@ Page({
     /*
       必填信息验证
     */
-    if (thank.certificateName == "" || thank.certificateUnit == "" || !check.checkCEN(thank.certificateName) || !check.checkCEN(thank.certificateUnit)) {
+    if (thank.certificateName == "" || thank.certificateUnit == "" || !check.checkCEN(thank.certificateName) || !check.checkCEN(thank.certificateUnit) || thank.imgUrl === "../../../../../images/upload.png") {
       wx.showToast({
         title: '必填信息不能为空和出现特殊字符',
         icon: 'none',
@@ -249,7 +250,7 @@ Page({
             /*
               输入了证书等级的验证
             */
-            if (thank.certificateGrade != "" && !that.checkCEN(thank.certificateGrade)) {
+            if (thank.certificateGrade != "" && !check.checkCEN(thank.certificateGrade)) {
               wx.showToast({
                 title: '证书等级不能有特殊字符',
                 icon: 'none',
@@ -298,7 +299,15 @@ Page({
                 duration: 3000
               })
             } else {
+              if (thank.imgUrl === "../../../../../images/upload.png") {
+                wx.showToast({
+                  title: "请上传证书图片",
+                  icon: "none",
+                  duration: 3000
+                });
+              } else {
               that.submitRequest();
+              }
             }
           }
         }
@@ -327,6 +336,7 @@ Page({
         "certificateNumber": thank.certificateNumber,
         "certificateOrganization": thank.certificateUnit,
         "type": thank.certificateType,
+        "pictureUrl": thank.imgUrl,
         "extInfo": {
           "description": thank.description,
           "teacherLevel": thank.teacherLevel,
@@ -362,6 +372,69 @@ Page({
         })
       }
     })
+  },
+  changeCertificateImg: function () {
+    var that = this;
+    let date = wx.getStorageSync('date');
+    let timeMap = wx.getStorageSync('timeMap');
+    // console.log(timeMap);
+    if (timeMap[date] === undefined) {
+      timeMap[date] = 0;
+    }
+    if (timeMap[date] >= 10) {
+      wx.showModal({
+        title: '上传次数超过限制~',
+        content: '上传次数超过限制~，请您隔天再上传哦~'
+      })
+    } else {
+    wx.chooseImage({
+      count: 1,
+      sizeType: ['compressed'],
+      sourceType: ['album', 'camera'],
+      success: ret => {
+        var filePath = ret.tempFilePaths[0];
+        let time = Date.parse(new Date());
+        console.log(time);
+        let fileName = app.globalData.stuId + "-" + time + ".png";
+        console.log(fileName);
+        console.log(filePath);
+        wx.showLoading({
+          title: '正在上传',
+        })
+        that.setData({
+          status: '上传中'
+        })
+        wx.uploadFile({
+          url: app.globalData.apiUrl+'/common/aliyun',
+          filePath: filePath,
+          name: 'file',
+          formData: {
+            'fileName': fileName
+          },
+          success: res => {
+            wx.showToast({
+              title: '图片上传成功'
+            });
+            timeMap[date] = timeMap[date] + 1;
+            wx.setStorageSync('timeMap', timeMap);
+            that.setData({
+              status: '上传成功'
+            })
+            console.log(res);
+            let data = JSON.parse(res.data);
+            console.log(data);
+            that.setData({
+              imgUrl: data.data.path
+            })
+          },
+          fail: error => {
+            wx.showToast({
+              title: '上传失败',
+            })
+          }
+        });
+      }
+    })}
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

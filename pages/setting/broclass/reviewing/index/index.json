@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "审核中",
+  "usingComponents": {
+    "wux-card": "/dist/card/index"
+  }
+}

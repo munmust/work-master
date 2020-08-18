@@ -29,7 +29,8 @@ Page({
     teacherTwoNumber: '',
     teacherOneName: '',
     teacherTwoName: '',
-    description: ''
+    description: '',
+    imgUrl: '../../../../../images/upload.png'
   },
 
   /**
@@ -234,7 +235,15 @@ Page({
                 duration: 3000
               })
             } else {
+              if (thank.imgUrl === "../../../../../images/upload.png") {
+                wx.showToast({
+                  title: "请上传证书图片",
+                  icon: "none",
+                  duration: 3000
+                });
+              }else{
               that.submitRequest();
+              }
             }
           }
         }
@@ -286,6 +295,7 @@ Page({
         "teamName": thank.TeamName,
         "workUserId": workers,
         "teacher": teacher,
+        "pictureUrl": thank.imgUrl,
         "extInfo": {
           "description": thank.description,
         }
@@ -320,6 +330,71 @@ Page({
       }
     })
 
+  },
+
+  changeCertificateImg: function () {
+    var that = this;
+    let date = wx.getStorageSync('date');
+    let timeMap = wx.getStorageSync('timeMap');
+    // console.log(timeMap);
+    if (timeMap[date] === undefined) {
+      timeMap[date] = 0;
+    }
+    if (timeMap[date] >= 10) {
+      wx.showModal({
+        title: '上传次数超过限制~',
+        content: '上传次数超过限制~，请您隔天再上传哦~'
+      })
+    } else {
+    wx.chooseImage({
+      count: 1,
+      sizeType: ['compressed'],
+      sourceType: ['album', 'camera'],
+      success: ret => {
+        var filePath = ret.tempFilePaths[0];
+        let time = Date.parse(new Date());
+        console.log(time);
+        let fileName = app.globalData.stuId + "-" + time + ".png";
+        console.log(fileName);
+        console.log(filePath);
+        wx.showLoading({
+          title: '正在上传',
+        })
+        that.setData({
+          status: '上传中'
+        })
+        wx.uploadFile({
+          url: app.globalData.apiUrl+'/common/aliyun',
+          filePath: filePath,
+          name: 'file',
+          formData: {
+            'fileName': fileName
+          },
+          success: res => {
+            wx.showToast({
+              title: '图片上传成功'
+            });
+            timeMap[date] = timeMap[date] + 1;
+            wx.setStorageSync('timeMap', timeMap);
+            that.setData({
+              status: '上传成功'
+            })
+            console.log(res);
+            let data = JSON.parse(res.data);
+            console.log(data);
+            that.setData({
+              imgUrl: data.data.path
+            })
+          },
+          fail: error => {
+            wx.showToast({
+              title: '上传失败',
+            })
+          }
+        });
+      }
+    })
+    }
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

@@ -25,7 +25,7 @@ Page({
           case "200":
             var map = {},
               dest = [];
-            for (var i = 0; i < res.data.data.length; i++) {
+            for (var i = 0; i < res.data.data.length; i++) {//垃圾代码
               var ai = res.data.data[i];
               if (!map[ai.firstAlpha]) {
                 dest.push({
@@ -36,8 +36,8 @@ Page({
               } else {
                 for (var j = 0; j < dest.length; j++) {
                   var dj = dest[j];
-                  if (dj.firstAlpha == ai.firstAlpha) {
-                    dj.data.push(ai);
+                  if (dj.title == ai.firstAlpha) {
+                    dj.item.push(ai);
                     break;
                   }
                 }

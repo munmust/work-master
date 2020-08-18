@@ -1,0 +1,6 @@
+<!--pages/setting/broclass/leaguesearch/index/index.wxml-->
+<view>
+    <function-bar title="已通过" subtitle="审核已经通过的申请" color="color_green" bindmytap="toSucceed" data-type="" imgSrc=""/>
+
+    <function-bar title="已取消" subtitle="已被取消的申请" color="color_magenta" bindmytap="toCancel" data-type="" imgSrc=""/>
+</view>

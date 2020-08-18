@@ -32,3 +32,11 @@
 .inputW{
   padding-left:30rpx; 
  }
+ .img_upload{
+  text-align: center;
+  height:150px;
+}
+.img_upload .certificate-img{
+  width: 100%;
+  height:150px; 
+}

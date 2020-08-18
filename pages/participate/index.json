@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "志愿活动",
+  "navigationBarTitleText": "活动报名详情",
   "usingComponents": {
     "wux-card": "../../dist/card/index",
     "wux-wing-blank": "../../dist/wing-blank/index",

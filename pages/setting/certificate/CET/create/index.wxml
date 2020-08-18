@@ -23,6 +23,11 @@
         </view>
         </wux-cell>
       </wux-cell-group>
+      <wux-cell-group title='证书图片上传'>
+    <wux-cell  class="img_upload">
+        <image class="certificate_mage"  src="{{imgUrl}}" bindtap='changeCertificateImg' />
+     </wux-cell>
+    </wux-cell-group>
          <wux-cell-group title='证书详情'>
     <wux-cell>
       <wux-textarea  rows="3" maxlength="200" cursorSpacing="80" placeholder="请输入证书上的全部信息" data-name='description' bind:change='input' />

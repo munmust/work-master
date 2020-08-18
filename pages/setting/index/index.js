@@ -21,13 +21,16 @@ Page({
       url: '../borrow/index/index',
     })
   },
-
+  toBorClass:function(){
+    wx.navigateTo({
+      url: '../broclass/index/index',
+    })
+  },
   toFinance: function () {
     wx.navigateTo({
       url: '../finManage/orglist/index',
     })
   },
-
   toChangePwd: function() {
     wx.navigateTo({
       url: '../cgPwd/index',
@@ -51,16 +54,9 @@ Page({
       }
     })
   },
-
   toCertificate: function () {
     wx.navigateTo({
       url: '../certificate/index/index',
-    })
-  },
-
-  toRegistrationManager: function(){
-    wx.navigateTo({
-      url: '../registrationManager/activity/index',
     })
   },
 

@@ -72,7 +72,19 @@ Page({
     }, {
       'id': '4',
       'title': '2018第2学期'
-    }],
+      }, {
+        'id': '5',
+        'title': '2019第1学期'
+      }, {
+        'id': '6',
+        'title': '2019第2学期'
+      }, {
+        'id': '7',
+        'title': '2020第1学期'
+      }, {
+        'id': '8',
+        'title': '2020第2学期'
+      }],
     currentTab: null
   },
 
@@ -381,6 +393,18 @@ Page({
       case '4':
         termIndex = '2018B';
         break;
+      case '5':
+        termIndex = '2019A';
+        break;
+      case '6':
+        termIndex = '2019B';
+        break;
+      case '7':
+        termIndex = '2020A';
+        break;
+      case '8':
+        termIndex = '2020B';
+        break;
     }
 
     if (type != 'volunteerWork' && type != 'party'){
@@ -409,6 +433,7 @@ Page({
             // //将获取的活动列表保存
             showPage = that.data.showPage;
             var contentTemp = res.data.data.content;
+            console.log(contentTemp);
             that.setData({
               listData: contentTemp
             });
@@ -431,6 +456,7 @@ Page({
                   hasMoreData: hasMoreDataTemp,
                   page: pageTemp
                 })
+
                 break;
               case 2:
                 that.setData({

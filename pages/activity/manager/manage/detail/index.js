@@ -8,6 +8,7 @@ Page({
   },
   onLoad: function (options) {
     var jsonStr = options.mes;
+    console.log(jsonStr)
     var detail = JSON.parse(jsonStr);
     this.setData({
       activityId: detail.activityId
@@ -67,7 +68,6 @@ Page({
 
   toRegistration() {
     var that = this;
-    console.log("123");
     wx.navigateTo({
       url: '/pages/setting/registrationManager/registration/index?activityId=' + that.data.activityId
     })

@@ -3,6 +3,7 @@
   "usingComponents": {
     "wux-backdrop": "../../../dist/backdrop/index",
     "wux-divider": "../../../dist/divider/index",
-    "function-bar": "../../../dist/function-bar/index"
+    "function-bar": "../../../dist/function-bar/index",
+    "wux-select": "../../../dist/select/index"
   }
 }

@@ -1,0 +1,4 @@
+<!--pages/setting/certificate/import/index.wxml-->
+ <function-bar title="上传技能证书excel" subtitle="" color="color_blue" bindmytap="chooseExcelSkill" imgSrc="../../images/schoolact.png" />
+ <function-bar title="上传四六级excel" subtitle="" color="color_blue" bindmytap="chooseExcelCET" imgSrc="../../images/schoolact.png" />
+ <function-bar title="上传竞赛excel" subtitle="" color="color_blue" bindmytap="chooseExcelCompetition" imgSrc="../../images/schoolact.png" />

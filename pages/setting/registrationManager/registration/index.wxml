@@ -64,7 +64,7 @@
     </wux-cell-group>
   <wux-cell-group title='说明'>
     <wux-cell>
-    <textarea row="3" maxlength="200" cursor-spacing="70" placeholder="请输入活动说明()" data-name='description' bindinput="bindTextAreaChange" value='{{description}}' disabled='{{isDisabled}}'></textarea>
+    <textarea row="3" maxlength="200" cursor-spacing="70" placeholder="请输入活动说明" data-name='description' bindinput="bindTextAreaChange" value='{{description}}' disabled='{{isDisabled}}'></textarea>
     </wux-cell>
   </wux-cell-group>
 <view> 

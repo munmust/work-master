@@ -31,6 +31,11 @@
           <wux-cell title="证书等级" extra="{{rank}}">
           </wux-cell>
     </wux-cell-group>
+      <wux-cell-group title='证书图片'>
+    <wux-cell  class="img_upload">
+        <image class="certificate_mage"  src="{{pictureUrl}}" data-src='{{pictureUrl}}' bindtap='previewImg' />
+     </wux-cell>
+    </wux-cell-group>
   <wux-cell-group title='证书详情'>
     <wux-cell>
       <wux-textarea disabled  rows="3" cursorSpacing="80" placeholder="{{description}}" data-name='description' value="{{description}}" bind:change='input' />
@@ -38,4 +43,5 @@
   </wux-cell-group>
     <wux-white-space size='large' /> 
   <wux-button wx:if="{{passBtn}}" block type='positive' bind:click='toPass'>通过</wux-button>
+  <wux-button wx:if="{{passBtn}}" block type='positive' bind:click='notToPass'>不通过</wux-button>
 </wux-wing-blank>

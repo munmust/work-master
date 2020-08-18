@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "报名",
+  "navigationBarTitleText": "活动报名发布",
   "usingComponents": {
     "wux-cell-group": "../../../../dist/cell-group/index",
     "wux-cell": "../../../../dist/cell/index",

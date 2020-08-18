@@ -16,7 +16,8 @@ Page({
     endTime: false,
     certificateId: '',
     passId: '',
-    passBtn: false
+    passBtn: false,
+    pictureUrl: ''
   },
 
   /**
@@ -66,6 +67,7 @@ Page({
               certificateGrade: res.data.data.rank,
               certificateOrganization: res.data.data.certificateOrganization,
               description: res.data.data.extInfo.description,
+              pictureUrl: res.data.data.pictureUrl,
               certificateTime: startTime,
               certificateEndTime: endTime
             })
@@ -94,6 +96,13 @@ Page({
           duration: 3000
         })
       }
+    })
+  },
+  previewImg: function (e) {
+    let pic = e.currentTarget.dataset.src;
+    wx.previewImage({
+      urls: [pic],
+      current: pic,
     })
   },
   toPass: function () {
@@ -135,7 +144,46 @@ Page({
         }
       }
     });
+  },
+  notToPass: function () {
+    var that = this;
+    wx.showModal({
+      title: '提示',
+      content: '确定不通过该证书？',
+      success(res) {
+        if (res.confirm) {
+          wx.request({
+            url: app.globalData.apiUrl + '/certificateManager/certificate',
+            method: 'DELETE',
+            header: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+              'Authorization': wx.getStorageSync('server_token')
+            },
+            data: {
+              certificateId: that.data.certificateId,
+              certificateType: 'SKILL',
+            },
+            success: function (res) {
+              wx.navigateBack({});
+              wx.showToast({
+                title: '拒绝成功',
+                icon: 'success',
+                duration: 3000
+              })
+            },
+            fail: function (error) {
+              wx.showToast({
+                title: '网络错误',
+                icon: 'none',
+                duration: 3000
+              })
+            }
+          })
+        } else if (res.cancel) {
 
+        }
+      }
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

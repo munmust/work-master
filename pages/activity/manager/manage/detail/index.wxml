@@ -19,7 +19,6 @@
   </wux-cell-group>
     <view> 
         <wux-white-space size='large' />
-        <button class='add-li' type='positive' bindtap="judgeActivity">报名管理</button>
+        <button class='add-li' type='positive' bindtap="judgeActivity">创建报名</button>
     </view>
-     
 </wux-wing-blank>

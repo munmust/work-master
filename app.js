@@ -6,6 +6,8 @@
 App({
   globalData: {
     roleInfo:     null,
+    timeTure: true,
+    localSetTime: null,
     power:null,
     code:     null,
     stuId:    null,
@@ -13,8 +15,9 @@ App({
     major:null,
     classId:null,
     grade:null,
-    apiUrl: 'http://www.supersuperz.top:8000'
-    //apiUrl: 'http://119.23.188.92:8000'
+    apiUrl:   'https://project.supersuperz.top'
+    // apiUrl: 'http://120.79.91.97:8666'
+    // apiUrl: 'http://47.100.214.92:7009'
   },
 
   onLaunch: function () {
@@ -46,12 +49,17 @@ App({
         }
       })
     }
-
     var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
+    logs.unshift(Date.now());
+    wx.setStorageSync('logs', logs);
+    /**
+     * 作为图传次数保护
+     */
+    let now = new Date();
+    now = now.getFullYear() + "-" + (now.getMonth() + 1) + "-" + now.getDate();
+    wx.setStorageSync('date', now);
+    wx.setStorageSync('timeMap',{});
   },
-
   getCode:function(callback){
     wx.login({
       success: function (res) {

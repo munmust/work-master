@@ -43,6 +43,18 @@ Page({
                 case '2018B':
                   res.data.data.activityStamps[i].term = '2018-2019 第二学期'
                   break;
+                case '2019A':
+                  res.data.data.activityStamps[i].term = '2019-2020 第一学期'
+                  break;
+                case '2019B':
+                  res.data.data.activityStamps[i].term = '2019-2020 第二学期'
+                  break;
+                case '2020A':
+                  res.data.data.activityStamps[i].term = '2020-2021 第一学期'
+                  break;
+                case '2020B':
+                  res.data.data.activityStamps[i].term = '2020-2021 第二学期'
+                  break;
               }
             }
             // //计算时长

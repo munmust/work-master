@@ -12,7 +12,7 @@
 		"autoAudits": false
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.10.2",
+	"libVersion": "2.5.2",
 	"appid": "wx3aa5e66df33899ac",
 	"projectname": "%E7%AC%AC%E4%BA%8C%E8%AF%BE%E5%A0%82",
 	"isGameTourist": false,

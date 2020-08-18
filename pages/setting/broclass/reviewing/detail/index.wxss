@@ -1,0 +1,23 @@
+/* pages/home/reviewing/detail/index.wxss */
+
+.main{
+  display: flex;
+  justify-content: center;
+}
+
+
+
+.bd{
+  background: #40a9ff;
+  color: white;
+  position: relative;
+  border-radius: 10px;
+  top: 20rpx;
+  width: 90%;  
+  
+}
+
+.cancel{
+  position: relative;
+  top: 50rpx;
+}

@@ -192,7 +192,6 @@ Page({
                 icon: 'none',
                 duration: 2000
               })
-
             }
             console.log(arr2);
             arr1 = arr1.concat(arr2); //合并数组
@@ -332,6 +331,7 @@ Page({
   signUp(status, activityId){
     wx.showLoading({
       title: '正在报名中',
+      mask:true
     })
     var that=this;
     if (status == "REGISTRATION"){  
@@ -346,7 +346,7 @@ Page({
             activityEntryId: activityId,
           },
           success: function (res) {
-            console.log(res.data)
+            //console.log(res.data)
             switch (res.data.errorCode){
               case "200":
                 wx.showToast({

@@ -1,0 +1,142 @@
+/* pages/home/form/index.wxss */
+
+.star{
+  color: red;
+}
+
+#notice{
+  background-color: #f8f1cf5d;
+  border-radius: 20rpx;
+}
+
+#line1{
+  width: 160rpx;
+  height: 25rpx;
+  background: #88f2ef;
+  position: absolute;
+  left: 80rpx;
+  top: 55rpx;
+  z-index: 1;
+}
+
+.line2{
+  width: 130rpx;
+  height: 15rpx;
+  background: #88f2ef;
+  position: absolute;
+  z-index: 1;
+  top: 27rpx;
+}
+
+#line3{
+  width: 65rpx;
+  height: 15rpx;
+  background: #88f2ef;
+  position: absolute;
+  z-index: 1;
+  top: 27rpx;
+}
+
+#line4{
+  width: 65rpx;
+  height: 15rpx;
+  background: #88f2ef;
+  position: absolute;
+  z-index: 1;
+  top: 27rpx;
+}
+
+#line5{
+  width: 230rpx;
+  height: 15rpx;
+  background: #88f2ef;
+  position: absolute;
+  z-index: 1;
+  top: 27rpx;
+}
+
+.text{
+  font-size: 28rpx;
+  color:#727272;
+  z-index: 2;
+  position: relative;
+  top: 20rpx;
+  left: 80rpx;
+}
+
+#title1{
+  font-size: 40rpx;
+  color: #5a7775;
+  position: relative;
+  padding-left: 80rpx;
+  z-index: 2;
+  top: 30rpx;
+}
+
+.input{
+  margin-top: 20rpx;
+  position: relative;
+  left: 80rpx;
+}
+
+.title{
+  color: #333333;
+  font-size: 34rpx;
+  z-index: 2;
+  position: relative;
+}
+
+.detail{
+  color: rgb(80, 75, 75);
+  font-size: 28rpx;
+  position: relative;
+  top : 2rpx;
+  z-index: 2;
+}
+
+input{
+  position: relative;
+  top: 10rpx;
+  background:ghostwhite;
+  border-radius: 10px;
+  width: 600rpx;
+}
+
+textarea{
+  position: relative;
+  height: 150rpx;
+  top: 10rpx;
+  background:ghostwhite;
+  border-radius: 10px;
+  width: 600rpx;
+}
+
+#photo{
+  height: 300rpx;
+  width: 80%;
+  
+}
+
+#submit{
+  width: 300rpx;
+  height: 100rpx;
+  margin-top: 20rpx;
+  position: relative;
+  left: 230rpx;
+}
+
+#btnimg{
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+#btntext{
+  position: absolute;
+  font-size: 30rpx;
+  width: 300rpx;
+  height: 100rpx;
+  text-align: center;
+  line-height: 100rpx;
+  
+}

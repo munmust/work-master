@@ -6,6 +6,7 @@
 import {
   $wuxBackdrop
 } from '../../../dist/index';
+import { $wuxSelect } from '../../../dist/index'
 var QR = require('../../../func/qrcode.js'); //生成二维码用的js文件
 var util = require('../../../func/base64.js');
 const app = getApp();
@@ -14,22 +15,41 @@ Page({
 
   data: {
     display_qrcode: '',
-    total:0
+    job:'请选择你的职务',
+    total:0,
+    showJob:false
   },
 
   onLoad: function() {
     //获取背景幕
     this.$wuxBackdrop = $wuxBackdrop();
+
+    if (wx.getStorageSync('jobInfo').length!=0){
+      this.setData({showJob:true})
+    }
+
+    if (wx.getStorageSync('jobInfo').length == 1) {
+      if (!(wx.getStorageSync('job'))){
+        var jobs = wx.getStorageSync('jobInfo')
+        wx.setStorageSync('job', jobs[0]);
+        this.setData({ job: jobs[0] })
+      }
+    }
+
+    if (wx.getStorageSync('job')){
+      this.setData({ job: wx.getStorageSync('job')})
+    }
     this.setData({
       stuName: app.globalData.realName,
       stuId: app.globalData.stuId,
       major: app.globalData.major,
       classId: app.globalData.classId,
       grade: app.globalData.grade,
-      roleInfo: app.globalData.roleInfo,
+      roleInfo: app.globalData.roleInfo
     });
     //活动章分配开放
     this.getStamp();
+    
     this.showFunctions();
   },
   onShow:function(){
@@ -38,33 +58,6 @@ Page({
       classId: app.globalData.classId,
       grade: app.globalData.grade,
     });
-    //获取信用分
-    this.getCreditScore();
-  },
-
-  //获取信用分
-  getCreditScore:function(){
-    var that = this;
-    wx.request({
-      url: app.globalData.apiUrl +'/user/creditScore',
-      method: 'GET',
-      header: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'Authorization': wx.getStorageSync('server_token')
-      },
-      data:{
-        term: '',
-      },
-      success: function (res) {
-        //console.log("这是："+res.data.data);
-        that.setData({
-          creditScore: res.data.data
-        });
-      },
-      fail: function () {
-        app.warning('服务器错误');
-      }
-    })
   },
 
   //以往活动章获取
@@ -98,9 +91,28 @@ Page({
       }
     })
   },
+  chooseJob:function(){
+    if (!(wx.getStorageSync('jobInfo').length == 1)){
+      var jobs = wx.getStorageSync('jobInfo');
+      $wuxSelect('#wux-select1').open({
+        options: jobs,
+        onConfirm: (value, index, options) => {
+          if (index !== -1) {
+            this.setData({
+              job: options[index]
+            })
+            wx.setStorageSync('job', options[index]);
+          }
+        },
+      })
+    }
+  },
 
   showPersonal: function() {
     var time = (new Date()).getTime();
+    if (app.globalData.timeTure == false) {
+      time = app.globalData.localSetTime
+    }
     var mes = {
       "legal": 'No2Class',
       "stuId": app.globalData.stuId,
@@ -193,6 +205,7 @@ Page({
   },
 
   toggleQrCode: function() {
+    
     if(this.data.show!='isshow'){
       if (this.data.display_qrcode != 'qrcode_show') { //如果未显示
         this.holdTime();

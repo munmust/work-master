@@ -124,7 +124,11 @@ Page({
         '2017-2018 第一学期',
         '2017-2018 第二学期',
         '2018-2019 第一学期',
-        '2018-2019 第二学期'
+        '2018-2019 第二学期',
+        '2019-2020 第一学期',
+        '2019-2020 第二学期',
+        // '2020-2021 第一学期',
+        // '2020-2021 第二学期',
       ],
       onConfirm: (value, index, options) => {
         if (index !== -1) {
@@ -144,6 +148,18 @@ Page({
             break;
           case '2018-2019 第二学期':
             that.data.term = '2018B';
+            break;
+          case '2019-2020 第一学期':
+            that.data.term='2019A';
+            break;
+          case '2019-2020 第二学期':
+            that.data.term='2019B';
+            break;
+          case '2020-2021 第一学期':
+            that.data.term='2020A';
+            break;
+          case '2020-2021 第二学期':
+            that.data.term='2020B';
             break;
         }
       },

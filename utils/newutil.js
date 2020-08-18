@@ -11,6 +11,7 @@ function formatTime(date) {
   return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
 }
 function getYM(data){
+  
   var year=data.getFullYear();
   var month=data.getMonth()+1;
   return [year,month].map(formatNumber).join('-');

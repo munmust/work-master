@@ -12,7 +12,8 @@ Page({
     certificateTime: '',
     description: '',
     passBtn: false,
-    passId: ''
+    passId: '',
+    pictureUrl:''
   },
 
   /**
@@ -45,13 +46,15 @@ Page({
       success: function (res) {
         switch (res.data.errorCode) {
           case '200':
+          console.log(res);
             let date = util.getYM(new Date(res.data.data.certificatePublishTime));
             that.setData({
               certificateId: res.data.data.certificateId,
               certificateType: res.data.data.rank,
               certificateGrade: res.data.data.certificateGrade,
               description: res.data.data.extInfo.description,
-              certificateTime: date
+              certificateTime: date,
+              pictureUrl: res.data.data.pictureUrl
             })
             break;
           default:
@@ -59,8 +62,15 @@ Page({
         }
       },
       fail: function (error) {
-
+    
       }
+    })
+  },
+  previewImg:function(e){
+    let pic = e.currentTarget.dataset.src;
+    wx.previewImage({
+      urls:[pic],
+      current: pic,               
     })
   },
   toPass: function () {
@@ -102,6 +112,47 @@ Page({
         }
       }
     });
+  },
+  notToPass: function () {
+    var that = this;
+    wx.showModal({
+      title: '提示',
+      content: '确定不通过该证书？',
+      success(res) {
+        if (res.confirm) {
+          wx.request({
+            url: app.globalData.apiUrl + '/certificateManager/certificate',
+            method: 'DELETE',
+            header: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+              'Authorization': wx.getStorageSync('server_token')
+            },
+            data: {
+              certificateId: that.data.certificateId,
+              certificateType: 'CET_4_6',
+            },
+            success: function (res) {
+              console.log(res.data)
+              wx.navigateBack({});
+              wx.showToast({
+                title: '拒绝成功',
+                icon: 'success',
+                duration: 3000
+              })
+            },
+            fail: function (error) {
+              wx.showToast({
+                title: '网络错误',
+                icon: 'none',
+                duration: 3000
+              })
+            }
+          })
+        } else if (res.cancel) {
+
+        }
+      }
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

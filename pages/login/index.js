@@ -49,6 +49,8 @@ Page({
 
   reallogin: function (code) {
     var that = this;
+    wx.setStorageSync('jobInfo', []);
+    wx.removeStorageSync('job');
     //登录
     wx.request({
       url: app.globalData.apiUrl + '/user/openId',
@@ -64,6 +66,7 @@ Page({
           case "200":
           console.log(res);
             wx.setStorageSync('server_token', res.data.data.token);
+            wx.setStorageSync('jobInfo', res.data.data.jobInfo);
             var token = wx.getStorageSync('server_token');
             app.globalData.stuId = res.data.data.userInfo.stuId;
             app.globalData.realName = res.data.data.userInfo.realName;

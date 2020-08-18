@@ -94,7 +94,6 @@ Page({
    * 删除证书
    */
   toDelete: function () {
-
     var that = this;
     wx.showModal({
       title: '提示',

@@ -1,0 +1,71 @@
+<!--pages/home/leaguecheck/detail/index.wxml-->
+<view class="main">
+  <view class="bd">
+
+    <view>
+      <text class='title' decode='{{true}}'>&nbsp;&nbsp;姓名:</text>
+      <text class='content' decode='{{true}}'>&nbsp;&nbsp;{{queryBean.userName}}</text>
+    </view>
+
+    <view>
+      <text class='title' decode='{{true}}'>&nbsp;&nbsp;联系电话:</text>
+      <text class='content' decode='{{true}}'>&nbsp;&nbsp;{{queryBean.tel}}</text>
+    </view>
+
+    <view>
+      <text class='title' decode='{{true}}'>&nbsp;&nbsp;所属部门:</text>
+      <text class='content' decode='{{true}}'>&nbsp;&nbsp;{{queryBean.organizationName}}</text>
+    </view>
+
+    <view>
+      <text class='title' decode='{{true}}'>&nbsp;&nbsp;借用场地:</text>
+      <text class='content' decode='{{true}}'>&nbsp;&nbsp;{{queryBean.localeCode}}</text>
+    </view>
+
+    <view>
+      <text class='title' decode='{{true}}'>&nbsp;&nbsp;借用日期:</text>
+      <text class='content' decode='{{true}}'>&nbsp;&nbsp;{{queryBean.timeDate}}</text>
+    </view>
+
+    <view>
+      <text class='title' decode='{{true}}'>&nbsp;&nbsp;借用时间段:</text>
+      <text class='content' decode='{{true}}'>&nbsp;&nbsp;{{queryBean.timeBucket}}</text>
+    </view>
+
+    <view>
+      <text class='title' decode='{{true}}'>&nbsp;&nbsp;用途:</text>
+      <text class='content' decode='{{true}}'>&nbsp;&nbsp;{{queryBean.usages}}</text>
+    </view>
+    <view>
+      <text class='title' decode='{{true}}'>&nbsp;&nbsp;备注:</text>
+      <text class='content' decode='{{true}}'>&nbsp;&nbsp;{{queryBean.remark}}</text>
+    </view>
+  </view>
+  
+</view>
+<view class="decide">
+  <button bindtap='pass'>
+    <view>通过</view>
+  </button>
+
+  <button bindtap='deny'>
+    <view>不通过</view>
+  </button>
+</view>
+
+<view class="maskWindow" wx:if="{{isMaskWindowShow}}" catchtap="maskWindowBgClick" catchtouchmove="move">
+  <view class="maskWindowContent" catchtap="clickTap">
+    <text class="maskWindowTitleText" >取消原因（可选）</text>
+    <view class="maskWindowList" wx:for="{{maskWindowList}}" wx:for-index="index" wx:if="{{index%2===0}}">
+        <view class="maskWindowText {{index == selectIndex? 'maskWindowText_selected' : 'maskWindowText_unselected'}}" catchtap="maskWindowTableSelect" data-window-Index="{{index}}">{{maskWindowList[index]}}</view>
+        <view class="maskWindowText {{index + 1 == selectIndex? 'maskWindowText_selected' : 'maskWindowText_unselected'}}" catchtap="maskWindowTableSelect" data-window-Index="{{index+1}}">{{maskWindowList[index+1]}}</view>
+    </view>
+    <view class="maskWindowInputView">
+      <input class="maskWindowInput" maxlength="100" placeholder="请输入其他原因" hidden="{{!isMaskWindowInputShow}}" bindinput="maskWindowInput"></input>
+    </view>
+    <view class="maskWindowBtnView">
+      <view class="maskWindowBtn" catchtap="maskWindowOk">确定</view>
+      <view class="maskWindowBtn" catchtap="maskWindowCancel">取消</view>
+    </view>
+  </view>
+</view>

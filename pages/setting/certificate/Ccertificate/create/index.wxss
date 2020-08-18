@@ -22,3 +22,25 @@
   textarea {
     width: 600rpx;
   }
+    .img_upload{
+    text-align: center;
+    height:150px;
+  }
+  .img_upload .certificate-img{
+    width: 100%;
+    height:150px; 
+  }
+
+.picker {
+  width: 400rpx;
+}
+
+.key{
+  color: black;
+}
+
+.certificate_mage{
+  align-items: center;
+  height:200rpx;
+  width:200rpx;
+}

@@ -6,46 +6,65 @@ page {
 
 .user_info {
   width: 750rpx;
-  height: 150rpx;
+  height: 170rpx;
   padding-top: 50rpx;
   background-color: #2980b9;
+}
+
+.user_pro{
+  width: 150rpx;
+  height: 170rpx;
+  margin-left: 30rpx;
+  float: left;
 }
 
 .user_avatar {
   width: 130rpx;
   height: 130rpx;
-  margin-left: 50rpx;
   border-radius: 50%;
-  float: left;
-  margin-right: 50rpx;
   background-color: white;
 }
 
 .user_info_detail {
-  width: 560rpx;
+  float: left;
+  width: 440rpx;
   height: 170rpx;
-  margin-left: 80rpx;
   color: white;
 }
 
 .qrcode_switch {
-  width: 750rpx;
-  height: 80rpx;
-  background-color: #2980b9;
+  float: right;
+  width: 120rpx;
+  height: 170rpx;
 }
 
-.qrcode_switch image {
-  width: 50rpx;
-  height: 50rpx;
+.qrcode_image1 {
+  width: 60rpx;
+  height: 60rpx;
+  margin-top: 50rpx;
+  float: left;
+}
+.qrcode_image2 {
+  width: 15rpx;
+  height: 15rpx;
+  margin-top: 50rpx;
   float: right;
-  margin-right: 40rpx;
-  margin-bottom: 10rpx;
+}
+
+.thejob{
+  width: 750rpx;
+  padding-bottom: 30rpx;
+  background-color: #2980b9;
+  color: white;
+}
+
+.job{
+  margin-left: 180rpx;
 }
 
 .features {
   width: 750rpx;
   margin-top: 10rpx;
-  z-index: 1;
 }
 
 .teacher {
@@ -74,6 +93,10 @@ page {
   margin: 20rpx 20rpx 0;
   border-radius: 5rpx;
   box-shadow: 5rpx 5rpx 5rpx black;
+}
+.qrcode{
+  width:20px;
+  height: 20px;
 }
 /* 
 .color-school {

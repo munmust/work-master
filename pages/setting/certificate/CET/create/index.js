@@ -14,7 +14,8 @@ Page({
     certificateType: 'CET_4',
     description: '',
     certificateStart: '2000-01', //时间选择最早时间
-    certificateTime: '',
+    certificateTime: '',    
+    imgUrl:'../../../../../images/upload.png',
   },
   input: function (e) {
     var that = this;
@@ -89,56 +90,66 @@ Page({
                 icon: "none",
                 duration: 3000
               });
-            } else {
-              wx.request({
-                url: app.globalData.apiUrl + '/certificate',
-                method: "POST",
-                header: {
-                  'Content-Type': 'application/json',
-                  'Authorization': wx.getStorageSync('server_token')
-                },
-                data: {
-                  "certificatePublishTime": certificatePublishTime.getTime(),
-                  "certificateType": "CET_4_6",
-                  "rank": thank.certificateType,
-                  "certificateGrade": thank.certificateGrade,
-                  "extInfo": {
-                    "description": thank.description
-                  }
-                },
-                success: function (res) {
-                  switch (res.data.errorCode) {
-                    case '200':
-                      wx.redirectTo({
-                        url: '../index/index',
-                      })
-                      wx.showToast({
-                        title: '创建成功',
-                        icon: 'success',
-                        duration: 3000
-                      })
-                      break;
-                    default:
-                      wx.showToast({
-                        title: res.data.errorMsg,
-                        icon: 'none',
-                        duration: 3000
-                      })
-                      break;
-                  }
+            } else{
+              if(thank.imgUrl==="../../../../../images/upload.png"){
+                wx.showToast({
+                  title: "请上传证书图片",
+                  icon: "none",
+                  duration: 3000
+                });
+              }else{
+                wx.request({
+                  url: app.globalData.apiUrl + '/certificate',
+                  method: "POST",
+                  header: {
+                    'Content-Type': 'application/json',
+                    'Authorization': wx.getStorageSync('server_token')
+                  },
+                  data: {
+                    "certificatePublishTime": certificatePublishTime.getTime(),
+                    "certificateType": "CET_4_6",
+                    "rank": thank.certificateType,
+                    "pictureUrl":thank.imgUrl,
+                    "certificateGrade": thank.certificateGrade,
+                    "extInfo": {
+                      "description": thank.description
+                    }
+                  },
+                  success: function (res) {
+                    switch (res.data.errorCode) {
+                      case '200':
+                        wx.redirectTo({
+                          url: '../index/index',
+                        })
+                        wx.showToast({
+                          title: '创建成功',
+                          icon: 'success',
+                          duration: 3000
+                        })
+                        break;
+                      default:
+                        wx.showToast({
+                          title: res.data.errorMsg,
+                          icon: 'none',
+                          duration: 3000
+                        })
+                        break;
+                    }
 
-                },
-                fail: function (error) {
-                  wx.showToast({
-                    title: '创建失败',
-                    icon: 'none',
-                    duration: 3000
-                  })
-                }
-              })
+                  },
+                  fail: function (error) {
+                    wx.showToast({
+                      title: '创建失败',
+                      icon: 'none',
+                      duration: 3000
+                    })
+                  }
+                })
+              }
+             
+            }
             }
           }
-        }
       }
     }
 
@@ -162,6 +173,67 @@ Page({
     this.setData({
       'certificateTime': e.detail.value,
     });
+  },
+  changeCertificateImg:function(){
+    var that=this; 
+    let date=wx.getStorageSync('date');
+    let timeMap = wx.getStorageSync('timeMap');
+    // console.log(timeMap);
+    if (timeMap[date] === undefined){
+      timeMap[date]=0;
+    }
+    if(timeMap[date]>=10){
+      wx.showModal({
+        title: '上传次数超过限制~',
+        content: '上传次数超过限制~，请您隔天再上传哦~'
+      })
+    }else{
+      console.log("ok");
+    wx.chooseImage({
+      count:1,
+      sizeType: ['compressed'],
+      sourceType: ['album', 'camera'],
+      success: ret => {
+        var filePath = ret.tempFilePaths[0];
+        let time = Date.parse(new Date());
+        console.log(time);
+        let fileName = app.globalData.stuId+"-"+time+".png";
+        console.log(fileName);
+        console.log(filePath);
+        wx.showLoading({
+          title: '正在上传',
+        })
+        wx.uploadFile({
+          url: app.globalData.apiUrl+'/common/aliyun',
+          filePath: filePath,
+          name: 'file',
+          formData: {
+            'fileName': fileName
+          },
+          success: res => {
+            wx.showToast({
+              title: '图片上传成功'
+            });
+            timeMap[date] = timeMap[date] + 1;
+            wx.setStorageSync('timeMap', timeMap);
+            console.log(res);
+            let data = JSON.parse(res.data);
+            console.log(data);
+            that.setData({
+              imgUrl:data.data.path
+            })
+          },
+          fail:error=>{
+            wx.showToast({
+              title: '上传失败',
+            })
+          }
+        });
+      }
+    })
+      // timeMap[date] = timeMap[date] + 1;
+      // wx.setStorageSync('timeMap', timeMap);
+    }
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

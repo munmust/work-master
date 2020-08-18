@@ -1,7 +1,6 @@
 const app = getApp()
 Page({
   data: {
-    stuId: '',
     current: 'tab1',
     currents: 'tabs1',
     notPass: true,
@@ -61,7 +60,7 @@ Page({
       },
       fail: function (error) {
         wx.showToast({
-          title: '出现失错误，请重试',
+          title: '出现错误，请重试',
           icon: 'none',
           duration: 3000
         })
@@ -73,9 +72,9 @@ Page({
 
       success: function (res) {
         /**
-         * 0,详情
-         * 2，修改
-         * 3，删除
+         * 0, 详情
+         * 1，修改
+         * 2，删除
          */
         switch (res.tapIndex) {
           case 0:
@@ -141,7 +140,7 @@ Page({
   },
   toDelete: function () {
     var that = this;
-    if (that.data.certificateType === "Com") {
+    if (that.data.certificateType === "COMPETITION") {
       var that = this;
       wx.showModal({
         title: '提示',
@@ -149,7 +148,7 @@ Page({
         success(res) {
           if (res.confirm) {
             wx.request({
-              url: app.globalData.apiUrl + '/certificate',
+              url: app.globalData.apiUrl + '/certificateManager/certificate',
               method: 'DELETE',
               header: {
                 'Content-Type': 'application/x-www-form-urlencoded',
@@ -189,7 +188,7 @@ Page({
         success(res) {
           if (res.confirm) {
             wx.request({
-              url: app.globalData.apiUrl + '/certificate',
+              url: app.globalData.apiUrl + '/certificateManager/certificate',
               method: 'DELETE',
               header: {
                 'Content-Type': 'application/x-www-form-urlencoded',
@@ -224,11 +223,7 @@ Page({
     }
   },
   onLoad: function (options) {
-    var stuId = options.stuId
-    this.getList(stuId);
-    this.setData({
-      stuId: stuId
-    })
+    this.getList();
   },
   onChange(e) {
     if (e.detail.key === "tab1") {
@@ -280,19 +275,17 @@ Page({
     }
   },
 
-  getList: function (stuId) {
+  getList: function () {
     var that = this
     wx.request({
-      url: app.globalData.apiUrl + '/certificateStamp/certificates',
+      url: app.globalData.apiUrl + '/certificateManager/certificate/list',
       method: 'GET',
       header: {
         'Content-Type': 'application/x-www-form-urlencoded',
         'Authorization': wx.getStorageSync('server_token')
       },
-      data: {
-        stuId: stuId
-      },
       success: function (res) {
+        //console.log("传回",res.data)
         switch (res.data.errorCode) {
           case "200":
             let ok = [],
@@ -318,6 +311,17 @@ Page({
                 S.push(notok[i]);
               } else {
                 C.push(notok[i])
+              }
+            }
+            for (let i = 0; i < ok.length; i++) {
+              if (ok[i].certificateType === "CET_4_6") {
+                ok[i].certificateType = "四六级成绩"
+              } else if (ok[i].certificateType === "QUALIFICATIONS") {
+                ok[i].certificateType = "国家职业资格证书"
+              } else if (ok[i].certificateType === "SKILL") {
+                ok[i].certificateType = "技能证书"
+              } else {
+                ok[i].certificateType = "学科竞赛证书"
               }
             }
             that.setData({
@@ -370,6 +374,6 @@ Page({
   },
 
   onShow: function () {
-    this.getList(this.data.stuId);
+    this.getList();
   },
 })

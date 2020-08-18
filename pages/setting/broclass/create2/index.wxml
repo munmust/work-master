@@ -1,0 +1,14 @@
+<!--pages/home/create2/index.wxml-->
+<view class="whole">
+
+  <image id="bgimg" src='/images/time.png'></image>
+
+  <picker id="time" bindchange="bindPickerChange" bindcolumnchange='bindColumnChange' value="{{choose_time}}" range="{{time_bucket}}">
+    <view>{{choose_time}}</view>
+  </picker>
+
+</view>
+
+<view>
+  <button bindtap="submit" class="button">提交</button>
+</view>
